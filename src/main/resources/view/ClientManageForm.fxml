@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane fx:id="client" prefHeight="627.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.ClientManageFormController">
+   <children>
+      <VBox layoutX="-1.0" layoutY="11.0" opacity="0.89" prefHeight="606.0" prefWidth="549.0" style="-fx-background-color: #ebe1f5;" styleClass="VBox" stylesheets="@../CSS/style.css" />
+      <ImageView fitHeight="264.0" fitWidth="200.0" layoutX="349.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/clientm.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="45.0" layoutY="186.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address" />
+      <Label layoutX="45.0" layoutY="102.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
+      <Line endX="195.0" endY="68.5" layoutY="-22.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
+      <Label layoutX="46.0" layoutY="146.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name" />
+      <Label layoutX="341.0" layoutY="119.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" />
+      <Label layoutX="333.0" layoutY="160.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Email" />
+      <TextField fx:id="txtid" layoutX="115.0" layoutY="97.0" prefHeight="13.0" prefWidth="146.0" promptText="Id" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtemail" layoutX="386.0" layoutY="162.0" prefHeight="24.0" prefWidth="146.0" promptText="Email" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="115.0" layoutY="142.0" prefHeight="15.0" prefWidth="146.0" promptText="Name" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="115.0" layoutY="187.0" prefHeight="2.0" prefWidth="146.0" promptText="Address" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txttel" layoutX="386.0" layoutY="122.0" prefHeight="24.0" prefWidth="146.0" promptText="Tel" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TableView fx:id="tblclient" layoutX="17.0" layoutY="322.0" prefHeight="284.0" prefWidth="514.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+        <columns>
+          <TableColumn fx:id="colid" prefWidth="87.0">
+               <graphic>
+                  <Label prefHeight="29.0" prefWidth="184.0" styleClass="btn" stylesheets="@../CSS/style.css" text="CId" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+          <TableColumn fx:id="colname" prefWidth="125.0">
+               <graphic>
+                  <Label prefHeight="28.0" prefWidth="235.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Name" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="coltel" prefWidth="125.0">
+               <graphic>
+                  <Label prefHeight="28.0" prefWidth="223.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Tel" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colemail" prefWidth="175.0">
+               <graphic>
+                  <Label prefHeight="28.0" prefWidth="223.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Email" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+        </columns>
+      </TableView>
+      <Label layoutX="18.0" layoutY="4.0" prefHeight="51.0" prefWidth="185.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Client Manage" />
+      <JFXButton fx:id="btnsave" layoutX="39.0" layoutY="265.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btndelete" layoutX="174.0" layoutY="265.0" onAction="#btndeleteOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Delete" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnupdate" layoutX="312.0" layoutY="266.0" onAction="#btnupdateOnAction" prefHeight="38.0" prefWidth="94.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Upadate" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/update.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnsearch" layoutX="447.0" layoutY="268.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1050.0" prefWidth="2000.0" styleClass="colorBackground" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.HomePageFormController">
+   <children>
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="768.0" prefWidth="1366.0" styleClass="shadowed" stylesheets="@../CSS/style.css">
+         <children>
+            <Polygon fill="#e0b0ff" layoutX="575.0" layoutY="517.0" points="-29.0, -80.0, 0.0, -28.0, 46.0, -58.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </Polygon>
+            <Polygon fill="#e0b0ff" layoutX="293.0" layoutY="175.0" points="-63.0, -123.0, 26.0, -25.0, 84.0, -149.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </Polygon>
+            <VBox prefHeight="768.0" prefWidth="266.0" styleClass="VBox" stylesheets="@../CSS/style.css">
+               <effect>
+                  <Shadow height="1.0" radius="0.0" width="0.0">
+                     <color>
+                        <Color red="0.9176470637321472" green="0.9019607901573181" blue="0.929411768913269" opacity="0.9599999785423279" />
+                     </color>
+                  </Shadow>
+               </effect>
+            </VBox>
+            <AnchorPane fx:id="root" layoutX="277.0" layoutY="9.0" prefHeight="747.0" prefWidth="1072.0">
+               <children>
+                  <Polygon fill="#b19cd9" layoutX="941.0" layoutY="181.0" points="-162.0, -229.0, -110.0, -64.0, 53.0, -268.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                     <effect>
+                        <Reflection />
+                     </effect>
+                  </Polygon>
+                  <ImageView fitHeight="282.0" fitWidth="194.0" layoutX="858.0" layoutY="30.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../image/home2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="213.0" fitWidth="194.0" layoutX="858.0" layoutY="255.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../image/home3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="236.0" fitWidth="194.0" layoutX="858.0" layoutY="463.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../image/home1.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="26.0" layoutY="188.0" text="Naturab Garment " textFill="WHITE">
+                     <font>
+                        <Font name="Dyuthi Regular" size="42.0" />
+                     </font>
+                  </Label>
+                  <Polygon fill="#b19cd9" layoutX="979.0" layoutY="288.0" points="-140.0, -264.0, -124.0, -201.0, -60.0, -281.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                  <Label layoutX="92.0" layoutY="269.0" text="Accessories" textFill="WHITE">
+                     <font>
+                        <Font name="Dyuthi Regular" size="42.0" />
+                     </font>
+                  </Label>
+                  <LineChart layoutX="123.0" layoutY="399.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="55.0" fitWidth="81.0" layoutX="161.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/naturablogo.png" />
+         </image>
+      </ImageView>
+      <Polygon fill="#d0b0e8" layoutX="35.0" layoutY="-57.0" points="-78.0, -139.0, 2.0, 172.0, 156.0, -125.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <effect>
+            <Reflection />
+         </effect>
+      </Polygon>
+      <JFXButton fx:id="btnproduct" layoutX="26.0" layoutY="270.0" onAction="#btnproductOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Product" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/product.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnorder" layoutX="23.0" layoutY="322.0" onAction="#btnorderOnAction" prefHeight="40.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Order" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/order.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnmaterial" layoutX="29.0" layoutY="375.0" onAction="#btnmaterialOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Material" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/material.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnsupplier" layoutX="29.0" layoutY="425.0" onAction="#btnsupplierOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Supplier" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/supplier.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnoperator" layoutX="28.0" layoutY="474.0" onAction="#btnoperatorOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Operator" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/operator.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnemployee" layoutX="28.0" layoutY="522.0" onAction="#btnemployeeOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Employee" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/employee.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnmachine" layoutX="30.0" layoutY="571.0" onAction="#btnmachineOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Machine" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/machine.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <JFXButton fx:id="btnClient" layoutX="28.0" layoutY="217.0" onAction="#btnClientOnAction" prefHeight="38.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Client" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/client.png" />
+               </image>
+            </ImageView>
+         </graphic></JFXButton>
+      <Label layoutX="67.0" layoutY="106.0" text="Welcome" textFill="#4d1b85">
+         <font>
+            <Font name="Dyuthi Regular" size="33.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="28.0" fitWidth="45.0" layoutX="197.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/welcome.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btndashboard" layoutX="27.0" layoutY="166.0" onAction="#btndashboardOnAction" prefHeight="40.0" prefWidth="185.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Dashboard" textFill="#4e3283">
+         <graphic>
+            <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../../../../Downloads/icons8-dashboard-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

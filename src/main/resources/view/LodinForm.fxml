@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="LodinForm" prefHeight="623.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.LodinFormController">
+   <children>
+      <AnchorPane fx:id="loding" prefHeight="640.0" prefWidth="836.0" styleClass="colorBackground" stylesheets="@../CSS/style.css" />
+      <AnchorPane layoutX="-14.0" prefHeight="640.0" prefWidth="821.0" styleClass="shadowed" stylesheets="@../CSS/style.css">
+         <children>
+            <Polygon fill="#e0b0ff" layoutX="117.0" layoutY="50.0" points="-306.0, 7.0, -63.0, 241.0, 123.0, -144.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </Polygon>
+            <Polygon fill="#e0b0ff" layoutX="403.0" layoutY="132.0" points="-116.0, -79.0, -81.0, 14.0, -36.0, -39.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </Polygon>
+            <Polygon fill="#e0b0ff" layoutX="793.0" layoutY="521.0" points="-177.0, -43.0, -89.0, 84.0, -64.0, -17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </Polygon>
+            <Polygon fill="#b19cd9" layoutX="796.0" layoutY="52.0" points="-150.0, -131.0, -98.0, 133.0, 54.0, -79.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+               <effect>
+                  <Reflection />
+               </effect>
+            </Polygon>
+            <Label accessibleRole="DATE_PICKER" graphicTextGap="10.0" layoutX="139.0" layoutY="185.0" prefHeight="187.0" prefWidth="669.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="LOADING" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="120.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="69.0" fitWidth="80.0" layoutX="26.0" layoutY="19.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../../../../Downloads/naturablogo.png" />
+               </image>
+            </ImageView>
+            <ProgressIndicator layoutX="399.0" layoutY="406.0" prefHeight="102.0" prefWidth="102.0">
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="-1.0" hue="0.86" saturation="-1.0" />
+               </effect>
+            </ProgressIndicator>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
