@@ -1,25 +1,36 @@
 package lk.ijse.Naturab.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import lk.ijse.Naturab.Model.ClientModel;
+import lk.ijse.Naturab.Model.EmployeeModel;
+import lk.ijse.Naturab.Model.Tm.ClientTm;
+import lk.ijse.Naturab.Model.Tm.EmployeeTm;
+import lk.ijse.Naturab.Repositry.ClientRepo;
+import lk.ijse.Naturab.Repositry.EmployeeRepo;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
 public class EmployeeManageFormController {
 
     @FXML
-    private JFXButton btndelete;
+    private JFXButton btnback;
 
     @FXML
     private JFXButton btnsave;
 
     @FXML
     private JFXButton btnsearch;
-
-    @FXML
-    private JFXButton btnupdate;
 
     @FXML
     private TableColumn<?, ?> coladdress;
@@ -34,7 +45,13 @@ public class EmployeeManageFormController {
     private TableColumn<?, ?> coltel;
 
     @FXML
-    private TableView<?> tblemployee;
+    private TableColumn<?, ?> coldelete;
+
+    @FXML
+    private TableColumn<?, ?> coledit;
+
+    @FXML
+    private TableView<EmployeeTm> tblemployee;
 
     @FXML
     private TextField txtaddress;
@@ -55,23 +72,205 @@ public class EmployeeManageFormController {
     private TextField txttel;
 
     @FXML
-    void btndeleteOnAction(ActionEvent event) {
+    private TextField txtsearchid;
 
-    }
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
+        String EmId = txtid.getText();
+        String Name = txtname.getText();
+        String Address = txtaddress.getText();
+        String Tel = txttel.getText();
+        double salary = Double.parseDouble(txtsalary.getText());
+        int yrex = Integer.parseInt(txtexperience.getText());
+
+        EmployeeModel employeeModel = new EmployeeModel(EmId,Name,Address,Tel,salary,yrex,"");
+
+        boolean x = false;
+        try {
+            x = EmployeeRepo.saveEmp(employeeModel);
+            if(x){
+                new Alert(Alert.AlertType.CONFIRMATION,"Employee saved").show();
+                Clear();}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Clear();
+        loadAllEmp();
 
     }
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        String id = txtsearchid.getText();
+        ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
+        EmployeeModel employeeModel;
 
+        try {
+            employeeModel  = EmployeeRepo.searchById(id);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (employeeModel != null) {
+            Image delete = new Image("/image/delete.png");
+            ImageView imageView1 = new ImageView(delete);
+
+            imageView1.setFitHeight(20);
+            imageView1.setFitWidth(20);
+            Image edit = new Image("/image/update.png");
+            ImageView imageView2 = new ImageView(edit);
+
+            imageView2.setFitHeight(20);
+            imageView2.setFitWidth(20);
+
+            JFXButton btndelete = new JFXButton(" ",imageView1);
+            btndelete.setCursor(Cursor.HAND);
+
+
+            JFXButton btnedit = new JFXButton(" ",imageView2);
+            btnedit.setCursor(Cursor.HAND);
+
+            EmployeeTm tm = new EmployeeTm(
+                    employeeModel.getEId(),
+                    employeeModel.getName(),
+                    employeeModel.getAddress(),
+                    employeeModel.getTel(),
+                    btndelete,
+                    btnedit
+            );
+
+            obList.add(tm);
+
+
+            tblemployee.setItems(obList);
+
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "employee not found!").show();
+        }
+        Clear();
+
+    }
+
+    void Clear() {
+        txtid.clear();
+        txtname.clear();
+        txtaddress.clear();
+        txttel.clear();
+        txtsalary.clear();
+        txtexperience.clear();
+
+    }
+    public void initialize() {
+        setCellValueFactory();
+        loadAllEmp();
+    }
+
+    private void setCellValueFactory() {
+        colid.setCellValueFactory(new PropertyValueFactory<>("EId"));
+        colname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        coltel.setCellValueFactory(new PropertyValueFactory<>("Tel"));
+        coladdress.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        coledit.setCellValueFactory(new PropertyValueFactory<>("btnedit"));
+        coldelete.setCellValueFactory(new PropertyValueFactory<>("btndelete"));
+    }
+
+    private void loadAllEmp() {
+        ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
+
+
+        try {
+            List<EmployeeModel> empList = EmployeeRepo.getAll();
+            for (EmployeeModel employeeModel : empList) {
+                if(empList != null){
+
+                    Image delete = new Image("/image/delete.png");
+                    ImageView imageView1 = new ImageView(delete);
+
+                    imageView1.setFitHeight(20);
+                    imageView1.setFitWidth(20);
+                    Image edit = new Image("/image/update.png");
+                    ImageView imageView2 = new ImageView(edit);
+
+                    imageView2.setFitHeight(20);
+                    imageView2.setFitWidth(20);
+
+                    JFXButton btndelete = new JFXButton(" ",imageView1);
+                    btndelete.setCursor(Cursor.HAND);
+
+                    btndelete.setOnAction((e) -> {
+                        ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                        ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                        Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                        if(type.orElse(no) == yes) {
+                            String id = txtid.getText();
+                            boolean x = false;
+                            try {
+                                x = EmployeeRepo.deleteEmp(id);
+                            } catch (SQLException e1) {
+                                throw new RuntimeException(e1);
+                            }
+                            if(x){
+                                new Alert(Alert.AlertType.CONFIRMATION,"Employee deleted").show();
+                                Clear();
+                            }
+                            Clear();
+                            loadAllEmp();
+                        }
+                    });
+
+                    JFXButton btnedit = new JFXButton(" ",imageView2);
+                    btnedit.setCursor(Cursor.HAND);
+
+                    btnedit.setOnAction((e) -> {
+                        String EmId = txtid.getText();
+                        String Name = txtname.getText();
+                        String Address = txtaddress.getText();
+                        String Tel = txttel.getText();
+                        double salary = Double.parseDouble(txtsalary.getText());
+                        int yrex = Integer.parseInt(txtexperience.getText());
+
+                        EmployeeModel employeeModel1 = new EmployeeModel(EmId,Name,Address,Tel,salary,yrex,"");
+
+                        try {
+                            boolean isUpdated = EmployeeRepo.updateEmp(employeeModel1);
+                            if(isUpdated) {
+                                new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
+                                Clear();
+                            }
+                        } catch (SQLException e1) {
+                            new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                        }
+                        Clear();
+                        loadAllEmp();
+                    });
+
+                    EmployeeTm tm = new EmployeeTm(
+                            employeeModel.getEId(),
+                            employeeModel.getName(),
+                            employeeModel.getAddress(),
+                            employeeModel.getTel(),
+                            btndelete,
+                            btnedit
+                    );
+
+                    obList.add(tm);
+                }}
+
+            tblemployee.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void btnupdateOnAction(ActionEvent event) {
+    void btnbackOnAction(ActionEvent event) {
 
     }
+
 
 }

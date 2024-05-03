@@ -8,6 +8,11 @@
 
 }
 
+.lbl2{
+    -fx-text-fill: #4E3283;
+    -fx-font-size: 20px;
+    -fx-font-family: Dyuthi;
+}
 
 .lbl{
     -fx-text-fill: #4E3283;
@@ -17,8 +22,9 @@
 
 .V_Box{
     -fx-background-color: #ffffff;
-    -fx-font-size: 11px;
-    -fx-font-family:"Khmer OS System";
+    -fx-font-size: 15px;
+    -fx-font-family:Dyuthi;
+    -fx-text-alignment: CENTER;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-style: solid;

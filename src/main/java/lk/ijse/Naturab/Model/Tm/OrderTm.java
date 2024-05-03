@@ -3,18 +3,20 @@ package lk.ijse.Naturab.Model.Tm;
 import com.jfoenix.controls.JFXButton;
 import lombok.*;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
-
-public class ClientTm {
+public class OrderTm {
+    private String OId;
+    private Date  PlacedDate;
+    private double PaymentAmount;
+    private String Status;
     private String CId;
-    private String Name;
-    private String Tel;
-    private String Email;
-    private JFXButton btndelete;
     private JFXButton btnedit;
+    private JFXButton btndelete;
 
 }

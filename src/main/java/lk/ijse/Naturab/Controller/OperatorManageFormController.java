@@ -7,11 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class OperatorManageFormController {
 
     @FXML
-    private JFXButton btndelete;
+    private JFXButton btnback;
+
+    @FXML
+    private JFXButton btnclose;
 
     @FXML
     private JFXButton btnsave;
@@ -20,13 +24,19 @@ public class OperatorManageFormController {
     private JFXButton btnsearch;
 
     @FXML
-    private JFXButton btnupdate;
-
-    @FXML
     private TableColumn<?, ?> coladdress;
 
     @FXML
-    private TableColumn<?, ?> colmachine;
+    private TableColumn<?, ?> coldelete;
+
+    @FXML
+    private TableColumn<?, ?> coledit;
+
+    @FXML
+    private TableColumn<?, ?> colid;
+
+    @FXML
+    private TableColumn<?, ?> colmaid;
 
     @FXML
     private TableColumn<?, ?> colname;
@@ -56,13 +66,18 @@ public class OperatorManageFormController {
     private TextField txtsalary;
 
     @FXML
+    private TextField txtsearchid;
+
+    @FXML
     private TextField txttel;
 
     @FXML
-    private JFXComboBox<?> txtuserid;
+    void btnbackOnAction(ActionEvent event) {
+
+    }
 
     @FXML
-    void btndeleteOnAction(ActionEvent event) {
+    void btncloseOnAction(ActionEvent event) {
 
     }
 
@@ -77,7 +92,17 @@ public class OperatorManageFormController {
     }
 
     @FXML
-    void btnupdateOnAction(ActionEvent event) {
+    void tblOnMouseClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void tblOnMouseEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void tblOnMouseExited(MouseEvent event) {
 
     }
 

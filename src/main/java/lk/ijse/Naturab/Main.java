@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         stage.setScene(new Scene(FXMLLoader
-                .load(this.getClass().getResource("/view/LodinForm.fxml"))));
+                .load(this.getClass().getResource("/view/HomePageForm.fxml"))));
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.centerOnScreen();
         stage.show();

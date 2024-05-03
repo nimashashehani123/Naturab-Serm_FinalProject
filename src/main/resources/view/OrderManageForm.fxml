@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="order" prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.OrderManageFormController">
+   <children>
+      <Line endX="195.0" endY="68.5" layoutX="53.0" layoutY="-12.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
+      <TableView fx:id="tblorder" layoutX="122.0" layoutY="341.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="630.0" prefWidth="1380.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="171.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="190.0" styleClass="btn" stylesheets="@../CSS/style.css" text="OId" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colplaceddate" prefWidth="275.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="378.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Placed Date" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colpaymentamount" prefWidth="329.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Payment Amount" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colstatus" prefWidth="308.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="491.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Status" textFill="WHITE" />
+               </graphic></TableColumn>
+            <TableColumn fx:id="colcid" minWidth="0.0" prefWidth="147.0">
+               <graphic>
+                  <Label prefHeight="43.0" prefWidth="176.0" styleClass="btn" stylesheets="@../CSS/style.css" text=" CId" textFill="WHITE" />
+               </graphic></TableColumn>
+            <TableColumn fx:id="coledit" minWidth="0.0" prefWidth="73.0" />
+            <TableColumn fx:id="coldelete" minWidth="0.0" prefWidth="72.0" />
+         </columns>
+      </TableView>
+      <Label layoutX="71.0" layoutY="14.0" prefHeight="51.0" prefWidth="185.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Order Manage" />
+      <JFXButton fx:id="btnsearch" layoutX="1496.0" layoutY="38.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+         <font>
+            <Font size="74.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="btnclose" layoutX="1446.0" layoutY="43.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/close.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnback" layoutX="19.0" layoutY="22.0" onAction="#btnbackOnAction" prefHeight="46.0" prefWidth="0.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnaddorder" layoutX="114.0" layoutY="132.0" onAction="#btnaddorderOnAction" prefHeight="40.0" prefWidth="141.0" styleClass="btn1" stylesheets="@../CSS/style.css" text="Add Order">
+         <font>
+            <Font size="1.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="txtstatus" layoutX="895.0" layoutY="110.0" prefHeight="38.0" prefWidth="372.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
+         <font>
+            <Font size="74.0" />
+         </font>
+      </TextField>
+      <Label layoutX="812.0" layoutY="111.0" prefHeight="43.0" prefWidth="67.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="   Status" textFill="WHITE" />
+      <Label layoutX="346.0" layoutY="110.0" prefHeight="46.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="   Id" textFill="WHITE" />
+      <TextField fx:id="txtid" layoutX="414.0" layoutY="115.0" prefHeight="38.0" prefWidth="372.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
+         <font>
+            <Font size="74.0" />
+         </font>
+      </TextField>
+      <Label layoutX="1357.0" layoutY="342.0" prefHeight="43.0" prefWidth="141.0" styleClass="btn" stylesheets="@../CSS/style.css" text="            Action" textAlignment="CENTER" textFill="WHITE" />
+   </children>
+</AnchorPane>

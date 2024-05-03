@@ -59,7 +59,7 @@
                               </Shadow>
                            </effect>
                         </VBox>
-                        <Hyperlink fx:id="linkRejistration" layoutX="175.0" layoutY="353.0" text="Rejister On Here">
+                        <Hyperlink fx:id="linkRejistration" layoutX="175.0" layoutY="353.0" onAction="#linkRejistrationOnAction" text="Rejister On Here">
                            <font>
                               <Font size="11.0" />
                            </font>
@@ -92,7 +92,7 @@
                         </Label>
                         <TextField fx:id="txtUserId" layoutX="63.0" layoutY="104.0" prefHeight="23.0" prefWidth="197.0" promptText="UserId" styleClass="V_Box" stylesheets="@../CSS/style.css" />
                         <TextField fx:id="txtPassword" layoutX="63.0" layoutY="180.0" prefHeight="23.0" prefWidth="197.0" promptText="Password" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-                        <ImageView fx:id="closedeye" fitHeight="30.0" fitWidth="23.0" layoutX="231.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="closedeye" fitHeight="30.0" fitWidth="23.0" layoutX="231.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/closedeye.png" />
                            </image>

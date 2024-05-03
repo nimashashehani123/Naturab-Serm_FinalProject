@@ -5,21 +5,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
-
-import java.awt.event.MouseEvent;
+import javafx.scene.input.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ClientManageFormController {
+    @FXML
+    private JFXButton btnback;
 
     @FXML
-    private JFXButton btndelete;
+    private JFXButton btnclose;
 
     @FXML
     private JFXButton btnsave;
@@ -45,6 +50,11 @@ public class ClientManageFormController {
     @FXML
     private TableColumn<?, ?> coltel;
     @FXML
+    private TableColumn<?, ?> coldelete;
+
+    @FXML
+    private TableColumn<?, ?> coledit;
+    @FXML
     private TableView<ClientTm> tblclient;
 
 
@@ -63,24 +73,10 @@ public class ClientManageFormController {
     @FXML
     private TextField txttel;
 
-
     @FXML
-    void btndeleteOnAction(ActionEvent event) {
-        String id = txtid.getText();
-        boolean x = false;
-        try {
-            x = ClientRepo.deleteClient(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        if(x){
-            new Alert(Alert.AlertType.CONFIRMATION,"Client deleted").show();
-            Clear();
-        }
+    private TextField txtsearchid;
+    private MouseEvent event;
 
-        loadAllCustomers();
-
-    }
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
@@ -101,57 +97,64 @@ public class ClientManageFormController {
             throw new RuntimeException(e);
         }
 
-
-        loadAllCustomers();
+        Clear();
+        loadAllClients();
 
     }
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
-        String id = txtid.getText();
+        String id = txtsearchid.getText();
+        ObservableList<ClientTm> obList = FXCollections.observableArrayList();
 
-        ClientModel clientModel= null;
+        ClientModel clientModel ;
+
         try {
-            clientModel = ClientRepo.searchById(id);
+            clientModel  = ClientRepo.searchById(id);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         if (clientModel != null) {
-            txtid.setText(clientModel.getCId());
-            txtname.setText(clientModel.getName());
-            txtaddress.setText(clientModel.getAddress());
-            txttel.setText(clientModel.getTel());
-            txtemail.setText(clientModel.getEmail());
+            Image delete = new Image("/image/delete.png");
+            ImageView imageView1 = new ImageView(delete);
+            imageView1.setCache(true);
+            imageView1.setFitHeight(20);
+            imageView1.setFitWidth(20);
+            Image edit = new Image("/image/update.png");
+            ImageView imageView2 = new ImageView(edit);
+            imageView2.setCache(true);
+            imageView2.setFitHeight(20);
+            imageView2.setFitWidth(20);
+
+            JFXButton btndelete = new JFXButton(" ",imageView1);
+            btndelete.setCursor(Cursor.HAND);
+
+
+            JFXButton btnedit = new JFXButton(" ",imageView2);
+            btnedit.setCursor(Cursor.HAND);
+
+            ClientTm tm = new ClientTm(
+                    clientModel.getCId(),
+                    clientModel.getName(),
+                    clientModel.getTel(),
+                    clientModel.getEmail(),
+                    btndelete,
+                    btnedit
+            );
+
+            obList.add(tm);
+
+
+            tblclient.setItems(obList);
+
         } else {
-            new Alert(Alert.AlertType.INFORMATION, "customer not found!").show();
+            new Alert(Alert.AlertType.INFORMATION, "client not found!").show();
         }
-
-        loadAllCustomers();
+        Clear();
 
     }
 
-    @FXML
-    void btnupdateOnAction(ActionEvent event) {
-        String id = txtid.getText();
-        String name = txtname.getText();
-        String address = txtaddress.getText();
-        String tel = txttel.getText();
-        String email = txtemail.getText();
-
-        ClientModel clientModel = new ClientModel(id, name, address, tel, email);
-
-        try {
-            boolean isUpdated = ClientRepo.updateClient(clientModel);
-            if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-
-        loadAllCustomers();
-
-    }
     void Clear() {
         txtid.clear();
         txtname.clear();
@@ -162,7 +165,7 @@ public class ClientManageFormController {
     }
     public void initialize() {
         setCellValueFactory();
-        loadAllCustomers();
+        loadAllClients();
     }
 
     private void setCellValueFactory() {
@@ -170,27 +173,136 @@ public class ClientManageFormController {
         colname.setCellValueFactory(new PropertyValueFactory<>("Name"));
         coltel.setCellValueFactory(new PropertyValueFactory<>("Tel"));
         colemail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        coledit.setCellValueFactory(new PropertyValueFactory<>("btnedit"));
+        coldelete.setCellValueFactory(new PropertyValueFactory<>("btndelete"));
     }
 
-    private void loadAllCustomers() {
+    private void loadAllClients() {
         ObservableList<ClientTm> obList = FXCollections.observableArrayList();
+
 
         try {
             List<ClientModel> clientList = ClientRepo.getAll();
             for (ClientModel clientModel : clientList) {
+                if(clientModel != null){
+
+                Image delete = new Image("/image/delete.png");
+                ImageView imageView1 = new ImageView(delete);
+                //imageView1.setCache(true);
+                imageView1.setFitHeight(20);
+                imageView1.setFitWidth(20);
+                Image edit = new Image("/image/update.png");
+                ImageView imageView2 = new ImageView(edit);
+               // imageView2.setCache(true);
+                imageView2.setFitHeight(20);
+                imageView2.setFitWidth(20);
+
+                JFXButton btndelete = new JFXButton(" ",imageView1);
+                btndelete.setCursor(Cursor.HAND);
+
+                    btndelete.setOnAction((e) -> {
+                        ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                        ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                        Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                        if(type.orElse(no) == yes) {
+                            String id = txtid.getText();
+                            boolean x = false;
+                            try {
+                                x = ClientRepo.deleteClient(id);
+                            } catch (SQLException e1) {
+                                throw new RuntimeException(e1);
+                            }
+                            if(x){
+                                new Alert(Alert.AlertType.CONFIRMATION,"Client deleted").show();
+                                Clear();
+                            }
+                            Clear();
+                            loadAllClients();
+                        }
+                    });
+
+               JFXButton btnedit = new JFXButton(" ",imageView2);
+                btnedit.setCursor(Cursor.HAND);
+
+                    btnedit.setOnAction((e) -> {
+                        String id = txtid.getText();
+                        String name = txtname.getText();
+                        String address = txtaddress.getText();
+                        String tel = txttel.getText();
+                        String email = txtemail.getText();
+
+                        ClientModel clientModel1 = new ClientModel(id, name, address, tel, email);
+
+                        try {
+                            boolean isUpdated = ClientRepo.updateClient(clientModel1);
+                            if(isUpdated) {
+                                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                                Clear();
+                            }
+                        } catch (SQLException e1) {
+                            new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                        }
+                            Clear();
+                            loadAllClients();
+                    });
+
                 ClientTm tm = new ClientTm(
                         clientModel.getCId(),
                         clientModel.getName(),
                         clientModel.getTel(),
-                        clientModel.getEmail()
+                        clientModel.getEmail(),
+                        btndelete,
+                        btnedit
                 );
 
                 obList.add(tm);
-            }
+            }}
 
             tblclient.setItems(obList);
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    void btncloseOnAction(ActionEvent event) {
+        txtsearchid.clear();
+        Clear();
+        loadAllClients();
+    }
+    @FXML
+    void tblOnMouseClick(MouseEvent event) {
+        if (!tblclient.getSelectionModel().isEmpty()) {
+            ClientTm client = tblclient.getSelectionModel().getSelectedItem();
+            ClientModel client1;
+            try {
+                client1 = ClientRepo.searchById(client.getCId());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            txtid.setText(client1.getCId());
+            txtname.setText(client1.getName());
+            txtaddress.setText(client1.getAddress());
+            txttel.setText(client1.getTel());
+            txtemail.setText(client1.getEmail());
+        }
+    }
+    @FXML
+    void btnbackOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void tblOnMouseEntered(MouseEvent event) {
+    }
+
+    @FXML
+    void tblOnMouseExited(MouseEvent event) {
+
+    }
+
+
+
+
 }

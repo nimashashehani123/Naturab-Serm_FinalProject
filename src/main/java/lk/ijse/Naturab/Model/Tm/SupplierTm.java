@@ -9,11 +9,11 @@ import lombok.*;
 @Setter
 @ToString
 
-public class ClientTm {
-    private String CId;
+public class SupplierTm {
+    private String SId;
     private String Name;
+    private String Address;
     private String Tel;
-    private String Email;
     private JFXButton btndelete;
     private JFXButton btnedit;
 

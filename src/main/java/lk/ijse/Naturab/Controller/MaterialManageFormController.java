@@ -7,12 +7,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class MaterialManageFormController {
 
     @FXML
-    private JFXButton btndelete;
+    private JFXButton btnback;
+
+    @FXML
+    private JFXButton btnclose;
 
     @FXML
     private JFXButton btnsave;
@@ -21,19 +25,25 @@ public class MaterialManageFormController {
     private JFXButton btnsearch;
 
     @FXML
-    private JFXButton btnupdate;
+    private TableColumn<?, ?> coldelete;
 
     @FXML
     private TableColumn<?, ?> coldescription;
 
     @FXML
+    private TableColumn<?, ?> coledit;
+
+    @FXML
+    private TableColumn<?, ?> colid;
+
+    @FXML
     private TableColumn<?, ?> colqty;
 
     @FXML
-    private TableColumn<?, ?> colsupplierid;
+    private TableColumn<?, ?> colsid;
 
     @FXML
-    private TableColumn<?, ?> colunitprice;
+    private TableColumn<?, ?> colunitcost;
 
     @FXML
     private AnchorPane material;
@@ -51,13 +61,21 @@ public class MaterialManageFormController {
     private TextField txtqty;
 
     @FXML
+    private TextField txtsearchid;
+
+    @FXML
     private JFXComboBox<?> txtsupplierid;
 
     @FXML
     private TextField txtunitcost;
 
     @FXML
-    void btndeleteOnAction(ActionEvent event) {
+    void btnbackOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btncloseOnAction(ActionEvent event) {
 
     }
 
@@ -72,7 +90,17 @@ public class MaterialManageFormController {
     }
 
     @FXML
-    void btnupdateOnAction(ActionEvent event) {
+    void tblOnMouseClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void tblOnMouseEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void tblOnMouseExited(MouseEvent event) {
 
     }
 

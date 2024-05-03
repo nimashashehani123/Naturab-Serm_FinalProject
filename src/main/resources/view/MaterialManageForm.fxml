@@ -10,54 +10,28 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="material" prefHeight="627.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.MaterialManageFormController">
+<AnchorPane fx:id="material" prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.MaterialManageFormController">
    <children>
-      <VBox layoutX="-2.0" layoutY="13.0" opacity="0.89" prefHeight="606.0" prefWidth="549.0" style="-fx-background-color: #ebe1f5;" styleClass="VBox" stylesheets="@../CSS/style.css" />
-      <ImageView fitHeight="264.0" fitWidth="200.0" layoutX="348.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="242.0" fitWidth="357.0" layoutX="1163.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clientm.png" />
          </image>
       </ImageView>
-      <Label layoutX="32.0" layoutY="188.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Unit Cost" />
-      <Label layoutX="33.0" layoutY="104.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
-      <Line endX="229.0" endY="68.5" layoutX="-1.0" layoutY="-19.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
-      <Label layoutX="31.0" layoutY="144.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
-      <Label layoutX="306.0" layoutY="128.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Qty" />
-      <Label layoutX="304.0" layoutY="165.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Supplier Id" />
-      <TextField fx:id="txtid" layoutX="114.0" layoutY="99.0" prefHeight="13.0" prefWidth="146.0" promptText="Id" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtdescription" layoutX="114.0" layoutY="144.0" prefHeight="15.0" prefWidth="146.0" promptText="Name" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtunitcost" layoutX="114.0" layoutY="189.0" prefHeight="2.0" prefWidth="146.0" promptText="Address" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtqty" layoutX="385.0" layoutY="124.0" prefHeight="24.0" prefWidth="146.0" promptText="Tel" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TableView fx:id="tblmaterial" layoutX="16.0" layoutY="324.0" prefHeight="284.0" prefWidth="514.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
-         <columns>
-            <TableColumn fx:id="coldescription" prefWidth="197.0">
-               <graphic>
-                  <Label prefHeight="29.0" prefWidth="184.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Description" textFill="WHITE" />
-               </graphic>
-            </TableColumn>
-            <TableColumn fx:id="colunitprice" prefWidth="102.0">
-               <graphic>
-                  <Label prefHeight="28.0" prefWidth="235.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Unit Cost" textFill="WHITE" />
-               </graphic>
-            </TableColumn>
-            <TableColumn fx:id="colqty" prefWidth="85.0">
-               <graphic>
-                  <Label prefHeight="28.0" prefWidth="223.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Qty" textFill="WHITE" />
-               </graphic>
-            </TableColumn>
-            <TableColumn fx:id="colsupplierid" prefWidth="128.0">
-               <graphic>
-                  <Label prefHeight="28.0" prefWidth="223.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Supplier Id" textFill="WHITE" />
-               </graphic>
-            </TableColumn>
-         </columns>
-      </TableView>
-      <Label layoutX="17.0" layoutY="9.0" prefHeight="51.0" prefWidth="222.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Material Manage" />
-      <JFXButton fx:id="btnsave" layoutX="29.0" layoutY="259.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
+      <Label layoutX="151.0" layoutY="232.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Unit Cost" />
+      <Label layoutX="154.0" layoutY="103.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
+      <Line endX="229.0" endY="68.5" layoutX="54.0" layoutY="-6.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
+      <Label layoutX="151.0" layoutY="166.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
+      <Label layoutX="707.0" layoutY="100.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Qty" />
+      <Label layoutX="704.0" layoutY="162.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Supplier Id" />
+      <TextField fx:id="txtid" layoutX="267.0" layoutY="100.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtdescription" layoutX="268.0" layoutY="164.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtunitcost" layoutX="270.0" layoutY="230.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtqty" layoutX="803.0" layoutY="94.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <Label layoutX="72.0" layoutY="18.0" prefHeight="51.0" prefWidth="222.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Material Manage" />
+      <JFXButton fx:id="btnsave" layoutX="1044.0" layoutY="253.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -66,25 +40,26 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btndelete" layoutX="164.0" layoutY="259.0" onAction="#btndeleteOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Delete" textFill="WHITE">
+      <JFXComboBox fx:id="txtsupplierid" focusColor="#ffffff00" labelFloat="true" layoutX="801.0" layoutY="160.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#ffffff00" visibleRowCount="0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXComboBox>
+      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+         <font>
+            <Font size="74.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="btnclose" layoutX="1446.0" layoutY="43.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
          <graphic>
-            <ImageView fitHeight="34.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../image/delete.png" />
+                  <Image url="@../image/close.png" />
                </image>
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnupdate" layoutX="302.0" layoutY="260.0" onAction="#btnupdateOnAction" prefHeight="13.0" prefWidth="94.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Upadate" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/update.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
-      <JFXButton fx:id="btnsearch" layoutX="437.0" layoutY="262.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
+      <JFXButton fx:id="btnsearch" layoutX="1496.0" layoutY="38.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="56.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -93,10 +68,45 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXComboBox fx:id="txtsupplierid" focusColor="#ffffff00" labelFloat="true" layoutX="384.0" layoutY="165.0" prefHeight="24.0" prefWidth="146.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#ffffff00" visibleRowCount="0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXComboBox>
+      <TableView fx:id="tblmaterial" layoutX="132.0" layoutY="351.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="579.0" prefWidth="1380.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="171.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="190.0" styleClass="btn" stylesheets="@../CSS/style.css" text="MId" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="coldescription" prefWidth="275.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="378.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Description" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colunitcost" prefWidth="329.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Unit Cost" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colqty" prefWidth="308.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="491.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Quntity" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colsid" minWidth="0.0" prefWidth="147.0">
+               <graphic>
+                  <Label prefHeight="43.0" prefWidth="176.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Supplier Id" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="coledit" minWidth="0.0" prefWidth="73.0" />
+            <TableColumn fx:id="coldelete" minWidth="0.0" prefWidth="72.0" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="btnback" layoutX="19.0" layoutY="22.0" onAction="#btnbackOnAction" prefHeight="46.0" prefWidth="0.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

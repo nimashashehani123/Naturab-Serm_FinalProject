@@ -52,27 +52,38 @@ public class HomePageFormController {
 
     }
     @FXML
-    void btnemployeeOnAction(ActionEvent event) {
-
+    void btnemployeeOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/EmployeeManageForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
     }
 
     @FXML
-    void btnmachineOnAction(ActionEvent event) {
-
+    void btnmachineOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MachineManageForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
     }
 
     @FXML
-    void btnmaterialOnAction(ActionEvent event) {
-
+    void btnmaterialOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/MaterialManageForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
     }
 
     @FXML
-    void btnoperatorOnAction(ActionEvent event) {
-
+    void btnoperatorOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/OperatorManageForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
     }
 
     @FXML
-    void btnorderOnAction(ActionEvent event) {
+    void btnorderOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/OrderManageForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
 
     }
 
@@ -85,7 +96,10 @@ public class HomePageFormController {
     }
 
     @FXML
-    void btnsupplierOnAction(ActionEvent event) {
+    void btnsupplierOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/SupplierManageForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
 
     }
 

@@ -35,9 +35,9 @@
             <Image url="@../image/rphoto.png" />
          </image>
       </ImageView>
-      <TextField layoutX="153.0" layoutY="156.0" prefHeight="24.0" prefWidth="232.0" promptText="Input your User Id here" styleClass="VBox" stylesheets="@../CSS/style.css" />
-      <TextField layoutX="153.0" layoutY="201.0" prefHeight="24.0" prefWidth="232.0" promptText="Input your User Name here" styleClass="VBox" stylesheets="@../CSS/style.css" />
-      <TextField layoutX="153.0" layoutY="250.0" prefHeight="24.0" prefWidth="232.0" promptText="Input your Password here" styleClass="VBox" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtuserid" layoutX="153.0" layoutY="156.0" prefHeight="24.0" prefWidth="232.0" promptText="Input your User Id here" styleClass="VBox" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtusername" layoutX="153.0" layoutY="201.0" prefHeight="24.0" prefWidth="232.0" promptText="Input your User Name here" styleClass="VBox" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtpassword" layoutX="153.0" layoutY="250.0" prefHeight="24.0" prefWidth="232.0" promptText="Input your Password here" styleClass="VBox" stylesheets="@../CSS/style.css" />
       <JFXButton fx:id="btnReg" layoutX="133.0" layoutY="343.0" onAction="#btnRegOnAction" prefHeight="38.0" prefWidth="153.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Rejister Now" textFill="WHITE" />
    </children>
 </AnchorPane>

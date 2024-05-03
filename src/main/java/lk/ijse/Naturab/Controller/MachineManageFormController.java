@@ -1,17 +1,34 @@
 package lk.ijse.Naturab.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Cursor;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import lk.ijse.Naturab.Model.MachineModel;
+import lk.ijse.Naturab.Model.Tm.MachineTm;
+import lk.ijse.Naturab.Repositry.MachineRepo;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
 public class MachineManageFormController {
 
     @FXML
-    private JFXButton btndelete;
+    private JFXButton btnback;
+
+    @FXML
+    private JFXButton btnback1;
+
+    @FXML
+    private JFXButton btnclose;
 
     @FXML
     private JFXButton btnsave;
@@ -20,10 +37,13 @@ public class MachineManageFormController {
     private JFXButton btnsearch;
 
     @FXML
-    private JFXButton btnupdate;
+    private TableColumn<?, ?> coldelete;
 
     @FXML
     private TableColumn<?, ?> coldescription;
+
+    @FXML
+    private TableColumn<?, ?> coledit;
 
     @FXML
     private TableColumn<?, ?> colid;
@@ -35,7 +55,7 @@ public class MachineManageFormController {
     private TableColumn<?, ?> coltype;
 
     @FXML
-    private TableView<?> tblmachine;
+    private TableView<MachineTm> tblmachine;
 
     @FXML
     private TextField txtcapacity;
@@ -47,28 +67,241 @@ public class MachineManageFormController {
     private TextField txtid;
 
     @FXML
-    private ChoiceBox<?> txtstatus;
+    private TextField txtsearchid;
+
+    @FXML
+    private ChoiceBox<String> txtstatus;
 
     @FXML
     private TextField txttype;
 
     @FXML
-    void btndeleteOnAction(ActionEvent event) {
+    void btnbackOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btncloseOnAction(ActionEvent event) {
+        txtsearchid.clear();
+        Clear();
+        loadAllMachine();
 
     }
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
+        String MaId = txtid.getText();
+        String Description = txtdescription.getText();
+        String Capacity = txtcapacity.getText();
+        String Type = txttype.getText();
+        String Status = txtstatus.getValue();
 
+        MachineModel machineModel = new MachineModel(MaId,Description,Capacity,Type,Status);
+
+        boolean x = false;
+        try {
+            x = MachineRepo.saveMachine(machineModel);
+            if(x){
+                new Alert(Alert.AlertType.CONFIRMATION,"Machine saved").show();
+                Clear();}
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        Clear();
+        loadAllMachine();
     }
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        String id = txtsearchid.getText();
+        ObservableList<MachineTm> obList = FXCollections.observableArrayList();
+
+        MachineModel machineModel ;
+
+        try {
+            machineModel  = MachineRepo.searchById(id);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (machineModel != null) {
+            Image delete = new Image("/image/delete.png");
+            ImageView imageView1 = new ImageView(delete);
+
+            imageView1.setFitHeight(20);
+            imageView1.setFitWidth(20);
+            Image edit = new Image("/image/update.png");
+            ImageView imageView2 = new ImageView(edit);
+
+            imageView2.setFitHeight(20);
+            imageView2.setFitWidth(20);
+
+            JFXButton btndelete = new JFXButton(" ",imageView1);
+            btndelete.setCursor(Cursor.HAND);
+
+
+            JFXButton btnedit = new JFXButton(" ",imageView2);
+            btnedit.setCursor(Cursor.HAND);
+
+            MachineTm tm = new MachineTm(
+                   machineModel.getMaId(),
+                    machineModel.getDescription(),
+                    machineModel.getType(),
+                    machineModel.getStatus(),
+                    btnedit,
+                    btndelete
+            );
+
+            obList.add(tm);
+
+
+            tblmachine.setItems(obList);
+
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "machine not found!").show();
+        }
+        Clear();
+    }
+    void Clear() {
+        txtid.clear();
+        txtdescription.clear();
+        txttype.clear();
+        txtcapacity.clear();
+        txtstatus.setValue(null);
+
+    }
+    public void initialize() {
+        setCellValueFactory();
+        loadAllMachine();
+    }
+
+    private void setCellValueFactory() {
+        colid.setCellValueFactory(new PropertyValueFactory<>("MaId"));
+        coldescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        coltype.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        colstatus.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        coledit.setCellValueFactory(new PropertyValueFactory<>("btnedit"));
+        coldelete.setCellValueFactory(new PropertyValueFactory<>("btndelete"));
+    }
+
+    private void loadAllMachine() {
+        ObservableList<MachineTm> obList = FXCollections.observableArrayList();
+
+
+        try {
+            List<MachineModel> machineList = MachineRepo.getAll();
+            for (MachineModel machineModel : machineList) {
+                if(machineList != null){
+
+                    Image delete = new Image("/image/delete.png");
+                    ImageView imageView1 = new ImageView(delete);
+
+                    imageView1.setFitHeight(20);
+                    imageView1.setFitWidth(20);
+                    Image edit = new Image("/image/update.png");
+                    ImageView imageView2 = new ImageView(edit);
+
+                    imageView2.setFitHeight(20);
+                    imageView2.setFitWidth(20);
+
+                    JFXButton btndelete = new JFXButton(" ",imageView1);
+                    btndelete.setCursor(Cursor.HAND);
+
+                    btndelete.setOnAction((e) -> {
+                        ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                        ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                        Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                        if(type.orElse(no) == yes) {
+                            String id = txtid.getText();
+                            boolean x = false;
+                            try {
+                                x = MachineRepo.deleteMachine(id);
+                            } catch (SQLException e1) {
+                                throw new RuntimeException(e1);
+                            }
+                            if(x){
+                                new Alert(Alert.AlertType.CONFIRMATION,"Machine deleted").show();
+                                Clear();
+                            }
+                            Clear();
+                            loadAllMachine();
+                        }
+                    });
+
+                    JFXButton btnedit = new JFXButton(" ",imageView2);
+                    btnedit.setCursor(Cursor.HAND);
+
+                    btnedit.setOnAction((e) -> {
+                        String MaId = txtid.getText();
+                        String Description = txtdescription.getText();
+                        String Capacity = txtcapacity.getText();
+                        String Type = txttype.getText();
+                        String Status = String.valueOf(txtstatus.getValue());
+
+                        MachineModel machineModel1 = new MachineModel(MaId,Description,Capacity,Type,Status);
+
+
+                        try {
+                            boolean isUpdated = MachineRepo.updateMachine(machineModel1);
+                            if(isUpdated) {
+                                new Alert(Alert.AlertType.CONFIRMATION, "machine updated!").show();
+                                Clear();
+                            }
+                        } catch (SQLException e1) {
+                            new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                        }
+                        Clear();
+                        loadAllMachine();
+                    });
+
+                    MachineTm tm = new MachineTm(
+                            machineModel.getMaId(),
+                            machineModel.getDescription(),
+                            machineModel.getType(),
+                            machineModel.getStatus(),
+                            btnedit,
+                            btndelete
+                    );
+
+
+                    obList.add(tm);
+                }}
+
+            tblmachine.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void tblOnMouseClick(MouseEvent event) {
+        if (!tblmachine.getSelectionModel().isEmpty()) {
+            MachineTm machine = tblmachine.getSelectionModel().getSelectedItem();
+            MachineModel machine1;
+            try {
+                machine1 = MachineRepo.searchById(machine.getMaId());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            txtid.setText(machine1.getMaId());
+            txtdescription.setText(machine1.getDescription());
+            txttype.setText(machine1.getType());
+            txtcapacity.setText(machine1.getCapacity());
+            txtstatus.setValue(machine1.getStatus());
+        }
+    }
+
+    @FXML
+    void tblOnMouseEntered(MouseEvent event) {
 
     }
 
     @FXML
-    void btnupdateOnAction(ActionEvent event) {
+    void tblOnMouseExited(MouseEvent event) {
 
     }
 
