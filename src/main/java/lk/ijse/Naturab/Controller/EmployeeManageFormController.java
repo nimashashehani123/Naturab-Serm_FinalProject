@@ -346,9 +346,6 @@ public class EmployeeManageFormController {
             txtexperience.setText(String.valueOf(employee1.getYrOfExperience()));
         }
     }
-   /* @FXML
-    void tblonmouseclick(MouseEvent event) {
 
-    }*/
 
 }
