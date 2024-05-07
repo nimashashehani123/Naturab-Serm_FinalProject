@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Naturab.Db.DbConnection;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,6 +36,10 @@ public class RejistrationFormController {
 
     @FXML
     void btnRegOnAction(ActionEvent event) throws IOException {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
 
         String userId = txtuserid.getText();
         String name = txtusername.getText();
@@ -73,17 +78,27 @@ public class RejistrationFormController {
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtuserid);
 
     }
 
     @FXML
     void txtnameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtusername);
 
     }
 
     @FXML
     void txtpasswordOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.PASSWORD,txtpassword);
 
+    }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtuserid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtusername)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.PASSWORD,txtpassword)) return false;
+        return true;
     }
 
 }
