@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.Naturab.Model.MachineModel;
 import lk.ijse.Naturab.Model.Tm.MachineTm;
 import lk.ijse.Naturab.Repositry.MachineRepo;
+import lk.ijse.Naturab.Util.Regex;
 
 import javax.mail.MessagingException;
 import java.sql.SQLException;
@@ -90,6 +91,10 @@ public class MachineManageFormController {
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String MaId = txtid.getText();
         String Description = txtdescription.getText();
         String Capacity = txtcapacity.getText();
@@ -114,6 +119,10 @@ public class MachineManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtsearchid.getText();
         ObservableList<MachineTm> obList = FXCollections.observableArrayList();
 
@@ -166,6 +175,10 @@ public class MachineManageFormController {
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
             btnedit.setOnAction((e) -> {
+                if (!isValied()){
+                    new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                    return;
+                }
                 String MaId = txtid.getText();
                 String Description = txtdescription.getText();
                 String Capacity = txtcapacity.getText();
@@ -280,6 +293,10 @@ public class MachineManageFormController {
                     btnedit.setCursor(Cursor.HAND);
 
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String MaId = txtid.getText();
                         String Description = txtdescription.getText();
                         String Capacity = txtcapacity.getText();
@@ -353,27 +370,43 @@ public class MachineManageFormController {
 
     @FXML
     void txtcapacityOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtcapacity);
 
     }
 
     @FXML
     void txtdescriptionOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription);
 
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
 
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
 
     }
 
     @FXML
     void txttypeOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txttype);
 
     }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtcapacity)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txttype)) return false;
 
+        return true;
+    }
+    public boolean isValied1(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+        return true;
+    }
 }

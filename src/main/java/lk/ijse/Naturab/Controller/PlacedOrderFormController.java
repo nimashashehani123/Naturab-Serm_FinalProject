@@ -26,6 +26,7 @@ import lk.ijse.Naturab.Repositry.ClientRepo;
 import lk.ijse.Naturab.Repositry.OrderRepo;
 import lk.ijse.Naturab.Repositry.PlaceOrderRepo;
 import lk.ijse.Naturab.Repositry.ProductRepo;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -117,6 +118,10 @@ public class PlacedOrderFormController {
 
     @FXML
     void btnplaceorderOnAction(ActionEvent event) {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
 
         String orderId = txtid.getText();
         String cusId = txtclientid.getValue();
@@ -185,6 +190,10 @@ public class PlacedOrderFormController {
 
     @FXML
     void btnaddtocartOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = lblid.getValue();
         String description = lbldesc.getText();
         int qty = Integer.parseInt(txtqty.getText());
@@ -360,11 +369,24 @@ public class PlacedOrderFormController {
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
 
     }
 
     @FXML
     void txtqtyOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty);
 
+    }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
+
+        return true;
+    }
+    public boolean isValied1(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
+
+        return true;
     }
 }

@@ -23,6 +23,7 @@ import lk.ijse.Naturab.Repositry.ClientRepo;
 import lk.ijse.Naturab.Repositry.EmployeeRepo;
 import lk.ijse.Naturab.Repositry.MachineRepo;
 import lk.ijse.Naturab.Repositry.OperatorRepo;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -105,6 +106,10 @@ public class OperatorManageFormController {
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String opId = txtid.getText();
         String Name = txtname.getText();
         String Address = txtaddress.getText();
@@ -133,6 +138,10 @@ public class OperatorManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtsearchid.getText();
         ObservableList<OperatorTm> obList = FXCollections.observableArrayList();
         OperatorModel operatorModel;
@@ -184,6 +193,10 @@ public class OperatorManageFormController {
             btnedit.setCursor(Cursor.HAND);
 
             btnedit.setOnAction((e) -> {
+                if (!isValied()){
+                    new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                    return;
+                }
                 String OpId = txtid.getText();
                 String Name = txtname.getText();
                 String Address = txtaddress.getText();
@@ -305,6 +318,10 @@ public class OperatorManageFormController {
                     btnedit.setCursor(Cursor.HAND);
 
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String OpId = txtid.getText();
                         String Name = txtname.getText();
                         String Address = txtaddress.getText();
@@ -400,37 +417,60 @@ public class OperatorManageFormController {
 
     @FXML
     void txtaddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtexperienceOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtnameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txttelOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
     @FXML
     void txtsalaryOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtexperience)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtsalary)) return false;
 
+
+        return true;
+    }
+    public boolean isValied1(){
+
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+
+        return true;
+    }
 
 }

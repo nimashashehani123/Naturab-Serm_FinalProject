@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 import lk.ijse.Naturab.Model.*;
 import lk.ijse.Naturab.Model.Tm.ProductDetailTm;
 import lk.ijse.Naturab.Repositry.*;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.io.File;
 import java.io.IOException;
@@ -107,6 +108,10 @@ public class AddProductFormController {
 
     @FXML
     void btnaddproductOnAction(ActionEvent event) {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String PId = txtid.getText();
         String Description = txtdescription.getText();
         Double UnitPrice = Double.valueOf(txtunitprice.getText());
@@ -146,7 +151,10 @@ public class AddProductFormController {
 
     @FXML
     void btnaddtotblOnAction(ActionEvent event) {
-
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtMaterialid.getValue();
         String description = lbldescription.getText();
         int qty = Integer.parseInt(txtqty.getText());
@@ -342,26 +350,45 @@ public class AddProductFormController {
 
     @FXML
     void txtdescriptionOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription);
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
     }
 
     @FXML
     void txtqtyOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty);
     }
 
     @FXML
     void txtqtyonhandOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqtyonhand);
     }
 
     @FXML
     void txtunitpriceOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitprice);
     }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqtyonhand)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitprice)) return false;
+
+        return true;
+    }
+    public boolean isValied1(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitprice)) return false;
+
+        return true;
+    }
+
 }

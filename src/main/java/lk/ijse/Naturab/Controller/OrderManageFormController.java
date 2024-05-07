@@ -20,6 +20,7 @@ import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.OrderTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
 import lk.ijse.Naturab.Repositry.OrderRepo;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -102,6 +103,10 @@ public class OrderManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtsearchid.getText();
         ObservableList<OrderTm> obList = FXCollections.observableArrayList();
 
@@ -157,6 +162,10 @@ public class OrderManageFormController {
             btnedit.setCursor(Cursor.HAND);
             btnedit.setCursor(Cursor.HAND);
             btnedit.setOnAction((e) -> {
+                if (!isValied()){
+                    new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                    return;
+                }
                 String id2 = txtid.getText();
                 OrderModel order;
                 try {
@@ -279,6 +288,10 @@ public class OrderManageFormController {
                     JFXButton btnedit = new JFXButton(" ",imageView2);
                     btnedit.setCursor(Cursor.HAND);
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String id = txtid.getText();
                         OrderModel order;
                         try {
@@ -361,13 +374,25 @@ public class OrderManageFormController {
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
 
     }
 
     @FXML
     void txtsidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
 
     }
+    public boolean isValied(){
 
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
 
+        return true;
+    }
+    public boolean isValied1(){
+
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+
+        return true;
+    }
 }

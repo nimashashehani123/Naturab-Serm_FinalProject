@@ -22,6 +22,7 @@ import lk.ijse.Naturab.Repositry.ClientRepo;
 import lk.ijse.Naturab.Repositry.MachineRepo;
 import lk.ijse.Naturab.Repositry.MaterialRepo;
 import lk.ijse.Naturab.Repositry.SupplierRepo;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -101,6 +102,10 @@ public class MaterialManageFormController {
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String MId = txtid.getText();
         String description = txtdescription.getText();
         double unitcost = Double.parseDouble(txtunitcost.getText());
@@ -127,6 +132,10 @@ public class MaterialManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtsearchid.getText();
         ObservableList<MaterialTm> obList = FXCollections.observableArrayList();
 
@@ -182,6 +191,10 @@ public class MaterialManageFormController {
             btnedit.setCursor(Cursor.HAND);
 
             btnedit.setOnAction((e) -> {
+                if (!isValied()){
+                    new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                    return;
+                }
                 String id2 = txtid.getText();
                 String description = txtdescription.getText();
                 double unitcost = Double.parseDouble(txtunitcost.getText());
@@ -298,6 +311,10 @@ public class MaterialManageFormController {
                     btnedit.setCursor(Cursor.HAND);
 
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String id = txtid.getText();
                         String description = txtdescription.getText();
                         double unitcost = Double.parseDouble(txtunitcost.getText());
@@ -386,27 +403,41 @@ public class MaterialManageFormController {
 
     @FXML
     void txtdescriptionOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription);
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
     }
 
     @FXML
     void txtqtyOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty);
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
     }
 
     @FXML
     void txtunitcostOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitcost);
+    }
 
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtdescription)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitcost)) return false;
+        return true;
+    }
+    public boolean isValied1(){
+
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+
+        return true;
     }
 
 }

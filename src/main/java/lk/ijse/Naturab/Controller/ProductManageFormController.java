@@ -23,6 +23,7 @@ import lk.ijse.Naturab.Model.ProductModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.ProductTm;
 import lk.ijse.Naturab.Repositry.*;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,14 +67,11 @@ public class ProductManageFormController {
     @FXML
     private TableColumn<?, ?> colwarehouseid;
 
-
-
     @FXML
     private AnchorPane product;
 
     @FXML
     private TableView<ProductTm> tblcproduct;
-
 
     @FXML
     private TextField txtid;
@@ -83,9 +81,6 @@ public class ProductManageFormController {
 
     @FXML
     private JFXComboBox<String> txtwarehouseid;
-
-
-
 
     @FXML
     private TextField txtqty;
@@ -105,23 +100,6 @@ public class ProductManageFormController {
 
     }
 
-   /* @FXML
-    void btnsaveOnAction(ActionEvent event) {
-
-        boolean x = false;
-        try {
-            x = ProductRepo.saveProduct(productModel);
-            if(x){
-                new Alert(Alert.AlertType.CONFIRMATION,"Product saved").show();
-                Clear();}
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        Clear();
-        loadAllProducts();
-
-    }*/
     void Clear() {
         txtid.clear();
         txtunitprice.clear();
@@ -151,6 +129,10 @@ public class ProductManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtsearchid.getText();
         ObservableList<ProductTm> obList = FXCollections.observableArrayList();
 
@@ -211,6 +193,10 @@ public class ProductManageFormController {
             btnedit.setCursor(Cursor.HAND);
 
             btnedit.setOnAction((e) -> {
+                if (!isValied()){
+                new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                return;
+            }
                 String PId = txtid.getText();
                 ProductModel product;
                 try {
@@ -322,6 +308,10 @@ public class ProductManageFormController {
                     btnedit.setCursor(Cursor.HAND);
 
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String PId = txtid.getText();
                         ProductModel product;
                         try {
@@ -440,24 +430,39 @@ public class ProductManageFormController {
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
 
     }
 
     @FXML
     void txtqtyOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty);
 
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
 
     }
 
     @FXML
     void txtunitpriceOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitprice);
 
     }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtunitprice)) return false;
+        return true;
+    }
+    public boolean isValied1(){
 
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+
+        return true;
+    }
 }
 
 

@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -87,6 +88,10 @@ public class EmployeeManageFormController {
 
     @FXML
     void btnsaveOnAction(ActionEvent event) {
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String EmId = txtid.getText();
         String Name = txtname.getText();
         String Address = txtaddress.getText();
@@ -113,6 +118,10 @@ public class EmployeeManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String id = txtsearchid.getText();
         ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
         EmployeeModel employeeModel;
@@ -163,6 +172,10 @@ public class EmployeeManageFormController {
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
             btnedit.setOnAction((e) -> {
+                if (!isValied()){
+                    new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                    return;
+                }
                 String EmId = txtid.getText();
                 String Name = txtname.getText();
                 String Address = txtaddress.getText();
@@ -278,6 +291,10 @@ public class EmployeeManageFormController {
                     btnedit.setCursor(Cursor.HAND);
 
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String EmId = txtid.getText();
                         String Name = txtname.getText();
                         String Address = txtaddress.getText();
@@ -349,37 +366,58 @@ public class EmployeeManageFormController {
     }
     @FXML
     void txtaddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtexperienceOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtnameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtsalaryOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
     }
 
     @FXML
     void txttelOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
 
+    }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtsalary)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtexperience)) return false;
+
+        return true;
+    }
+    public boolean isValied1(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+        return true;
     }
 
 }
