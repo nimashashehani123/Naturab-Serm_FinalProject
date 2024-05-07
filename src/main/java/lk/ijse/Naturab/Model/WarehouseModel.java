@@ -1,0 +1,14 @@
+package lk.ijse.Naturab.Model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class WarehouseModel {
+    private String WId;
+    private String Location;
+    private String Capacity;
+}
