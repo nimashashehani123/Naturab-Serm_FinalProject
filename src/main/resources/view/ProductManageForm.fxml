@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,16 +14,13 @@
 
 <AnchorPane fx:id="product" prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.ProductManageFormController">
    <children>
-      <Label layoutX="108.0" layoutY="281.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Design" />
-      <Label layoutX="107.0" layoutY="117.0" prefHeight="29.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
+      <Label layoutX="107.0" layoutY="222.0" prefHeight="29.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
       <Line endX="217.0" endY="68.5" layoutX="58.0" layoutY="-1.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
-      <Label layoutX="103.0" layoutY="188.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
-      <Label layoutX="670.0" layoutY="90.0" prefHeight="29.0" prefWidth="78.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Unit Price" />
-      <Label layoutX="672.0" layoutY="152.0" prefHeight="29.0" prefWidth="41.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Qty" />
-      <TextField fx:id="txtid" layoutX="211.0" layoutY="113.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtqty" layoutX="794.0" layoutY="151.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtdescription" layoutX="213.0" layoutY="186.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtunitprice" layoutX="794.0" layoutY="85.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <Label layoutX="107.0" layoutY="314.0" prefHeight="29.0" prefWidth="78.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Unit Price" />
+      <Label layoutX="611.0" layoutY="134.0" prefHeight="29.0" prefWidth="41.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Qty" />
+      <TextField fx:id="txtid" layoutX="208.0" layoutY="216.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtqty" layoutX="730.0" layoutY="121.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtunitprice" layoutX="204.0" layoutY="309.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TableView fx:id="tblcproduct" layoutX="102.0" layoutY="431.0" onMouseClicked="#tblOnMouseClick" prefHeight="498.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
          <columns>
             <TableColumn fx:id="colid" prefWidth="144.0">
@@ -58,15 +56,7 @@
          </columns>
       </TableView>
       <Label layoutX="75.0" layoutY="23.0" prefHeight="51.0" prefWidth="209.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Product Manage" />
-      <JFXButton fx:id="btnsave" layoutX="1077.0" layoutY="356.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/save.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </JFXButton>
+      <JFXButton fx:id="btnaddproduct" layoutX="126.0" layoutY="121.0" onAction="#btnaddproductOnAction" prefHeight="51.0" prefWidth="139.0" style="-fx-background-color: #fffa00;" styleClass="VBox1" stylesheets="@../CSS/style.css" text="+ Add Product" textFill="WHITE" />
       <ImageView fitHeight="334.0" fitWidth="425.0" layoutX="1174.0" layoutY="52.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../image/clientm.png" />
@@ -95,11 +85,8 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ImageView fx:id="imageview" fitHeight="163.0" fitWidth="200.0" layoutX="213.0" layoutY="244.0" onMouseClicked="#imageOnClick" opacity="0.67" pickOnBounds="true" smooth="false" />
-      <Label layoutX="667.0" layoutY="220.0" prefHeight="29.0" prefWidth="147.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Warehouse Id" />
-      <TextField fx:id="txtwarehouseid" layoutX="794.0" layoutY="218.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <Label layoutX="665.0" layoutY="286.0" prefHeight="29.0" prefWidth="147.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Machine Id" />
-      <TextField fx:id="txtmachineid" layoutX="796.0" layoutY="285.0" prefHeight="38.0" prefWidth="325.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <Label layoutX="611.0" layoutY="221.0" prefHeight="29.0" prefWidth="147.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Warehouse Id" />
+      <Label layoutX="611.0" layoutY="315.0" prefHeight="29.0" prefWidth="147.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Machine Id" />
       <JFXButton fx:id="btnback" layoutX="29.0" layoutY="29.0" onAction="#btnbackOnAction" prefHeight="46.0" prefWidth="0.0" text=" ">
          <graphic>
             <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
@@ -109,5 +96,8 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <JFXComboBox fx:id="txtmachineid" focusColor="#5e376f" labelFloat="true" layoutX="730.0" layoutY="305.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#eae8eb" />
+      <JFXComboBox fx:id="txtwarehouseid" focusColor="#5e376f" labelFloat="true" layoutX="730.0" layoutY="213.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#eae8eb" />
+      <Label layoutX="1395.0" layoutY="434.0" prefHeight="40.0" prefWidth="119.0" styleClass="btn" stylesheets="@../CSS/style.css" text="           Action" textFill="WHITE" />
    </children>
 </AnchorPane>

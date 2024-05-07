@@ -47,9 +47,6 @@ public class OrderManageFormController {
     private TableColumn<?, ?> coledit;
 
     @FXML
-    private TableColumn<?, ?> colhandoverdate;
-
-    @FXML
     private TableColumn<?, ?> colid;
 
     @FXML
@@ -74,10 +71,9 @@ public class OrderManageFormController {
     private TextField txtsearchid;
 
     @FXML
-    private TextField txtstatus;
+    private ChoiceBox<String> txtstatus;
 
-    @FXML
-    private TextField txthandoverdate;
+
 
     @FXML
     private TextField txtid;
@@ -97,6 +93,9 @@ public class OrderManageFormController {
 
     @FXML
     void btncloseOnAction(ActionEvent event) {
+        txtsearchid.clear();
+        Clear();
+        loadAllOrders();
 
     }
 
@@ -153,9 +152,41 @@ public class OrderManageFormController {
 
 
 
-
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
+            btnedit.setCursor(Cursor.HAND);
+            btnedit.setOnAction((e) -> {
+                String id2 = txtid.getText();
+                OrderModel order;
+                try {
+                    order = OrderRepo.searchById(id);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                Date placedDate = order.getPlacedDate();
+                String cId = order.getCId();
+                double paymentAmount = order.getPaymentAmount();
+                String status = txtstatus.getValue();
+
+
+                OrderModel orderModel1 = new OrderModel(id2, placedDate,paymentAmount,status, cId);
+
+                try {
+                    boolean isUpdated = OrderRepo.updateOrder(orderModel1);
+                    if(isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "order updated!").show();
+                        Clear();
+                    }
+                } catch (SQLException e1) {
+                    new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                }
+                Clear();
+                loadAllOrders();
+            });
+
+
+
+
 
 
             OrderTm tm = new OrderTm(
@@ -182,6 +213,7 @@ public class OrderManageFormController {
     }
 
     public void initialize() {
+        txtstatus.getItems().addAll("Completed","Not Completed", "On Prepare");
         setCellValueFactory();
         loadAllOrders();
     }
@@ -256,7 +288,7 @@ public class OrderManageFormController {
                         Date placedDate = order.getPlacedDate();
                         String cId = order.getCId();
                         double paymentAmount = order.getPaymentAmount();
-                        String status = txtstatus.getText();
+                        String status = txtstatus.getValue();
 
 
                         OrderModel orderModel1 = new OrderModel(id, placedDate,paymentAmount,status, cId);
@@ -297,13 +329,23 @@ public class OrderManageFormController {
     }
     void Clear() {
         txtid.clear();
-        txtstatus.clear();
+        txtstatus.setValue(null);
 
     }
 
     @FXML
     void tblOnMouseClick(MouseEvent event) {
-
+        if (!tblorder.getSelectionModel().isEmpty()) {
+            OrderTm order = tblorder.getSelectionModel().getSelectedItem();
+            OrderModel order1;
+            try {
+                order1 = OrderRepo.searchById(order.getOId());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            txtid.setText(order1.getOId());
+            txtstatus.setValue(order1.getStatus());
+        }
     }
 
     @FXML

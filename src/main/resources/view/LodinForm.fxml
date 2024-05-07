@@ -42,7 +42,7 @@
             </Label>
             <ImageView fitHeight="69.0" fitWidth="80.0" layoutX="26.0" layoutY="19.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../../../../Downloads/naturablogo.png" />
+                  <Image url="@../image/naturablogo.png" />
                </image>
             </ImageView>
             <ProgressIndicator layoutX="399.0" layoutY="406.0" prefHeight="102.0" prefWidth="102.0">

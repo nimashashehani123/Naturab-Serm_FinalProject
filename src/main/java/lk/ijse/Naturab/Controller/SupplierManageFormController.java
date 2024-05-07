@@ -126,10 +126,52 @@ public class SupplierManageFormController {
 
             JFXButton btndelete = new JFXButton(" ",imageView1);
             btndelete.setCursor(Cursor.HAND);
+            btndelete.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                if(type.orElse(no) == yes) {
+                    String id1 = txtid.getText();
+                    boolean x = false;
+                    try {
+                        x = SupplierRepo.deleteSupplier(id1);
+                    } catch (SQLException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                    if(x){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Supplier deleted").show();
+
+                    }
+                    Clear();
+                    loadAllSuppliers();
+                }
+            });
 
 
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
+            btnedit.setOnAction((e) -> {
+                String id2 = txtid.getText();
+                String name = txtname.getText();
+                String address = txtaddress.getText();
+                String tel = txttel.getText();
+
+                SupplierModel supplierModel1 = new SupplierModel(id2, name, address, tel);
+
+                try {
+                    boolean isUpdated = SupplierRepo.updateSupplier(supplierModel1);
+                    if(isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "supplier updated!").show();
+                        Clear();
+                    }
+                } catch (SQLException e1) {
+                    new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                }
+                Clear();
+                loadAllSuppliers();
+            });
 
             SupplierTm tm = new SupplierTm(
                     supplierModel.getSId(),

@@ -10,14 +10,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.Naturab.Util.Regex;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
+import static javafx.scene.input.KeyCode.T;
 
 public class ClientManageFormController {
     @FXML
@@ -31,9 +36,6 @@ public class ClientManageFormController {
 
     @FXML
     private JFXButton btnsearch;
-
-    @FXML
-    private JFXButton btnupdate;
 
     @FXML
     private AnchorPane client;
@@ -75,7 +77,6 @@ public class ClientManageFormController {
 
     @FXML
     private TextField txtsearchid;
-    private MouseEvent event;
 
 
     @FXML
@@ -88,15 +89,18 @@ public class ClientManageFormController {
         ClientModel clientModel = new ClientModel(CId,Name,Address,Tel,Email);
 
         boolean x = false;
+        if (isValied()) {
         try {
-            x = ClientRepo.saveClient(clientModel);
-            if(x){
-                new Alert(Alert.AlertType.CONFIRMATION,"Client saved").show();
-                Clear();}
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
+                x = ClientRepo.saveClient(clientModel);
+                if (x) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Client saved").show();
+                    Clear();
+                }
+            } catch(SQLException e){
+                throw new RuntimeException(e);
+            }
+        }
         Clear();
         loadAllClients();
 
@@ -130,9 +134,54 @@ public class ClientManageFormController {
             JFXButton btndelete = new JFXButton(" ",imageView1);
             btndelete.setCursor(Cursor.HAND);
 
+            btndelete.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                if(type.orElse(no) == yes) {
+                    String id1 = txtid.getText();
+                    boolean x = false;
+                    try {
+                        x = ClientRepo.deleteClient(id1);
+                    } catch (SQLException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                    if(x){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Client deleted").show();
+                        Clear();
+                    }
+                    Clear();
+                    loadAllClients();
+                }
+            });
+
 
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
+
+            btnedit.setOnAction((e) -> {
+                String id2 = txtid.getText();
+                String name = txtname.getText();
+                String address = txtaddress.getText();
+                String tel = txttel.getText();
+                String email = txtemail.getText();
+
+                ClientModel clientModel1 = new ClientModel(id2, name, address, tel, email);
+
+                try {
+                    boolean isUpdated = ClientRepo.updateClient(clientModel1);
+                    if(isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "client updated!").show();
+                        Clear();
+                    }
+                } catch (SQLException e1) {
+                    new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                }
+                Clear();
+                loadAllClients();
+            });
 
             ClientTm tm = new ClientTm(
                     clientModel.getCId(),
@@ -238,7 +287,7 @@ public class ClientManageFormController {
                         try {
                             boolean isUpdated = ClientRepo.updateClient(clientModel1);
                             if(isUpdated) {
-                                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
+                                new Alert(Alert.AlertType.CONFIRMATION, "client updated!").show();
                                 Clear();
                             }
                         } catch (SQLException e1) {
@@ -303,6 +352,13 @@ public class ClientManageFormController {
     }
 
 
+    @FXML
+    void ontxtidkeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
+    }
 
-
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        return true;
+    }
 }

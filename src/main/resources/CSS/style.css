@@ -41,11 +41,12 @@
 
 }
 .lbls{
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 150px;
-    -fx-font-family: Dyuthi;
+    -fx-text-fill: linear-gradient( to right top,#ffffff, #E0B0FF,#ffffff ,#8D6EC7);
+    -fx-font-size: 130px;
+    -fx-font-family: NATS;
 
 }
+
 .lbl1{
     -fx-text-fill: #4E3283;
     -fx-font-size: 17px;
@@ -78,6 +79,18 @@
     -fx-border-radius: 25px;
     -fx-background-radius: 20px;
     -fx-border-color: #ffffff;
+    -fx-border-style: solid;
+
+}
+
+.VBox2{
+    -fx-background-color: #000000;
+    -fx-font-size: 17px;
+    -fx-font-family: Dyuthi;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #000000;
     -fx-border-style: solid;
 
 }
