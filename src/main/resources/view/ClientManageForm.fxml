@@ -18,36 +18,36 @@
       <Line endX="195.0" endY="68.5" layoutX="43.0" layoutY="-22.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
       <Label layoutX="110.0" layoutY="190.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name" />
       <Label layoutX="668.0" layoutY="109.0" prefHeight="29.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" />
-      <Label layoutX="671.0" layoutY="187.0" prefHeight="29.0" prefWidth="41.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Email" />
-      <TextField fx:id="txtid" layoutX="212.0" layoutY="104.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtemail" layoutX="746.0" layoutY="182.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtname" layoutX="215.0" layoutY="186.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtaddress" layoutX="213.0" layoutY="268.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txttel" layoutX="747.0" layoutY="99.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TableView fx:id="tblclient" layoutX="112.0" layoutY="383.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="546.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+      <Label layoutX="671.0" layoutY="187.0" prefHeight="29.0" prefWidth="41.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Email" textFill="#eddffc" />
+      <TextField fx:id="txtid" layoutX="212.0" layoutY="104.0" onKeyReleased="#ontxtidkeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtemail" layoutX="746.0" layoutY="182.0" onKeyReleased="#ontxtemailkeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="215.0" layoutY="186.0" onKeyReleased="#ontxtnamekeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="213.0" layoutY="268.0" onKeyReleased="#ontxtaddresskeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txttel" layoutX="747.0" layoutY="99.0" onKeyReleased="#ontxttelkeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TableView fx:id="tblclient" layoutX="112.0" layoutY="383.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="545.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
         <columns>
-          <TableColumn fx:id="colid" prefWidth="196.0">
+          <TableColumn fx:id="colid" prefWidth="168.0">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="190.0" styleClass="btn" stylesheets="@../CSS/style.css" text="CId" textFill="WHITE" />
                </graphic>
             </TableColumn>
-          <TableColumn fx:id="colname" prefWidth="384.0">
+          <TableColumn fx:id="colname" prefWidth="403.0">
                <graphic>
-                  <Label prefHeight="40.0" prefWidth="378.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Name" textFill="WHITE" />
+                  <Label prefHeight="40.0" prefWidth="483.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Name" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coltel" prefWidth="274.0">
+            <TableColumn fx:id="coltel" prefWidth="283.0">
                <graphic>
                   <Label prefHeight="42.0" prefWidth="347.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Tel" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="colemail" prefWidth="473.0">
+            <TableColumn fx:id="colemail" prefWidth="429.0">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Email" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coledit" prefWidth="45.0" />
-            <TableColumn fx:id="coldelete" prefWidth="38.0" />
+            <TableColumn fx:id="coledit" prefWidth="68.0" />
+            <TableColumn fx:id="coldelete" prefWidth="59.0" />
         </columns>
       </TableView>
       <Label layoutX="61.0" layoutY="4.0" prefHeight="51.0" prefWidth="185.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Client Manage" />
@@ -74,7 +74,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtsearchid" layoutX="1212.0" layoutY="27.0" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txtsearchid" layoutX="1212.0" layoutY="27.0" onKeyReleased="#ontxtsearchidkeyreleased" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font size="74.0" />
          </font></TextField>
@@ -96,5 +96,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Label layoutX="1396.0" layoutY="387.0" prefHeight="40.0" prefWidth="128.0" styleClass="btn" stylesheets="@../CSS/style.css" text="           Action" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -15,6 +15,7 @@ import lk.ijse.Naturab.Model.MachineModel;
 import lk.ijse.Naturab.Model.Tm.MachineTm;
 import lk.ijse.Naturab.Repositry.MachineRepo;
 
+import javax.mail.MessagingException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
@@ -23,9 +24,6 @@ public class MachineManageFormController {
 
     @FXML
     private JFXButton btnback;
-
-    @FXML
-    private JFXButton btnback1;
 
     @FXML
     private JFXButton btnclose;
@@ -74,6 +72,7 @@ public class MachineManageFormController {
 
     @FXML
     private TextField txttype;
+
 
     @FXML
     void btnbackOnAction(ActionEvent event) {
@@ -139,11 +138,54 @@ public class MachineManageFormController {
 
             JFXButton btndelete = new JFXButton(" ",imageView1);
             btndelete.setCursor(Cursor.HAND);
+            btndelete.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                if(type.orElse(no) == yes) {
+                    String id1 = txtid.getText();
+                    boolean x = false;
+                    try {
+                        x = MachineRepo.deleteMachine(id1);
+                    } catch (SQLException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                    if(x){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Machine deleted").show();
+                        Clear();
+                    }
+                    Clear();
+                    loadAllMachine();
+                }
+            });
 
 
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
+            btnedit.setOnAction((e) -> {
+                String MaId = txtid.getText();
+                String Description = txtdescription.getText();
+                String Capacity = txtcapacity.getText();
+                String Type = txttype.getText();
+                String Status = String.valueOf(txtstatus.getValue());
 
+                MachineModel machineModel1 = new MachineModel(MaId,Description,Capacity,Type,Status);
+
+
+                try {
+                    boolean isUpdated = MachineRepo.updateMachine(machineModel1);
+                    if(isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "machine updated!").show();
+                        Clear();
+                    }
+                } catch (SQLException e1) {
+                    new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                }
+                Clear();
+                loadAllMachine();
+            });
             MachineTm tm = new MachineTm(
                    machineModel.getMaId(),
                     machineModel.getDescription(),
@@ -171,7 +213,9 @@ public class MachineManageFormController {
         txtstatus.setValue(null);
 
     }
-    public void initialize() {
+    public void initialize() throws MessagingException {
+        txtstatus.getItems().addAll("Active","Broken", "On Repair");
+        //Mail.sendMail("chithrawanshaliyanage@gmail.com");
         setCellValueFactory();
         loadAllMachine();
     }

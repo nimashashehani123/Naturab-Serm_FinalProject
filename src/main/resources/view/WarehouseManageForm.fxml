@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseClicked="#OnMouseClick" prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.WarehouseManageFormController">
+   <children>
+      <Label layoutX="120.0" layoutY="147.0" prefHeight="29.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
+      <Line endX="272.0" endY="68.5" layoutX="53.0" layoutY="-11.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
+      <Label layoutX="116.0" layoutY="232.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Location" />
+      <Label layoutX="677.0" layoutY="144.0" prefHeight="29.0" prefWidth="67.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Capacity" />
+      <TextField fx:id="txtid" layoutX="208.0" layoutY="144.0" prefHeight="42.0" prefWidth="370.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtlocation" layoutX="209.0" layoutY="231.0" prefHeight="42.0" prefWidth="370.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtcapacity" layoutX="765.0" layoutY="140.0" prefHeight="38.0" prefWidth="370.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TableView fx:id="tblwarehouse" layoutX="165.0" layoutY="392.0" onMouseClicked="#tblOnMouseClick" prefHeight="492.0" prefWidth="1212.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+         <columns>
+            <TableColumn fx:id="colid" prefWidth="244.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="351.0" styleClass="btn" stylesheets="@../CSS/style.css" text="WId" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="collocation" prefWidth="418.0">
+               <graphic>
+                  <Label prefHeight="40.0" prefWidth="591.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Location" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="colcapacity" prefWidth="373.0">
+               <graphic>
+                  <Label prefHeight="42.0" prefWidth="483.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Capacity" textFill="WHITE" />
+               </graphic>
+            </TableColumn>
+            <TableColumn fx:id="coledit" prefWidth="85.0" />
+            <TableColumn fx:id="coldelete" prefWidth="88.0" />
+         </columns>
+      </TableView>
+      <Label layoutX="72.0" layoutY="13.0" prefHeight="51.0" prefWidth="253.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Warehouse Manage" />
+      <JFXButton fx:id="btnsave" layoutX="1033.0" layoutY="296.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <ImageView fitHeight="334.0" fitWidth="425.0" layoutX="1173.0" layoutY="53.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../image/clientm.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnsearch" layoutX="1495.0" layoutY="39.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtsearchid" layoutX="1221.0" layoutY="38.0" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+         <font>
+            <Font size="74.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="btnclose" layoutX="1445.0" layoutY="44.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/close.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnback" layoutX="18.0" layoutY="18.0" onAction="#btnbackOnAction" prefHeight="46.0" prefWidth="0.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="1203.0" layoutY="394.0" prefHeight="42.0" prefWidth="173.0" styleClass="btn" stylesheets="@../CSS/style.css" text="               Action" textFill="WHITE" />
+   </children>
+</AnchorPane>

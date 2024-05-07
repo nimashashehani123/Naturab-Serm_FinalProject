@@ -18,10 +18,10 @@
       <Line endX="228.0" endY="68.5" layoutX="43.0" layoutY="-21.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
       <Label layoutX="106.0" layoutY="222.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name" />
       <Label layoutX="667.0" layoutY="134.0" prefHeight="29.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" />
-      <TextField fx:id="txtid" layoutX="198.0" layoutY="134.0" prefHeight="38.0" prefWidth="314.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtname" layoutX="199.0" layoutY="221.0" prefHeight="38.0" prefWidth="314.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtaddress" layoutX="755.0" layoutY="222.0" prefHeight="38.0" prefWidth="314.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txttel" layoutX="754.0" layoutY="130.0" prefHeight="38.0" prefWidth="314.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtid" layoutX="198.0" layoutY="134.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="199.0" layoutY="221.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="755.0" layoutY="222.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txttel" layoutX="754.0" layoutY="130.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TableView fx:id="tblsupplier" layoutX="111.0" layoutY="384.0" onMouseClicked="#tblOnMouseClick" prefHeight="525.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
          <columns>
             <TableColumn fx:id="colid" prefWidth="196.0">
@@ -34,22 +34,22 @@
                   <Label prefHeight="40.0" prefWidth="378.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Name" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coltel" prefWidth="325.0">
+            <TableColumn fx:id="coltel" prefWidth="324.0">
                <graphic>
                   <Label prefHeight="42.0" prefWidth="407.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Tel" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coladdress" prefWidth="422.0">
+            <TableColumn fx:id="coladdress" prefWidth="371.0">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Address" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coledit" prefWidth="45.0" />
-            <TableColumn fx:id="coldelete" prefWidth="38.0" />
+            <TableColumn fx:id="coledit" prefWidth="74.0" />
+            <TableColumn fx:id="coldelete" prefWidth="65.0" />
          </columns>
       </TableView>
       <Label layoutX="62.0" layoutY="3.0" prefHeight="51.0" prefWidth="210.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Supplier Manage" />
-      <JFXButton fx:id="btnsave" layoutX="1023.0" layoutY="286.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
+      <JFXButton fx:id="btnsave" layoutX="1023.0" layoutY="299.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -95,5 +95,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Label layoutX="1387.0" layoutY="388.0" prefHeight="40.0" prefWidth="138.0" styleClass="btn" stylesheets="@../CSS/style.css" text="             Action" textFill="WHITE" />
    </children>
 </AnchorPane>

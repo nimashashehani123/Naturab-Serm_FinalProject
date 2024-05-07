@@ -16,6 +16,12 @@ import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.EmployeeTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
 import lk.ijse.Naturab.Repositry.EmployeeRepo;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -31,6 +37,9 @@ public class EmployeeManageFormController {
 
     @FXML
     private JFXButton btnsearch;
+
+    @FXML
+    private JFXButton btnclose;
 
     @FXML
     private TableColumn<?, ?> coladdress;
@@ -127,11 +136,53 @@ public class EmployeeManageFormController {
 
             JFXButton btndelete = new JFXButton(" ",imageView1);
             btndelete.setCursor(Cursor.HAND);
+            btndelete.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
 
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                if(type.orElse(no) == yes) {
+                    String id1 = txtid.getText();
+                    boolean x = false;
+                    try {
+                        x = EmployeeRepo.deleteEmp(id1);
+                    } catch (SQLException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                    if(x){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Employee deleted").show();
+                        Clear();
+                    }
+                    Clear();
+                    loadAllEmp();
+                }
+            });
 
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
+            btnedit.setOnAction((e) -> {
+                String EmId = txtid.getText();
+                String Name = txtname.getText();
+                String Address = txtaddress.getText();
+                String Tel = txttel.getText();
+                double salary = Double.parseDouble(txtsalary.getText());
+                int yrex = Integer.parseInt(txtexperience.getText());
 
+                EmployeeModel employeeModel1 = new EmployeeModel(EmId,Name,Address,Tel,salary,yrex,"");
+
+                try {
+                    boolean isUpdated = EmployeeRepo.updateEmp(employeeModel1);
+                    if(isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
+                        Clear();
+                    }
+                } catch (SQLException e1) {
+                    new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                }
+                Clear();
+                loadAllEmp();
+            });
             EmployeeTm tm = new EmployeeTm(
                     employeeModel.getEId(),
                     employeeModel.getName(),
@@ -267,10 +318,37 @@ public class EmployeeManageFormController {
         }
     }
 
+
     @FXML
     void btnbackOnAction(ActionEvent event) {
 
     }
 
+    @FXML
+    void btncloseOnAction(ActionEvent event) {
+
+    }
+    @FXML
+    void tblOnMouseClick(MouseEvent event) {
+        if (!tblemployee.getSelectionModel().isEmpty()) {
+            EmployeeTm employee = tblemployee.getSelectionModel().getSelectedItem();
+            EmployeeModel employee1;
+            try {
+                employee1 = EmployeeRepo.searchById(employee.getEId());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            txtid.setText(employee1.getEId());
+            txtname.setText(employee1.getName());
+            txtaddress.setText(employee1.getAddress());
+            txttel.setText(employee1.getTel());
+            txtsalary.setText(String.valueOf(employee1.getSalary()));
+            txtexperience.setText(String.valueOf(employee1.getYrOfExperience()));
+        }
+    }
+   /* @FXML
+    void tblonmouseclick(MouseEvent event) {
+
+    }*/
 
 }

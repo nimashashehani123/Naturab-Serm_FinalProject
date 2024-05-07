@@ -10,14 +10,19 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.Naturab.Util.Regex;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
+import static javafx.scene.input.KeyCode.T;
 
 public class ClientManageFormController {
     @FXML
@@ -31,9 +36,6 @@ public class ClientManageFormController {
 
     @FXML
     private JFXButton btnsearch;
-
-    @FXML
-    private JFXButton btnupdate;
 
     @FXML
     private AnchorPane client;
@@ -75,27 +77,33 @@ public class ClientManageFormController {
 
     @FXML
     private TextField txtsearchid;
-    private MouseEvent event;
 
 
     @FXML
-    void btnsaveOnAction(ActionEvent event) {
+    void btnsaveOnAction(ActionEvent event){
+
+        if (!isValied()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
         String CId = txtid.getText();
         String Name = txtname.getText();
         String Address = txtaddress.getText();
         String Tel = txttel.getText();
         String Email = txtemail.getText();
-        ClientModel clientModel = new ClientModel(CId,Name,Address,Tel,Email);
 
-        boolean x = false;
+            boolean x = false;
+            ClientModel clientModel = new ClientModel(CId,Name,Address,Tel,Email);
         try {
-            x = ClientRepo.saveClient(clientModel);
-            if(x){
-                new Alert(Alert.AlertType.CONFIRMATION,"Client saved").show();
-                Clear();}
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+                x = ClientRepo.saveClient(clientModel);
+                if (x) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Client saved").show();
+                    Clear();
+                }
+            } catch(SQLException e){
+                new Alert(Alert.AlertType.CONFIRMATION, "Duplicate ID ! Please Enter Another ID.").show();
+            }
 
         Clear();
         loadAllClients();
@@ -104,54 +112,111 @@ public class ClientManageFormController {
 
     @FXML
     void btnsearchOnAction(ActionEvent event) {
+
+        if (!isValied1()){
+            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+            return;
+        }
+
         String id = txtsearchid.getText();
         ObservableList<ClientTm> obList = FXCollections.observableArrayList();
 
         ClientModel clientModel ;
 
-        try {
-            clientModel  = ClientRepo.searchById(id);
+            try {
+                clientModel = ClientRepo.searchById(id);
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        if (clientModel != null) {
-            Image delete = new Image("/image/delete.png");
-            ImageView imageView1 = new ImageView(delete);
-            imageView1.setCache(true);
-            imageView1.setFitHeight(20);
-            imageView1.setFitWidth(20);
-            Image edit = new Image("/image/update.png");
-            ImageView imageView2 = new ImageView(edit);
-            imageView2.setCache(true);
-            imageView2.setFitHeight(20);
-            imageView2.setFitWidth(20);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            if (clientModel != null) {
+                Image delete = new Image("/image/delete.png");
+                ImageView imageView1 = new ImageView(delete);
+                imageView1.setCache(true);
+                imageView1.setFitHeight(20);
+                imageView1.setFitWidth(20);
+                Image edit = new Image("/image/update.png");
+                ImageView imageView2 = new ImageView(edit);
+                imageView2.setCache(true);
+                imageView2.setFitHeight(20);
+                imageView2.setFitWidth(20);
 
-            JFXButton btndelete = new JFXButton(" ",imageView1);
-            btndelete.setCursor(Cursor.HAND);
+                JFXButton btndelete = new JFXButton(" ", imageView1);
+                btndelete.setCursor(Cursor.HAND);
+
+                btndelete.setOnAction((e) -> {
+                    ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                    if (type.orElse(no) == yes) {
+                        String id1 = txtid.getText();
+                        boolean x = false;
+                        try {
+                            x = ClientRepo.deleteClient(id1);
+                        } catch (SQLException e1) {
+                            throw new RuntimeException(e1);
+                        }
+                        if (x) {
+                            new Alert(Alert.AlertType.CONFIRMATION, "Client deleted").show();
+                            Clear();
+                        }
+                        Clear();
+                        loadAllClients();
+                    }
+                });
 
 
-            JFXButton btnedit = new JFXButton(" ",imageView2);
-            btnedit.setCursor(Cursor.HAND);
+                JFXButton btnedit = new JFXButton(" ", imageView2);
+                btnedit.setCursor(Cursor.HAND);
 
-            ClientTm tm = new ClientTm(
-                    clientModel.getCId(),
-                    clientModel.getName(),
-                    clientModel.getTel(),
-                    clientModel.getEmail(),
-                    btndelete,
-                    btnedit
-            );
+                btnedit.setOnAction((e) -> {
+                    if (!isValied()){
+                        new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                        return;
+                    }
 
-            obList.add(tm);
+                    String id2 = txtid.getText();
+                    String name = txtname.getText();
+                    String address = txtaddress.getText();
+                    String tel = txttel.getText();
+                    String email = txtemail.getText();
+
+                        ClientModel clientModel1 = new ClientModel(id2, name, address, tel, email);
+
+                        try {
+                            boolean isUpdated = ClientRepo.updateClient(clientModel1);
+                            if (isUpdated) {
+                                new Alert(Alert.AlertType.CONFIRMATION, "client updated!").show();
+                                Clear();
+                            }
+                        } catch (SQLException e1) {
+                            new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                        }
+
+                    Clear();
+                    loadAllClients();
+                });
+
+                ClientTm tm = new ClientTm(
+                        clientModel.getCId(),
+                        clientModel.getName(),
+                        clientModel.getTel(),
+                        clientModel.getEmail(),
+                        btndelete,
+                        btnedit
+                );
+
+                obList.add(tm);
 
 
-            tblclient.setItems(obList);
+                tblclient.setItems(obList);
 
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "client not found!").show();
-        }
-        Clear();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "client not found!").show();
+            }
+            Clear();
 
     }
 
@@ -227,23 +292,28 @@ public class ClientManageFormController {
                 btnedit.setCursor(Cursor.HAND);
 
                     btnedit.setOnAction((e) -> {
+                        if (!isValied()){
+                            new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
+                            return;
+                        }
                         String id = txtid.getText();
                         String name = txtname.getText();
                         String address = txtaddress.getText();
                         String tel = txttel.getText();
                         String email = txtemail.getText();
 
-                        ClientModel clientModel1 = new ClientModel(id, name, address, tel, email);
+                            ClientModel clientModel1 = new ClientModel(id, name, address, tel, email);
 
-                        try {
-                            boolean isUpdated = ClientRepo.updateClient(clientModel1);
-                            if(isUpdated) {
-                                new Alert(Alert.AlertType.CONFIRMATION, "customer updated!").show();
-                                Clear();
+                            try {
+                                boolean isUpdated = ClientRepo.updateClient(clientModel1);
+                                if (isUpdated) {
+                                    new Alert(Alert.AlertType.CONFIRMATION, "client updated!").show();
+                                    Clear();
+                                }
+                            } catch (SQLException e1) {
+                                new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                             }
-                        } catch (SQLException e1) {
-                            new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
-                        }
+
                             Clear();
                             loadAllClients();
                     });
@@ -303,6 +373,48 @@ public class ClientManageFormController {
     }
 
 
+    @FXML
+    void ontxtidkeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
+
+    }
+    @FXML
+    void ontxtemailkeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.EMAIL,txtemail);
+    }
+    @FXML
+    void ontxtnamekeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname);
+    }
+
+    @FXML
+    void ontxtsearchidkeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
+    }
+
+    @FXML
+    void ontxttelkeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel);
+    }
+    @FXML
+    void ontxtaddresskeyreleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+    }
 
 
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.EMAIL,txtemail)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress)) return false;
+
+        return true;
+    }
+    public boolean isValied1(){
+
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid)) return false;
+
+        return true;
+    }
 }

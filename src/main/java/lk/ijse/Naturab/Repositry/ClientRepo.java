@@ -105,4 +105,19 @@ public class ClientRepo {
         }
         return idList;
     }
+
+    public static boolean isduplicated(String id) throws SQLException {
+        String sql = "SELECT * FROM Client WHERE CId = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if (resultSet.next()) {
+            return true;
+        }
+
+        return false;
+    }
 }

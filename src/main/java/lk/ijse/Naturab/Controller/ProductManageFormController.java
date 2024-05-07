@@ -1,10 +1,12 @@
 package lk.ijse.Naturab.Controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,14 +17,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.Naturab.Model.ClientModel;
+import lk.ijse.Naturab.Model.OrderModel;
 import lk.ijse.Naturab.Model.ProductModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.ProductTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.ProductRepo;
+import lk.ijse.Naturab.Repositry.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +36,7 @@ public class ProductManageFormController {
     private JFXButton btnclose;
 
     @FXML
-    private JFXButton btnsave;
+    private JFXButton btnaddproduct;
 
     @FXML
     private JFXButton btnsearch;
@@ -61,8 +65,7 @@ public class ProductManageFormController {
     @FXML
     private TableColumn<?, ?> colwarehouseid;
 
-    @FXML
-    private ImageView imageview;
+
 
     @FXML
     private AnchorPane product;
@@ -70,14 +73,18 @@ public class ProductManageFormController {
     @FXML
     private TableView<ProductTm> tblcproduct;
 
-    @FXML
-    private TextField txtdescription;
 
     @FXML
     private TextField txtid;
 
     @FXML
-    private TextField txtmachineid;
+    private JFXComboBox<String> txtmachineid;
+
+    @FXML
+    private JFXComboBox<String> txtwarehouseid;
+
+
+
 
     @FXML
     private TextField txtqty;
@@ -88,11 +95,6 @@ public class ProductManageFormController {
     @FXML
     private TextField txtunitprice;
 
-    @FXML
-    private TextField txtwarehouseid;
-
-    String url;
-    String imagePath = null;
 
     @FXML
     void btncloseOnAction(ActionEvent event) {
@@ -102,15 +104,8 @@ public class ProductManageFormController {
 
     }
 
-    @FXML
+   /* @FXML
     void btnsaveOnAction(ActionEvent event) {
-        String PId = txtid.getText();
-        String Description = txtdescription.getText();
-        Double UnitPrice = Double.valueOf(txtunitprice.getText());
-        int Qty =Integer.valueOf(txtqty.getText());
-        String MaId = txtmachineid.getText();
-        String WId = txtwarehouseid.getText();
-        ProductModel productModel = new ProductModel(PId,Description,url,UnitPrice,Qty,MaId,WId);
 
         boolean x = false;
         try {
@@ -125,17 +120,18 @@ public class ProductManageFormController {
         Clear();
         loadAllProducts();
 
-    }
+    }*/
     void Clear() {
         txtid.clear();
-        txtdescription.clear();
         txtunitprice.clear();
         txtqty.clear();
-        txtmachineid.clear();
-        txtwarehouseid.clear();
+        txtmachineid.setValue(null);
+        txtwarehouseid.setValue(null);
 
     }
     public void initialize() {
+        getMachineIds();
+        getWarehouseIds();
         setCellValueFactory();
         loadAllProducts();
     }
@@ -146,6 +142,7 @@ public class ProductManageFormController {
         coldesign.setCellValueFactory(new PropertyValueFactory<>("Design"));
         colunitprice.setCellValueFactory(new PropertyValueFactory<>("UnitPrice"));
         colqty.setCellValueFactory(new PropertyValueFactory<>("QtyOnHand"));
+        colwarehouseid.setCellValueFactory(new PropertyValueFactory<>("WId"));
         coledit.setCellValueFactory(new PropertyValueFactory<>("btnedit"));
         coldelete.setCellValueFactory(new PropertyValueFactory<>("btndelete"));
     }
@@ -185,9 +182,64 @@ public class ProductManageFormController {
             JFXButton btndelete = new JFXButton(" ",imageView1);
             btndelete.setCursor(Cursor.HAND);
 
+            btndelete.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("no", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+                if(type.orElse(no) == yes) {
+                    String Pid = txtid.getText();
+                    boolean x = false;
+                    try {
+                        x = ProductRepo.deleteProduct(Pid);
+                    } catch (SQLException e1) {
+                        throw new RuntimeException(e1);
+                    }
+                    if(x){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Product deleted").show();
+                        Clear();
+                    }
+                    Clear();
+                    loadAllProducts();
+                }
+            });
+
 
             JFXButton btnedit = new JFXButton(" ",imageView2);
             btnedit.setCursor(Cursor.HAND);
+
+            btnedit.setOnAction((e) -> {
+                String PId = txtid.getText();
+                ProductModel product;
+                try {
+                    product = ProductRepo.searchById(PId);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String description = product.getDescription();
+                String design1 = product.getDesign();
+                double UnitPrice = Double.parseDouble(txtunitprice.getText());
+                int Qty = Integer.parseInt(txtqty.getText());
+                String MaId = txtmachineid.getValue();
+                String WId = txtwarehouseid.getValue();
+
+
+                ProductModel productModel1 = new ProductModel(PId,  description, design1, UnitPrice, Qty, MaId, WId);
+
+                try {
+                    boolean isUpdated = ProductRepo.updateProduct(productModel1);
+                    if(isUpdated) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "product updated!").show();
+                        Clear();
+                    }
+                } catch (SQLException e1) {
+                    new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
+                }
+                Clear();
+                loadAllProducts();
+            });
+
 
             ProductTm tm = new ProductTm(
                     productModel.getPId(),
@@ -270,13 +322,21 @@ public class ProductManageFormController {
 
                     btnedit.setOnAction((e) -> {
                         String PId = txtid.getText();
-                        String Description = txtdescription.getText();
-                        Double UnitPrice = Double.valueOf(txtunitprice.getText());
+                        ProductModel product;
+                        try {
+                            product = ProductRepo.searchById(PId);
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        String description = product.getDescription();
+                        String design1 = product.getDesign();
+                        double UnitPrice = Double.parseDouble(txtunitprice.getText());
                         int Qty = Integer.parseInt(txtqty.getText());
-                        String MaId = txtmachineid.getText();
-                        String WId = txtwarehouseid.getText();
+                        String MaId = txtmachineid.getValue();
+                        String WId = txtwarehouseid.getValue();
 
-                        ProductModel productModel1 = new ProductModel(PId,  Description, url, UnitPrice, Qty, MaId, WId);
+
+                        ProductModel productModel1 = new ProductModel(PId,  description, design1, UnitPrice, Qty, MaId, WId);
 
                         try {
                             boolean isUpdated = ProductRepo.updateProduct(productModel1);
@@ -311,19 +371,6 @@ public class ProductManageFormController {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    void imageOnClick(MouseEvent event) {
-        Stage stage = new Stage();
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Image file");
-        File file = fileChooser.showOpenDialog(stage);
-        if (file != null) {
-             url = file.toURI().toString();
-            Image image = new Image(url);
-            imagePath = file.getPath();
-            imageview.setImage(image);
-        }
-    }
 
 
     @FXML
@@ -337,17 +384,58 @@ public class ProductManageFormController {
                 throw new RuntimeException(e);
             }
             txtid.setText(product1.getPId());
-            txtdescription.setText(product1.getDescription());
-            imageview.setImage(new Image(product1.getDesign().toString()));
             txtunitprice.setText(String.valueOf(product1.getUnitPrice()));
             txtqty.setText(String.valueOf(product1.getQtyOnHand()));
-            txtmachineid.setText(product1.getMaId());
-            txtwarehouseid.setText(product1.getWId());
+            txtmachineid.setValue(product1.getMaId());
+            txtwarehouseid.setValue(product1.getWId());
 
         }
+
+    }
+    private void getMachineIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = MachineRepo.getIds();
+
+            for(String id : idList) {
+                obList.add(id);
+            }
+
+            txtmachineid.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void getWarehouseIds() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+
+        try {
+            List<String> idList = WarehouseRepo.getIds();
+
+            for(String id : idList) {
+                obList.add(id);
+            }
+
+            txtwarehouseid.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void btnaddproductOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/AddProductForm.fxml"));
+        product.getChildren().clear();
+        product.getChildren().add(anchorPane);
+
 
     }
 
     public void btnbackOnAction(ActionEvent actionEvent) {
     }
 }
+
+

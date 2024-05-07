@@ -52,8 +52,13 @@ public class HomePageFormController {
 
     }
     @FXML
-    void btnemployeeOnAction(ActionEvent event) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/EmployeeManageForm.fxml"));
+    void btnemployeeOnAction(ActionEvent event)  {
+        AnchorPane anchorPane = null;
+        try {
+            anchorPane = FXMLLoader.load(getClass().getResource("/view/EmployeeManageForm.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         root.getChildren().clear();
         root.getChildren().add(anchorPane);
     }

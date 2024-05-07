@@ -10,30 +10,28 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.OperatorManageFormController">
    <children>
-      <VBox layoutX="-1695.0" layoutY="5.0" opacity="0.89" prefHeight="977.0" prefWidth="1616.0" style="-fx-background-color: #ebe1f5;" styleClass="VBox" stylesheets="@../CSS/style.css" />
-      <ImageView fitHeight="427.0" fitWidth="779.0" layoutX="1035.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="411.0" fitWidth="561.0" layoutX="1077.0" layoutY="54.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../image/clientm.png" />
          </image>
       </ImageView>
-      <Label layoutX="135.0" layoutY="223.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address :" />
-      <Label layoutX="137.0" layoutY="106.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id :" />
+      <Label layoutX="135.0" layoutY="243.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address :" />
+      <Label layoutX="137.0" layoutY="113.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id :" />
       <Line endX="243.0" endY="68.5" layoutX="52.0" layoutY="-4.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
-      <Label layoutX="135.0" layoutY="161.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name :" />
-      <Label layoutX="138.0" layoutY="281.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel :" />
-      <Label layoutX="749.0" layoutY="106.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Salary :" />
-      <TextField fx:id="txtid" layoutX="244.0" layoutY="102.0" prefHeight="38.0" prefWidth="293.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtname" layoutX="238.0" layoutY="157.0" prefHeight="38.0" prefWidth="293.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtaddress" layoutX="238.0" layoutY="220.0" prefHeight="38.0" prefWidth="293.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtexperience" layoutX="878.0" layoutY="161.0" prefHeight="38.0" prefWidth="293.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <Label layoutX="135.0" layoutY="179.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name :" />
+      <Label layoutX="138.0" layoutY="312.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel :" />
+      <Label layoutX="709.0" layoutY="109.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Salary :" />
+      <TextField fx:id="txtid" layoutX="238.0" layoutY="102.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="238.0" layoutY="169.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="238.0" layoutY="235.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtexperience" layoutX="836.0" layoutY="170.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <Label layoutX="72.0" layoutY="20.0" prefHeight="51.0" prefWidth="225.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Operator Manage" />
-      <JFXButton fx:id="btnsave" layoutX="1097.0" layoutY="281.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
+      <JFXButton fx:id="btnsave" layoutX="1098.0" layoutY="322.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -42,20 +40,20 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="748.0" layoutY="223.0" prefHeight="29.0" prefWidth="104.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Machine Id :" />
-      <TextField fx:id="txttel" layoutX="238.0" layoutY="278.0" prefHeight="38.0" prefWidth="293.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <JFXComboBox fx:id="txtmachineid" focusColor="#ffffff00" labelFloat="true" layoutX="878.0" layoutY="220.0" prefHeight="38.0" prefWidth="293.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#ffffff00" visibleRowCount="0">
+      <Label layoutX="710.0" layoutY="242.0" prefHeight="29.0" prefWidth="104.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Machine Id :" />
+      <TextField fx:id="txttel" layoutX="238.0" layoutY="307.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <JFXComboBox fx:id="txtmachineid" focusColor="#ffffff00" labelFloat="true" layoutX="837.0" layoutY="234.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#ffffff00" visibleRowCount="0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXComboBox>
-      <Label layoutX="749.0" layoutY="161.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="YrExperience : " />
-      <TextField fx:id="txtsalary" layoutX="878.0" layoutY="104.0" prefHeight="38.0" prefWidth="299.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TableView fx:id="tbloperator" layoutX="142.0" layoutY="361.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="579.0" prefWidth="1380.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+      <Label layoutX="706.0" layoutY="177.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="YrExperience : " />
+      <TextField fx:id="txtsalary" layoutX="837.0" layoutY="102.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TableView fx:id="tbloperator" layoutX="142.0" layoutY="392.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="499.0" prefWidth="1380.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
          <columns>
             <TableColumn fx:id="colid" prefWidth="171.0">
                <graphic>
-                  <Label prefHeight="40.0" prefWidth="190.0" styleClass="btn" stylesheets="@../CSS/style.css" text="OId" textFill="WHITE" />
+                  <Label prefHeight="40.0" prefWidth="190.0" styleClass="btn" stylesheets="@../CSS/style.css" text="OpId" textFill="WHITE" />
                </graphic>
             </TableColumn>
             <TableColumn fx:id="colname" prefWidth="275.0">
@@ -114,5 +112,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Label layoutX="1373.0" layoutY="395.0" prefHeight="40.0" prefWidth="146.0" styleClass="btn" stylesheets="@../CSS/style.css" text="             Action" textFill="WHITE" />
    </children>
 </AnchorPane>

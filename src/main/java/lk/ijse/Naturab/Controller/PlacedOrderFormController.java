@@ -5,13 +5,20 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lk.ijse.Naturab.Model.*;
 import lk.ijse.Naturab.Model.Tm.CartTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
@@ -19,6 +26,7 @@ import lk.ijse.Naturab.Repositry.OrderRepo;
 import lk.ijse.Naturab.Repositry.PlaceOrderRepo;
 import lk.ijse.Naturab.Repositry.ProductRepo;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -98,7 +106,13 @@ public class PlacedOrderFormController {
     @FXML
     private TableView<CartTm> tblcartview;
 
+
+    @FXML
+    private AnchorPane placeorder;
+
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
+
+
 
     @FXML
     void btnplaceorderOnAction(ActionEvent event) {
@@ -139,7 +153,21 @@ public class PlacedOrderFormController {
     }
 
     @FXML
-    void btnaddclientOnAction(ActionEvent event) {
+    void btnaddclientOnAction(ActionEvent event) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ClientManageForm.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.setWidth(1164);
+        stage.setHeight(383);
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                getClientIds();
+            }
+        });
+        stage.show();
 
     }
 
@@ -173,10 +201,13 @@ public class PlacedOrderFormController {
 
             if(type.orElse(no) == yes) {
                 int selectedIndex = tblcartview.getSelectionModel().getSelectedIndex();
-                obList.remove(selectedIndex);
-
-                tblcartview.refresh();
-                calculateNetTotal();
+                try {
+                    obList.remove(selectedIndex);
+                    tblcartview.refresh();
+                    calculateNetTotal();
+                }catch (Exception exception){
+                    new Alert(Alert.AlertType.CONFIRMATION, "Please Select need row").show();
+                }
             }
         });
 
@@ -269,7 +300,6 @@ public class PlacedOrderFormController {
         setCellValueFactory();
     }
 
-
     private void getClientIds() {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
@@ -317,9 +347,9 @@ public class PlacedOrderFormController {
         if(currentId != null) {
             String[] split = currentId.split("O");
             int idNum = Integer.parseInt(split[1]);
-            return "O" + ++idNum;
+            return "O00" + ++idNum;
         }
-        return "O1";
+        return "O001";
     }
 
     private void setDate() {

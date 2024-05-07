@@ -3,6 +3,7 @@ package lk.ijse.Naturab.Repositry;
 import lk.ijse.Naturab.Db.DbConnection;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.OrderDetailModel;
+import lk.ijse.Naturab.Model.OrderModel;
 import lk.ijse.Naturab.Model.ProductModel;
 
 import java.sql.Connection;
@@ -13,6 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepo {
+
+    public static String getCurrentId() throws SQLException {
+        String sql = "SELECT OId FROM Orders ORDER BY OId DESC LIMIT 1";
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            String orderId = resultSet.getString(1);
+            return orderId;
+        }
+        return null;
+    }
     public static boolean saveProduct(ProductModel productModel) throws SQLException {
         String sql = "INSERT INTO Product VALUES(?, ?, ?, ?, ?, ?, ?)";
 
