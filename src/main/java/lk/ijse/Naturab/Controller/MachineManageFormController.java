@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.Naturab.Model.MachineModel;
 import lk.ijse.Naturab.Model.Tm.MachineTm;
@@ -346,6 +347,32 @@ public class MachineManageFormController {
 
     @FXML
     void tblOnMouseExited(MouseEvent event) {
+
+    }
+
+
+    @FXML
+    void txtcapacityOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtdescriptionOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtsearchidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txttypeOnKeyReleased(KeyEvent event) {
 
     }
 

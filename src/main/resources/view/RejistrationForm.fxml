@@ -28,16 +28,16 @@
          </image>
       </ImageView>
       <Label layoutX="111.0" layoutY="225.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="User Id" />
-      <Label layoutX="111.0" layoutY="325.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="User Name" />
-      <Label layoutX="114.0" layoutY="409.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Password" />
+      <Label layoutX="111.0" layoutY="312.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="User Name" />
+      <Label layoutX="114.0" layoutY="405.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Password" />
       <ImageView fitHeight="413.0" fitWidth="382.0" layoutX="490.0" layoutY="330.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../image/rphoto.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txtuserid" layoutX="250.0" layoutY="212.0" prefHeight="54.0" prefWidth="364.0" promptText="Input your User Id here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtusername" layoutX="250.0" layoutY="300.0" prefHeight="54.0" prefWidth="364.0" promptText="Input your User Name here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtpassword" layoutX="250.0" layoutY="396.0" prefHeight="54.0" prefWidth="364.0" promptText="Input your Password here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtuserid" layoutX="250.0" layoutY="212.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="46.0" prefWidth="364.0" promptText="Input your User Id here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtusername" layoutX="250.0" layoutY="300.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="46.0" prefWidth="364.0" promptText="Input your User Name here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtpassword" layoutX="250.0" layoutY="396.0" onKeyReleased="#txtpasswordOnKeyReleased" prefHeight="46.0" prefWidth="364.0" promptText="Input your Password here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <JFXButton fx:id="btnReg" layoutX="366.0" layoutY="535.0" onAction="#btnRegOnAction" prefHeight="54.0" prefWidth="166.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Rejister Now" textFill="WHITE" />
    </children>
 </AnchorPane>

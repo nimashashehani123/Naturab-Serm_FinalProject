@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class WarehouseManageFormController {
@@ -80,6 +81,26 @@ public class WarehouseManageFormController {
 
     @FXML
     void tblOnMouseClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void txtcapacityOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtlocationOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtsearchidOnKeyReleased(KeyEvent event) {
 
     }
 

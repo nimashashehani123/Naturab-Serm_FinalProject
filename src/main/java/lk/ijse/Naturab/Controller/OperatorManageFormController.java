@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.EmployeeModel;
@@ -395,5 +396,41 @@ public class OperatorManageFormController {
             throw new RuntimeException(e);
         }
     }
+
+
+    @FXML
+    void txtaddressOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtexperienceOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtnameOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtsearchidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txttelOnKeyReleased(KeyEvent event) {
+
+    }
+    @FXML
+    void txtsalaryOnKeyReleased(KeyEvent event) {
+
+    }
+
 
 }

@@ -26,10 +26,10 @@
       <Label layoutX="135.0" layoutY="179.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name :" />
       <Label layoutX="138.0" layoutY="312.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel :" />
       <Label layoutX="709.0" layoutY="109.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Salary :" />
-      <TextField fx:id="txtid" layoutX="238.0" layoutY="102.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtname" layoutX="238.0" layoutY="169.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtaddress" layoutX="238.0" layoutY="235.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtexperience" layoutX="836.0" layoutY="170.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtid" layoutX="238.0" layoutY="102.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="238.0" layoutY="169.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="238.0" layoutY="235.0" onKeyReleased="#txtaddressOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtexperience" layoutX="836.0" layoutY="170.0" onKeyReleased="#txtexperienceOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <Label layoutX="72.0" layoutY="20.0" prefHeight="51.0" prefWidth="225.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Operator Manage" />
       <JFXButton fx:id="btnsave" layoutX="1098.0" layoutY="322.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
          <graphic>
@@ -41,14 +41,14 @@
          </graphic>
       </JFXButton>
       <Label layoutX="710.0" layoutY="242.0" prefHeight="29.0" prefWidth="104.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Machine Id :" />
-      <TextField fx:id="txttel" layoutX="238.0" layoutY="307.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txttel" layoutX="238.0" layoutY="307.0" onKeyReleased="#txttelOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <JFXComboBox fx:id="txtmachineid" focusColor="#ffffff00" labelFloat="true" layoutX="837.0" layoutY="234.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#ffffff00" visibleRowCount="0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXComboBox>
       <Label layoutX="706.0" layoutY="177.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="YrExperience : " />
-      <TextField fx:id="txtsalary" layoutX="837.0" layoutY="102.0" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtsalary" layoutX="837.0" layoutY="102.0" onKeyReleased="#txtsalaryOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TableView fx:id="tbloperator" layoutX="142.0" layoutY="392.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="499.0" prefWidth="1380.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
          <columns>
             <TableColumn fx:id="colid" prefWidth="171.0">
@@ -80,7 +80,7 @@
             <TableColumn fx:id="coldelete" minWidth="0.0" prefWidth="72.0" />
          </columns>
       </TableView>
-      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" onKeyReleased="#txtsearchidOnKeyReleased" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font size="74.0" />
          </font>

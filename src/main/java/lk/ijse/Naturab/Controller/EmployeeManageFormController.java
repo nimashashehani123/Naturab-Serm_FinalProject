@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.EmployeeModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
@@ -346,6 +347,39 @@ public class EmployeeManageFormController {
             txtexperience.setText(String.valueOf(employee1.getYrOfExperience()));
         }
     }
+    @FXML
+    void txtaddressOnKeyReleased(KeyEvent event) {
 
+    }
+
+    @FXML
+    void txtexperienceOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtnameOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtsalaryOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtsearchidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txttelOnKeyReleased(KeyEvent event) {
+
+    }
 
 }

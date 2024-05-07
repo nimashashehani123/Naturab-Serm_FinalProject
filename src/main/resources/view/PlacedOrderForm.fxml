@@ -53,7 +53,7 @@
       <Label layoutX="55.0" layoutY="229.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Client Id " />
       <Label layoutX="750.0" layoutY="133.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Order date" />
       <Label layoutX="750.0" layoutY="232.0" prefHeight="29.0" prefWidth="102.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Client Name" />
-      <TextField fx:id="txtid" layoutX="159.0" layoutY="141.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtid" layoutX="159.0" layoutY="141.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txtclientname" layoutX="926.0" layoutY="224.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txtdate" layoutX="923.0" layoutY="127.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <Label layoutX="71.0" layoutY="14.0" prefHeight="51.0" prefWidth="270.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Placed Order Form" />
@@ -80,7 +80,7 @@
       <JFXButton fx:id="btnplaceorder" layoutX="1431.0" layoutY="887.0" onAction="#btnplaceorderOnAction" prefHeight="51.0" prefWidth="153.0" style="-fx-background-color: #fffa00;" styleClass="VBox1" stylesheets="@../CSS/style.css" text="Place Order" textFill="WHITE" />
       <Label layoutX="55.0" layoutY="324.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Product Id" />
       <Label layoutX="55.0" layoutY="419.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
-      <Label fx:id="lbldesc" alignment="CENTER" layoutX="159.0" layoutY="415.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" textFill="#4e3283">
+      <Label fx:id="lbldesc" layoutX="159.0" layoutY="415.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" textFill="#4e3283">
          <font>
             <Font name="Dyuthi Regular" size="21.0" />
          </font>
@@ -102,17 +102,17 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtqty" alignment="CENTER" layoutX="159.0" layoutY="902.0" prefHeight="46.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txtqty" layoutX="159.0" layoutY="902.0" onKeyReleased="#txtqtyOnKeyReleased" prefHeight="46.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font name="Dyuthi Regular" size="20.0" />
          </font>
       </TextField>
-      <Label fx:id="lblqtyonhand" alignment="CENTER" layoutX="159.0" layoutY="813.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" textFill="#4e3283">
+      <Label fx:id="lblqtyonhand" layoutX="159.0" layoutY="813.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" textFill="#4e3283" wrapText="true">
          <font>
             <Font name="Dyuthi Regular" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblprice" alignment="CENTER" layoutX="159.0" layoutY="723.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" textFill="#4e3283">
+      <Label fx:id="lblprice" layoutX="159.0" layoutY="723.0" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" textFill="#4e3283" wrapText="true">
          <font>
             <Font name="Dyuthi Regular" size="20.0" />
          </font>

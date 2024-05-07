@@ -54,7 +54,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" onKeyReleased="#txtsearchidOnKeyReleased" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font size="74.0" />
          </font>
@@ -84,7 +84,7 @@
       </JFXButton>
       <Label layoutX="353.0" layoutY="205.0" prefHeight="43.0" prefWidth="67.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="   Status" textFill="WHITE" />
       <Label layoutX="354.0" layoutY="98.0" prefHeight="46.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="   Id" textFill="WHITE" />
-      <TextField fx:id="txtid" layoutX="440.0" layoutY="98.0" prefHeight="46.0" prefWidth="372.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txtid" layoutX="440.0" layoutY="98.0" onKeyReleased="#txtsidOnKeyReleased" prefHeight="46.0" prefWidth="372.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font size="74.0" />
          </font>

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Naturab.Db.DbConnection;
@@ -67,6 +68,22 @@ public class RejistrationFormController {
         pstm.setObject(3, password);
 
         return pstm.executeUpdate() > 0;
+    }
+
+
+    @FXML
+    void txtidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtnameOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtpasswordOnKeyReleased(KeyEvent event) {
+
     }
 
 }

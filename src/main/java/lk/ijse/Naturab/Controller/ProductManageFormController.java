@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -436,6 +437,27 @@ public class ProductManageFormController {
 
     public void btnbackOnAction(ActionEvent actionEvent) {
     }
+
+    @FXML
+    void txtidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtqtyOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtsearchidOnKeyReleased(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtunitpriceOnKeyReleased(KeyEvent event) {
+
+    }
+
 }
 
 
