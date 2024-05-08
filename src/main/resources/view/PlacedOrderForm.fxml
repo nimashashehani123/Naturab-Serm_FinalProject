@@ -118,5 +118,6 @@
          </font>
       </Label>
       <JFXComboBox fx:id="lblid" focusColor="#5e376f" labelFloat="true" layoutX="159.0" layoutY="320.0" onAction="#lblidOnAction" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" unFocusColor="#eae8eb" />
+      <JFXButton fx:id="btnprintbill" layoutX="1196.0" layoutY="887.0" onAction="#btnprintbillOnAction" prefHeight="51.0" prefWidth="153.0" style="-fx-background-color: #fffa00;" styleClass="VBox1" stylesheets="@../CSS/style.css" text="Print Bill" textFill="WHITE" />
    </children>
 </AnchorPane>

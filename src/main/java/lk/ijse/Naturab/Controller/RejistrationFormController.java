@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -51,8 +52,18 @@ public class RejistrationFormController {
             UserModel userModel = new UserModel(userId, name, password);
             boolean isSaved = UserRepo.saveUser(userModel);
             if(isSaved) {
-                new Alert(Alert.AlertType.CONFIRMATION, "user saved!").show();
-                navigateTotheLoginPage();
+
+                Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "user saved!");
+                confirmation.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        try {
+                            navigateTotheLoginPage();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -61,9 +72,12 @@ public class RejistrationFormController {
 
     private void navigateTotheLoginPage() throws IOException {
 
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
-        RejistrationForm.getChildren().clear();
-        RejistrationForm.getChildren().add(anchorPane);
+        RejistrationForm.getScene().getWindow().hide();
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.centerOnScreen();
+        stage.show();
     }
 
 

@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import lk.ijse.Naturab.Db.DbConnection;
 import lk.ijse.Naturab.Model.*;
 import lk.ijse.Naturab.Model.Tm.CartTm;
 import lk.ijse.Naturab.Repositry.ClientRepo;
@@ -27,14 +28,16 @@ import lk.ijse.Naturab.Repositry.OrderRepo;
 import lk.ijse.Naturab.Repositry.PlaceOrderRepo;
 import lk.ijse.Naturab.Repositry.ProductRepo;
 import lk.ijse.Naturab.Util.Regex;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 public class PlacedOrderFormController {
@@ -83,6 +86,9 @@ public class PlacedOrderFormController {
 
     @FXML
     private JFXButton btnplaceorder;
+
+    @FXML
+    private JFXButton btnprintbill;
 
     @FXML
     private TableColumn<?, ?> coldelete;
@@ -388,5 +394,20 @@ public class PlacedOrderFormController {
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
 
         return true;
+    }
+
+    @FXML
+    void btnprintbillOnAction(ActionEvent event) throws JRException, SQLException {
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/CustomerBill.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("CustomerID",txtclientid.getValue());
+        data.put("Total",lbltotal.getText());
+
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
+        JasperViewer.viewReport(jasperPrint,false);
+
     }
 }
