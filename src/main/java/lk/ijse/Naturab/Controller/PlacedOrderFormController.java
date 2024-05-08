@@ -120,7 +120,7 @@ public class PlacedOrderFormController {
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
-
+double total;
 
     @FXML
     void btnplaceorderOnAction(ActionEvent event) {
@@ -132,7 +132,7 @@ public class PlacedOrderFormController {
         String orderId = txtid.getText();
         String cusId = txtclientid.getValue();
         Date  date = Date.valueOf(LocalDate.now());
-        Double total = Double.valueOf(lbltotal.getText());
+         total = Double.valueOf(lbltotal.getText());
 
         var order = new OrderModel(orderId,date,total,"Not Completed",cusId);
 
@@ -386,7 +386,6 @@ public class PlacedOrderFormController {
     }
     public boolean isValied(){
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid)) return false;
-        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtqty)) return false;
 
         return true;
     }
@@ -398,15 +397,17 @@ public class PlacedOrderFormController {
 
     @FXML
     void btnprintbillOnAction(ActionEvent event) throws JRException, SQLException {
-        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/CustomerBill.jrxml");
+        JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/Bill.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-        Map<String,Object> data = new HashMap<>();
-        data.put("CustomerID",txtclientid.getValue());
-        data.put("Total",lbltotal.getText());
 
-        JasperPrint jasperPrint =
-                JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
+        Map<String,Object> data = new HashMap<>();
+        data.put("Order Id",txtid.getText());
+        data.put("NetTotal",lbltotal.getText());
+        data.put("ClientName",txtclientname.getText());
+
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
         JasperViewer.viewReport(jasperPrint,false);
 
     }

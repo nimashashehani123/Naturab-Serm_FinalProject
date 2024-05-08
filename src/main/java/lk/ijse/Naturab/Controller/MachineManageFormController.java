@@ -309,6 +309,9 @@ public class MachineManageFormController {
                         try {
                             boolean isUpdated = MachineRepo.updateMachine(machineModel1);
                             if(isUpdated) {
+                                if (Status=="broken"){
+                                    //Maill
+                                }
                                 new Alert(Alert.AlertType.CONFIRMATION, "machine updated!").show();
                                 Clear();
                             }

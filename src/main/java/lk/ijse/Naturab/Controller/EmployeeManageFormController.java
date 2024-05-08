@@ -372,37 +372,37 @@ public class EmployeeManageFormController {
 
     @FXML
     void txtexperienceOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtexperience);
 
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
 
     }
 
     @FXML
     void txtnameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname);
 
     }
 
     @FXML
     void txtsalaryOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtsalary);
 
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
 
     }
 
     @FXML
     void txttelOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel);
 
     }
     public boolean isValied(){

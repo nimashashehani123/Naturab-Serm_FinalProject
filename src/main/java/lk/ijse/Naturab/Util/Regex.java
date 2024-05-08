@@ -29,11 +29,14 @@ public class Regex {
                 filed = "^([A-z])([A-z0-9.]){1,}[@]([A-z0-9]){1,10}[.]([A-z]){2,5}$";
 
             case SALARY:
-                filed = "^\\$?\\d{1,3}(?:,\\d{3})*(?:\\.\\d{2})?$";
+                filed = "^\\d+(\\.\\d{1,2})?$";
                 break;
 
             case PASSWORD:
                 filed = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+                break;
+            case QTY:
+                filed = "^\\d+$";
 
         }
 
