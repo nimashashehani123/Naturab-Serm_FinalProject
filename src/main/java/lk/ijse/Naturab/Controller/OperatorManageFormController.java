@@ -417,42 +417,42 @@ public class OperatorManageFormController {
 
     @FXML
     void txtaddressOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.EMAIL,txtaddress);
 
     }
 
     @FXML
     void txtexperienceOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtexperience);
 
     }
 
     @FXML
     void txtidOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtid);
 
     }
 
     @FXML
     void txtnameOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname);
 
     }
 
     @FXML
     void txtsearchidOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtsearchid);
 
     }
 
     @FXML
     void txttelOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel);
 
     }
     @FXML
     void txtsalaryOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress);
+        Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtsalary);
 
     }
     public boolean isValied(){
@@ -460,7 +460,7 @@ public class OperatorManageFormController {
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtexperience)) return false;
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtname)) return false;
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.TEL,txttel)) return false;
-        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ADDRESS,txtaddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.EMAIL,txtaddress)) return false;
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.SALARY,txtsalary)) return false;
 
 

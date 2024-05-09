@@ -20,7 +20,7 @@
             <Image url="@../image/clientm.png" />
          </image>
       </ImageView>
-      <Label layoutX="135.0" layoutY="243.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address :" />
+      <Label layoutX="135.0" layoutY="243.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Email" />
       <Label layoutX="137.0" layoutY="113.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id :" />
       <Line endX="243.0" endY="68.5" layoutX="52.0" layoutY="-4.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
       <Label layoutX="135.0" layoutY="179.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name :" />
@@ -63,7 +63,7 @@
             </TableColumn>
             <TableColumn fx:id="coladdress" prefWidth="355.0">
                <graphic>
-                  <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Address" textFill="WHITE" />
+                  <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Email" textFill="WHITE" />
                </graphic>
             </TableColumn>
             <TableColumn fx:id="coltel" prefWidth="282.0">

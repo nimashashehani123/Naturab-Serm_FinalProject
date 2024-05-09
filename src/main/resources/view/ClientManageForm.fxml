@@ -17,7 +17,7 @@
       <Label layoutX="110.0" layoutY="109.0" prefHeight="29.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
       <Line endX="195.0" endY="68.5" layoutX="43.0" layoutY="-22.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
       <Label layoutX="110.0" layoutY="190.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name" />
-      <Label layoutX="668.0" layoutY="109.0" prefHeight="29.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" />
+      <Label layoutX="668.0" layoutY="109.0" prefHeight="29.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" textFill="#aeabab" />
       <Label layoutX="671.0" layoutY="187.0" prefHeight="29.0" prefWidth="41.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Email" textFill="#eddffc" />
       <TextField fx:id="txtid" layoutX="212.0" layoutY="104.0" onKeyReleased="#ontxtidkeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txtemail" layoutX="746.0" layoutY="182.0" onKeyReleased="#ontxtemailkeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />

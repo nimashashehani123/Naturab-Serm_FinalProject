@@ -75,7 +75,7 @@ public class OperatorRepo {
     }
 
     public static boolean updateOperator(OperatorModel operatorModel) throws SQLException {
-        String sql = "UPDATE Operator SET Name = ?, Address = ?, Tel = ? , Salary = ? , YrOfExperience = ? , UserId = ? , MaId = ? WHERE OpId = ?";
+        String sql = "UPDATE Operator SET Name = ?, Email = ?, Tel = ? , Salary = ? , YrOfExperience = ? , UserId = ? , MaId = ? WHERE OpId = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement pstm = connection.prepareStatement(sql);
@@ -131,5 +131,18 @@ public class OperatorRepo {
             idList.add(id);
         }
         return idList;
+    }
+    public static  String getEmail(String id) throws SQLException {
+        String sql = "select Operator.Email from Operator where MaId = ?";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setObject(1, id);
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getString("Email");
+        }
+        return null;
     }
 }

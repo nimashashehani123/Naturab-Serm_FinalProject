@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Mail {
-        public static void sendMail(String recepient)throws MessagingException {
+        public static void sendMail(String recepient,String id)throws MessagingException {
             try {
                 System.out.println("Preparing to send email");
                 Properties properties = new Properties();
@@ -32,7 +32,7 @@ public class Mail {
                 });
 
 
-                Message message = prepareMessage(session, myAccountEmail, recepient);
+                Message message = prepareMessage(session, myAccountEmail, recepient , id);
                 try {
                     Transport.send(message);
                     System.out.println("Email Send successfully");
@@ -45,13 +45,13 @@ public class Mail {
             }
         }
 
-        private static Message prepareMessage(Session session, String myAccountEmail, String recepient) {
+        private static Message prepareMessage(Session session, String myAccountEmail, String recepient , String id) {
             try {
                 Message message = new MimeMessage(session);
                 ((MimeMessage) message).setFrom(new InternetAddress(myAccountEmail));
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
                 message.setSubject("machine alert");
-                message.setText("machine is broken");
+                message.setText(id + "machine is broken.Please Repire it as soon as possible");
                 return message;
             }catch (Exception e){
                 new Alert(Alert.AlertType.ERROR, "Connect Internet Connection !!").show();

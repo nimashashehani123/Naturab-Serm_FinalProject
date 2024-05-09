@@ -35,12 +35,27 @@ public class HomePageFormController {
 
     @FXML
     private JFXButton btnsupplier;
+
     @FXML
     private AnchorPane root;
 
     @FXML
-    void btndashboardOnAction(ActionEvent event) {
+    private JFXButton btnlogout;
 
+    @FXML
+    private AnchorPane main;
+
+    public void initialize() throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/DashboardForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
+    }
+
+    @FXML
+    void btndashboardOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/DashboardForm.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(anchorPane);
     }
 
     @FXML
@@ -103,6 +118,13 @@ public class HomePageFormController {
         root.getChildren().clear();
         root.getChildren().add(anchorPane);
 
+    }
+
+    @FXML
+    void btnlogoutOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+        main.getChildren().clear();
+        main.getChildren().add(anchorPane);
     }
 
 

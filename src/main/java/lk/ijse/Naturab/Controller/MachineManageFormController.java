@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import lk.ijse.Naturab.Model.MachineModel;
 import lk.ijse.Naturab.Model.Tm.MachineTm;
 import lk.ijse.Naturab.Repositry.MachineRepo;
+import lk.ijse.Naturab.Repositry.OperatorRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import javax.mail.MessagingException;
@@ -309,8 +310,13 @@ public class MachineManageFormController {
                         try {
                             boolean isUpdated = MachineRepo.updateMachine(machineModel1);
                             if(isUpdated) {
-                                if (Status=="broken"){
-                                    //Maill
+                                if (Status=="Broken"){
+
+                                    try {
+                                        Mail.sendMail(OperatorRepo.getEmail(MaId),MaId);
+                                    } catch (MessagingException ex) {
+                                        throw new RuntimeException(ex);
+                                    }
                                 }
                                 new Alert(Alert.AlertType.CONFIRMATION, "machine updated!").show();
                                 Clear();

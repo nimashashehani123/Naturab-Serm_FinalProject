@@ -109,5 +109,57 @@ public class OrderRepo {
         }
         return oList;
     }
+    public static  int getOrderCount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS order_count FROM Orders where Status =  'Completed'";
 
-}
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("order_count");
+        }
+        return 0;
+    }
+    public static  int getOrderCount1() throws SQLException {
+        String sql = "SELECT COUNT(*) AS order_count FROM Orders where Status =  'Not Completed'";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("order_count");
+        }
+        return 0;
+    }
+    public static  List<Double> getPayment() throws SQLException {
+        String sql = "select Orders.OId ,PaymentAmount from  Orders GROUP BY OId ORDER BY PaymentAmount DESC LIMIT 4;";
+
+        List<Double > paymentList = new ArrayList<>();
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
+            double payment = resultSet.getDouble("PaymentAmount");
+            paymentList.add(payment);
+        }
+
+
+        return paymentList;
+    }
+    public static  List<String> getOId() throws SQLException {
+        String sql = "select Orders.OId ,PaymentAmount from  Orders GROUP BY OId ORDER BY PaymentAmount DESC LIMIT 4;";
+
+        List<String > oidList = new ArrayList<>();
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
+            String oid = resultSet.getString("OId");
+            oidList.add(oid);
+        }
+
+
+        return oidList;
+    }}

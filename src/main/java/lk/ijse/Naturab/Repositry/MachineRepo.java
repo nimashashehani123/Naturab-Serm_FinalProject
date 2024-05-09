@@ -106,4 +106,28 @@ public class MachineRepo {
         }
         return idList;
     }
+    public static  int getMachinecount() throws SQLException {
+        String sql = "SELECT COUNT(*) AS machine_count FROM Machine where Status =  'Active'";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("machine_count");
+        }
+        return 0;
+    }
+    public static  int getMachinecount1() throws SQLException {
+        String sql = "SELECT COUNT(*) AS machine_count FROM Machine where Status =  'Broken'";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        if(resultSet.next()) {
+            return resultSet.getInt("machine_count");
+        }
+        return 0;
+    }
 }
