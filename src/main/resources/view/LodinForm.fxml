@@ -35,7 +35,7 @@
                   <Reflection />
                </effect>
             </Polygon>
-            <Label accessibleRole="DATE_PICKER" graphicTextGap="10.0" layoutX="139.0" layoutY="185.0" prefHeight="187.0" prefWidth="669.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="LOADING" textFill="WHITE">
+            <Label accessibleRole="DATE_PICKER" graphicTextGap="10.0" layoutX="176.0" layoutY="185.0" prefHeight="244.0" prefWidth="546.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="LOADING" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="120.0" />
                </font>

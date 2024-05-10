@@ -16,6 +16,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.BarChart;
+
+
+
 
 public class DashboardFormController implements Initializable {
 
@@ -43,7 +49,7 @@ public class DashboardFormController implements Initializable {
     private BorderPane paneview1;
 
     @FXML
-    private BarChart<?, ?> payment;
+    private BarChart<String, Double> payment;
     @FXML
     private CategoryAxis x;
 
@@ -68,7 +74,7 @@ public class DashboardFormController implements Initializable {
         }
     }
     private void LoadData2() throws SQLException {
-        XYChart.Series set1 = new XYChart.Series<>();
+     /*   XYChart.Series set1 = new XYChart.Series<String,Double>();
         List<Double> payment1 = OrderRepo.getPayment();
 
 
@@ -79,8 +85,7 @@ public class DashboardFormController implements Initializable {
         set1.getData().add(new XYChart.Data(oid.get(1),payment1.get(1)));
         set1.getData().add(new XYChart.Data(oid.get(2),payment1.get(2)));
         set1.getData().add(new XYChart.Data(oid.get(3),payment1.get(3)));
-        payment.getData().addAll(set1);
-
+        payment.getData().addAll(set1);*/
 
     }
     private void LoadData() throws SQLException {

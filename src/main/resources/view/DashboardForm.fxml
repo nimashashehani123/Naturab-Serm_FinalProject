@@ -95,12 +95,12 @@
             </AnchorPane>
             <BorderPane fx:id="paneview" layoutX="44.0" layoutY="424.0" prefHeight="514.0" prefWidth="608.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
                <center>
-                  <PieChart fx:id="pieChart" prefHeight="537.0" prefWidth="643.0" stylesheets="@../CSS/style.css" />
+                  <PieChart fx:id="pieChart" prefHeight="537.0" prefWidth="643.0" />
                </center>
             </BorderPane>
             <BorderPane fx:id="paneview1" layoutX="689.0" layoutY="421.0" prefHeight="520.0" prefWidth="608.0" styleClass="V_Box" stylesheets="@../CSS/style.css">
                <center>
-                  <BarChart fx:id="payment" prefHeight="434.0" prefWidth="606.0" stylesheets="@../CSS/style.css" title="Order Payments" BorderPane.alignment="CENTER">
+                  <BarChart fx:id="payment" prefHeight="434.0" prefWidth="606.0" title="Order Payments" BorderPane.alignment="CENTER">
                     <xAxis>
                       <CategoryAxis label="Order Id" side="BOTTOM" fx:id="x" />
                     </xAxis>

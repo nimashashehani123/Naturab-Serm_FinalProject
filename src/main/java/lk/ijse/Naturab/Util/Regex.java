@@ -27,6 +27,7 @@ public class Regex {
                 break;
             case EMAIL:
                 filed = "^([A-z])([A-z0-9.]){1,}[@]([A-z0-9]){1,10}[.]([A-z]){2,5}$";
+                break;
 
             case SALARY:
                 filed = "^\\d+(\\.\\d{1,2})?$";

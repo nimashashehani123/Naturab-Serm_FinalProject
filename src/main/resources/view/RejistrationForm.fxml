@@ -39,5 +39,14 @@
       <TextField fx:id="txtusername" layoutX="250.0" layoutY="300.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="46.0" prefWidth="364.0" promptText="Input your User Name here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txtpassword" layoutX="250.0" layoutY="396.0" onKeyReleased="#txtpasswordOnKeyReleased" prefHeight="46.0" prefWidth="364.0" promptText="Input your Password here" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <JFXButton fx:id="btnReg" layoutX="366.0" layoutY="535.0" onAction="#btnRegOnAction" prefHeight="54.0" prefWidth="166.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Rejister Now" textFill="WHITE" />
+      <JFXButton fx:id="btnback" layoutX="19.0" layoutY="22.0" onAction="#btnbackOnAction" prefHeight="46.0" prefWidth="0.0" text=" ">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../image/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

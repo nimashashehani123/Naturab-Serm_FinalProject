@@ -36,6 +36,14 @@ public class RejistrationFormController {
 
     @FXML
     private TextField txtusername;
+    @FXML
+    private JFXButton btnback;
+
+
+    @FXML
+    void btnbackOnAction(ActionEvent event) throws IOException {
+        navigateTotheLoginPage();
+    }
 
     @FXML
     void btnRegOnAction(ActionEvent event) throws IOException {
