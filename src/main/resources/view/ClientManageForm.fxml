@@ -24,7 +24,7 @@
       <TextField fx:id="txtname" layoutX="215.0" layoutY="186.0" onKeyReleased="#ontxtnamekeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txtaddress" layoutX="213.0" layoutY="268.0" onKeyReleased="#ontxtaddresskeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txttel" layoutX="747.0" layoutY="99.0" onKeyReleased="#ontxttelkeyreleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TableView fx:id="tblclient" layoutX="112.0" layoutY="383.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="545.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+      <TableView fx:id="tblclient" editable="true" fixedCellSize="50.0" layoutX="112.0" layoutY="383.0" onMouseClicked="#tblOnMouseClick" onMouseEntered="#tblOnMouseEntered" onMouseExited="#tblOnMouseExited" prefHeight="545.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
         <columns>
           <TableColumn fx:id="colid" prefWidth="168.0">
                <graphic>

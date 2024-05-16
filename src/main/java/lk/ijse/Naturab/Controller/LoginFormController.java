@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -47,8 +48,25 @@ public class LoginFormController {
 
     @FXML
     private AnchorPane roots;
+    boolean passwordVisible;
+     Image openEyeImage;
+     Image closedEyeImage;
+    public void initialize() {
 
+       /*   openEyeImage = new Image(getClass().getResourceAsStream("/image/delete.png"));
+          closedEyeImage = new Image(getClass().getResourceAsStream("/image/closedeye.png"));
 
+          passwordVisible = false;*/
+        txtUserId.requestFocus();
+    }
+    @FXML
+    void onaction(ActionEvent event) {
+        txtPassword.requestFocus();
+    }
+    @FXML
+    void pwonaction(ActionEvent event) throws IOException {
+       btnLoginOnAction(event);
+    }
 
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
@@ -74,7 +92,16 @@ public class LoginFormController {
 
     @FXML
     void closedeyeOnMouseClick(MouseEvent event) {
-
+        if (passwordVisible) {
+            txtPassword.setManaged(true);
+            txtPassword.setVisible(true);
+            closedeye.setImage(closedEyeImage);
+        } else {
+            txtPassword.setManaged(false);
+            txtPassword.setVisible(false);
+            closedeye.setImage(openEyeImage);
+        }
+        passwordVisible = !passwordVisible;
     }
 
     @FXML
@@ -100,6 +127,17 @@ public class LoginFormController {
 
     @FXML
     void onmouseentered(MouseEvent event) {
+
+    }
+
+
+    @FXML
+    void passwordmousereleased(MouseEvent event) {
+
+    }
+
+    @FXML
+    void idmousereleased(MouseEvent event) {
 
     }
 

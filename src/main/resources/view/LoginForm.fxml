@@ -83,8 +83,8 @@
                         <Font name="Dyuthi Regular" size="62.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtUserId" layoutX="191.0" layoutY="246.0" prefHeight="51.0" prefWidth="370.0" promptText="UserId" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-                  <TextField fx:id="txtPassword" layoutX="193.0" layoutY="366.0" prefHeight="51.0" prefWidth="370.0" promptText="Password" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+                  <TextField fx:id="txtUserId" layoutX="191.0" layoutY="246.0" onAction="#onaction" onMouseReleased="#idmousereleased" prefHeight="51.0" prefWidth="370.0" promptText="UserId" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+                  <TextField fx:id="txtPassword" layoutX="193.0" layoutY="366.0" onAction="#pwonaction" onMouseReleased="#passwordmousereleased" prefHeight="51.0" prefWidth="370.0" promptText="Password" styleClass="V_Box" stylesheets="@../CSS/style.css" />
                   <ImageView fx:id="closedeye" fitHeight="30.0" fitWidth="43.0" layoutX="521.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/closedeye.png" />
