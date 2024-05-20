@@ -162,6 +162,24 @@ double total;
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
+
+
+    }
+
+    void Clear() {
+        txtid.clear();
+        getCurrentOrderId();
+        txtclientname.clear();
+        lblid.setValue(null);
+        lbldesc.setText(null);
+        lbltotal.setText(null);
+        lblprice.setText(null);
+        lblqtyonhand.setText(null);
+        tblcartview.setItems(null);
+        getClientIds();
+        getProductId();
+        setCellValueFactory();
+
     }
 
     @FXML
@@ -409,6 +427,6 @@ double total;
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
         JasperViewer.viewReport(jasperPrint,false);
-
+        Clear();
     }
 }

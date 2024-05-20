@@ -183,7 +183,7 @@ public class AddProductFormController {
 
         tblmaterialcart.setItems(obList);
 
-        txtqty.clear();
+       // txtqty.clear();
 
     }
 

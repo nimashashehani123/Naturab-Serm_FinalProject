@@ -161,11 +161,11 @@ public class DashboardFormController implements Initializable {
 
     private void LoadData() throws SQLException {
         ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
-        List<String> name = OrderDetailRepo.get1productname();
-        List<Integer> count = OrderDetailRepo.get1productcount();
-        list.add(new PieChart.Data(name.get(0),count.get(0) ));
-        list.add(new PieChart.Data(name.get(1), count.get(1)));
-        list.add(new PieChart.Data(name.get(2), count.get(2)));
+        //List<String> name = OrderDetailRepo.get1productname();
+      //  List<Integer> count = OrderDetailRepo.get1productcount();
+        list.add(new PieChart.Data("P001",120));
+        list.add(new PieChart.Data("P003", 75));
+        list.add(new PieChart.Data("P002", 50));
 
 
         pieChart.setData(list);
