@@ -95,7 +95,7 @@
 			</textField>
 			<image>
 				<reportElement x="-27" y="-10" width="142" height="130" uuid="bc5de9cf-a4e6-42c7-9e7e-63b9fbef66aa"/>
-				<imageExpression><![CDATA["/home/nimasha/Downloads/naturablogo.png"]]></imageExpression>
+				<imageExpression><![CDATA["naturablogo.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

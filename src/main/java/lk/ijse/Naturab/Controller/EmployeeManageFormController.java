@@ -11,14 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import lk.ijse.Naturab.Model.ClientModel;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.EmployeeBo;
 import lk.ijse.Naturab.Model.EmployeeModel;
-import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.EmployeeTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.EmployeeRepo;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -85,7 +81,7 @@ public class EmployeeManageFormController {
     @FXML
     private TextField txtsearchid;
 
-
+    EmployeeBo employeeBo = (EmployeeBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.EMPLOYEE);
     @FXML
     void btnsaveOnAction(ActionEvent event) {
         if (!isValied()){
@@ -103,11 +99,11 @@ public class EmployeeManageFormController {
 
         boolean x = false;
         try {
-            x = EmployeeRepo.saveEmp(employeeModel);
+            x = employeeBo.saveEmployee(employeeModel);
             if(x){
                 new Alert(Alert.AlertType.CONFIRMATION,"Employee saved").show();
                 Clear();}
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -127,9 +123,9 @@ public class EmployeeManageFormController {
         EmployeeModel employeeModel;
 
         try {
-            employeeModel  = EmployeeRepo.searchById(id);
+            employeeModel  = employeeBo.EmployeesearchById(id);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (employeeModel != null) {
@@ -156,8 +152,8 @@ public class EmployeeManageFormController {
                     String id1 = txtid.getText();
                     boolean x = false;
                     try {
-                        x = EmployeeRepo.deleteEmp(id1);
-                    } catch (SQLException e1) {
+                        x = employeeBo.deleteEmployee(id1);
+                    } catch (SQLException | ClassNotFoundException e1) {
                         throw new RuntimeException(e1);
                     }
                     if(x){
@@ -186,12 +182,12 @@ public class EmployeeManageFormController {
                 EmployeeModel employeeModel1 = new EmployeeModel(EmId,Name,Address,Tel,salary,yrex,"");
 
                 try {
-                    boolean isUpdated = EmployeeRepo.updateEmp(employeeModel1);
+                    boolean isUpdated = employeeBo.updateEmployee(employeeModel1);
                     if(isUpdated) {
                         new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
                         Clear();
                     }
-                } catch (SQLException e1) {
+                } catch (SQLException | ClassNotFoundException e1) {
                     new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                 }
                 Clear();
@@ -246,7 +242,7 @@ public class EmployeeManageFormController {
 
 
         try {
-            List<EmployeeModel> empList = EmployeeRepo.getAll();
+            List<EmployeeModel> empList = employeeBo.getAllEmployee();
             for (EmployeeModel employeeModel : empList) {
                 if(empList != null){
 
@@ -274,8 +270,8 @@ public class EmployeeManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = EmployeeRepo.deleteEmp(id);
-                            } catch (SQLException e1) {
+                                x = employeeBo.deleteEmployee(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -305,12 +301,12 @@ public class EmployeeManageFormController {
                         EmployeeModel employeeModel1 = new EmployeeModel(EmId,Name,Address,Tel,salary,yrex,"");
 
                         try {
-                            boolean isUpdated = EmployeeRepo.updateEmp(employeeModel1);
+                            boolean isUpdated = employeeBo.updateEmployee(employeeModel1);
                             if(isUpdated) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "employee updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
                         Clear();
@@ -331,7 +327,7 @@ public class EmployeeManageFormController {
 
             tblemployee.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -352,8 +348,8 @@ public class EmployeeManageFormController {
             EmployeeTm employee = tblemployee.getSelectionModel().getSelectedItem();
             EmployeeModel employee1;
             try {
-                employee1 = EmployeeRepo.searchById(employee.getEId());
-            } catch (SQLException e) {
+                employee1 = employeeBo.EmployeesearchById(employee.getEId());
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             txtid.setText(employee1.getEId());

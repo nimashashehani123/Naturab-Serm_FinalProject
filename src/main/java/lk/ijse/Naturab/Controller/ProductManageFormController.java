@@ -17,18 +17,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import lk.ijse.Naturab.Model.ClientModel;
-import lk.ijse.Naturab.Model.OrderModel;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.ProductBo;
 import lk.ijse.Naturab.Model.ProductModel;
-import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.ProductTm;
-import lk.ijse.Naturab.Repositry.*;
 import lk.ijse.Naturab.Util.Regex;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +86,7 @@ public class ProductManageFormController {
 
     @FXML
     private TextField txtunitprice;
+    ProductBo productBo = (ProductBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.PRODUCT);
 
 
     @FXML
@@ -139,9 +136,9 @@ public class ProductManageFormController {
         ProductModel productModel ;
 
         try {
-            productModel  = ProductRepo.searchById(id);
+            productModel  = productBo.ProductsearchById(id);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (productModel != null) {
@@ -175,8 +172,8 @@ public class ProductManageFormController {
                     String Pid = txtid.getText();
                     boolean x = false;
                     try {
-                        x = ProductRepo.deleteProduct(Pid);
-                    } catch (SQLException e1) {
+                        x = productBo.deleteProduct(Pid);
+                    } catch (SQLException | ClassNotFoundException e1) {
                         throw new RuntimeException(e1);
                     }
                     if(x){
@@ -200,8 +197,8 @@ public class ProductManageFormController {
                 String PId = txtid.getText();
                 ProductModel product;
                 try {
-                    product = ProductRepo.searchById(PId);
-                } catch (SQLException ex) {
+                    product = productBo.ProductsearchById(PId);
+                } catch (SQLException | ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
                 String description = product.getDescription();
@@ -215,12 +212,12 @@ public class ProductManageFormController {
                 ProductModel productModel1 = new ProductModel(PId,  description, design1, UnitPrice, Qty, MaId, WId);
 
                 try {
-                    boolean isUpdated = ProductRepo.updateProduct(productModel1);
+                    boolean isUpdated = productBo.updateProduct(productModel1);
                     if(isUpdated) {
                         new Alert(Alert.AlertType.CONFIRMATION, "product updated!").show();
                         Clear();
                     }
-                } catch (SQLException e1) {
+                } catch (SQLException | ClassNotFoundException e1) {
                     new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                 }
                 Clear();
@@ -256,7 +253,7 @@ public class ProductManageFormController {
 
 
         try {
-            List<ProductModel> productList = ProductRepo.getAll();
+            List<ProductModel> productList = productBo.getAllProduct();
             for (ProductModel productModel : productList) {
                 if(productModel != null){
 
@@ -291,8 +288,8 @@ public class ProductManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = ProductRepo.deleteProduct(id);
-                            } catch (SQLException e1) {
+                                x = productBo.deleteProduct(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -315,8 +312,8 @@ public class ProductManageFormController {
                         String PId = txtid.getText();
                         ProductModel product;
                         try {
-                            product = ProductRepo.searchById(PId);
-                        } catch (SQLException ex) {
+                            product = productBo.ProductsearchById(PId);
+                        } catch (SQLException | ClassNotFoundException ex) {
                             throw new RuntimeException(ex);
                         }
                         String description = product.getDescription();
@@ -330,12 +327,12 @@ public class ProductManageFormController {
                         ProductModel productModel1 = new ProductModel(PId,  description, design1, UnitPrice, Qty, MaId, WId);
 
                         try {
-                            boolean isUpdated = ProductRepo.updateProduct(productModel1);
+                            boolean isUpdated = productBo.updateProduct(productModel1);
                             if(isUpdated) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "product updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
                         Clear();
@@ -358,7 +355,7 @@ public class ProductManageFormController {
 
             tblcproduct.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -370,8 +367,8 @@ public class ProductManageFormController {
             ProductTm product = tblcproduct.getSelectionModel().getSelectedItem();
             ProductModel product1;
             try {
-                product1 = ProductRepo.searchById(product.getPId());
-            } catch (SQLException e) {
+                product1 = productBo.ProductsearchById(product.getPId());
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             txtid.setText(product1.getPId());
@@ -387,7 +384,7 @@ public class ProductManageFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = MachineRepo.getIds();
+            List<String> idList = productBo.getMachineIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -395,7 +392,7 @@ public class ProductManageFormController {
 
             txtmachineid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -403,7 +400,7 @@ public class ProductManageFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = WarehouseRepo.getIds();
+            List<String> idList = productBo.getWarehouseIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -411,7 +408,7 @@ public class ProductManageFormController {
 
             txtwarehouseid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

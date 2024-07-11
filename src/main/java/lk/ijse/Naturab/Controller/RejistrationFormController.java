@@ -12,19 +12,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.Naturab.Db.DbConnection;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.RejistrationBo;
 import lk.ijse.Naturab.Model.UserModel;
-import lk.ijse.Naturab.Repositry.UserRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RejistrationFormController {
 
-    @FXML
     public AnchorPane RejistrationForm;
     @FXML
     private JFXButton btnReg;
@@ -38,7 +35,7 @@ public class RejistrationFormController {
     private TextField txtusername;
     @FXML
     private JFXButton btnback;
-
+    RejistrationBo rejistrationBo = (RejistrationBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.REJISTRATION);
 
     @FXML
     void btnbackOnAction(ActionEvent event) throws IOException {
@@ -58,7 +55,7 @@ public class RejistrationFormController {
 
         try {
             UserModel userModel = new UserModel(userId, name, password);
-            boolean isSaved = UserRepo.saveUser(userModel);
+            boolean isSaved = rejistrationBo.saveUser(userModel);
             if(isSaved) {
 
                 Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "user saved!");
@@ -73,7 +70,7 @@ public class RejistrationFormController {
                 });
 
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -110,7 +107,7 @@ public class RejistrationFormController {
     public boolean isValied(){
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.ID,txtuserid)) return false;
         if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.NAME,txtusername)) return false;
-        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.PASSWORD,txtpassword)) return false;
+        if (!Regex.setTextColor(lk.ijse.Naturab.Util.TextField.QTY,txtpassword)) return false;
         return true;
     }
 

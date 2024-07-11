@@ -19,9 +19,7 @@ import java.util.ResourceBundle;
 
 public class LodinFormController implements Initializable {
 
-    @FXML
     public AnchorPane LodinForm;
-    @FXML
     public AnchorPane loding;
 
 

@@ -20,13 +20,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.PlaceOrderBo;
 import lk.ijse.Naturab.Db.DbConnection;
 import lk.ijse.Naturab.Model.*;
 import lk.ijse.Naturab.Model.Tm.CartTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.OrderRepo;
-import lk.ijse.Naturab.Repositry.PlaceOrderRepo;
-import lk.ijse.Naturab.Repositry.ProductRepo;
 import lk.ijse.Naturab.Util.Regex;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -120,6 +118,7 @@ public class PlacedOrderFormController {
 
     private ObservableList<CartTm> obList = FXCollections.observableArrayList();
 
+    PlaceOrderBo placeOrderBo = (PlaceOrderBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.PLACEORDER);
 double total;
 
     @FXML
@@ -132,7 +131,7 @@ double total;
         String orderId = txtid.getText();
         String cusId = txtclientid.getValue();
         Date  date = Date.valueOf(LocalDate.now());
-         total = Double.valueOf(lbltotal.getText());
+        total = Double.valueOf(lbltotal.getText());
 
         var order = new OrderModel(orderId,date,total,"Not Completed",cusId);
 
@@ -152,7 +151,7 @@ double total;
 
         PlaceOrderModel po = new PlaceOrderModel(order, odList);
         try {
-            boolean isPlaced = PlaceOrderRepo.placeOrder(po);
+            boolean isPlaced = placeOrderBo.placeOrder(po);
             if(isPlaced) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Order Placed!").show();
             } else {
@@ -166,9 +165,9 @@ double total;
 
     }
 
-    void Clear() {
+    void Clear() throws SQLException, ClassNotFoundException {
         txtid.clear();
-        getCurrentOrderId();
+        txtid.setText(placeOrderBo.generateNewOrderID());
         txtclientname.clear();
         lblid.setValue(null);
         lbldesc.setText(null);
@@ -184,7 +183,7 @@ double total;
 
     @FXML
     void btnaddclientOnAction(ActionEvent event) throws IOException {
-
+        System.out.println("Opening client management form...");
         Parent root = FXMLLoader.load(getClass().getResource("/view/ClientManageForm.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -194,10 +193,12 @@ double total;
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
+                System.out.println("Client management form closed, refreshing client IDs...");
                 getClientIds();
             }
         });
         stage.show();
+        System.out.println("Client management form opened.");
 
     }
 
@@ -296,11 +297,11 @@ double total;
     void txtclientidOnAction(ActionEvent event) {
         String id = txtclientid.getValue();
         try {
-            ClientModel client = ClientRepo.searchById(id);
+            ClientModel client = placeOrderBo.ClientsearchById(id);
 
             txtclientname.setText(client.getName());
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -310,7 +311,7 @@ double total;
         String code = lblid.getValue();
 
         try {
-            ProductModel productModel = ProductRepo.searchById(code);
+            ProductModel productModel = placeOrderBo.ProductsearchById(code);
             if(productModel != null) {
                 lbldesc.setText(productModel.getDescription());
                 imageviewdesign.setImage(new Image(productModel.getDesign().toString()));
@@ -320,15 +321,15 @@ double total;
 
             txtqty.requestFocus();
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
         setDate();
-        getCurrentOrderId();
+        txtid.setText(placeOrderBo.generateNewOrderID());
         getClientIds();
         getProductId();
         setCellValueFactory();
@@ -338,7 +339,7 @@ double total;
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = ClientRepo.getIds();
+            List<String> idList = placeOrderBo.getClientIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -346,44 +347,23 @@ double total;
 
             txtclientid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
     private void getProductId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<String> codeList = ProductRepo.getIds();
+            List<String> codeList = placeOrderBo.getProductIds();
 
             for (String code : codeList) {
                 obList.add(code);
             }
             lblid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void getCurrentOrderId() {
-        try {
-            String currentId = OrderRepo.getCurrentId();
-
-            String nextOrderId = generateNextOrderId(currentId);
-            txtid.setText(nextOrderId);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String generateNextOrderId(String currentId) {
-        if(currentId != null) {
-            String[] split = currentId.split("O");
-            int idNum = Integer.parseInt(split[1]);
-            return "O00" + ++idNum;
-        }
-        return "O001";
     }
 
     private void setDate() {
@@ -418,15 +398,17 @@ double total;
         JasperDesign jasperDesign = JRXmlLoader.load("src/main/resources/Report/Bill.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-
         Map<String,Object> data = new HashMap<>();
         data.put("Order Id",txtid.getText());
         data.put("NetTotal",lbltotal.getText());
         data.put("ClientName",txtclientname.getText());
-
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
-        JasperViewer.viewReport(jasperPrint,false);
-        Clear();
+        JasperPrint jasperPrint;
+        try {
+            jasperPrint = JasperFillManager.fillReport(jasperReport, data, DbConnection.getInstance().getConnection());
+            JasperViewer.viewReport(jasperPrint,false);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        System.out.println("load print bill");
     }
 }

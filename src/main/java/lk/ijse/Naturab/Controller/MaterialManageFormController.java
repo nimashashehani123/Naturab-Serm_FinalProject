@@ -14,14 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.Naturab.Model.ClientModel;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.MaterialBo;
 import lk.ijse.Naturab.Model.MaterialModel;
-import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.MaterialTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.MachineRepo;
-import lk.ijse.Naturab.Repositry.MaterialRepo;
-import lk.ijse.Naturab.Repositry.SupplierRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
@@ -87,6 +83,7 @@ public class MaterialManageFormController {
     @FXML
     private TextField txtunitcost;
 
+    MaterialBo materialBo= (MaterialBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.MATERIAL);
     @FXML
     void btnbackOnAction(ActionEvent event) {
 
@@ -116,11 +113,11 @@ public class MaterialManageFormController {
 
         boolean x = false;
         try {
-            x = MaterialRepo.saveMaterial(materialModel);
+            x = materialBo.saveMaterial(materialModel);
             if(x){
                 new Alert(Alert.AlertType.CONFIRMATION,"Material saved").show();
                 Clear();}
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -142,9 +139,9 @@ public class MaterialManageFormController {
         MaterialModel materialModel ;
 
         try {
-            materialModel  = MaterialRepo.searchById(id);
+            materialModel  = materialBo.MaterialsearchById(id);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (materialModel != null) {
@@ -172,8 +169,8 @@ public class MaterialManageFormController {
                     String id1 = txtid.getText();
                     boolean x = false;
                     try {
-                        x = MaterialRepo.deleteMaterial(id1);
-                    } catch (SQLException e1) {
+                        x = materialBo.deleteMaterial(id1);
+                    } catch (SQLException | ClassNotFoundException e1) {
                         throw new RuntimeException(e1);
                     }
                     if(x){
@@ -204,12 +201,12 @@ public class MaterialManageFormController {
                 MaterialModel materialModel1 = new MaterialModel(id2, description, unitcost,qty,sid);
 
                 try {
-                    boolean isUpdated = MaterialRepo.updateMaterial(materialModel1);
+                    boolean isUpdated = materialBo.updateMaterial(materialModel1);
                     if(isUpdated) {
                         new Alert(Alert.AlertType.CONFIRMATION, "material updated!").show();
                         Clear();
                     }
-                } catch (SQLException e1) {
+                } catch (SQLException | ClassNotFoundException e1) {
                     new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                 }
                 Clear();
@@ -266,7 +263,7 @@ public class MaterialManageFormController {
 
 
         try {
-            List<MaterialModel> materialList = MaterialRepo.getAll();
+            List<MaterialModel> materialList = materialBo.getAllMaterial();
             for (MaterialModel materialModel : materialList) {
                 if(materialList != null){
 
@@ -294,8 +291,8 @@ public class MaterialManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = MaterialRepo.deleteMaterial(id);
-                            } catch (SQLException e1) {
+                                x = materialBo.deleteMaterial(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -324,12 +321,12 @@ public class MaterialManageFormController {
                         MaterialModel materialModel1 = new MaterialModel(id, description, unitcost,qty,sid);
 
                         try {
-                            boolean isUpdated = MaterialRepo.updateMaterial(materialModel1);
+                            boolean isUpdated = materialBo.updateMaterial(materialModel1);
                             if(isUpdated) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "material updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
                         Clear();
@@ -351,7 +348,7 @@ public class MaterialManageFormController {
 
             tblmaterial.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -362,8 +359,8 @@ public class MaterialManageFormController {
             MaterialTm material = tblmaterial.getSelectionModel().getSelectedItem();
             MaterialModel material1;
             try {
-                material1 = MaterialRepo.searchById(material.getMId());
-            } catch (SQLException e) {
+                material1 = materialBo.MaterialsearchById(material.getMId());
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             txtid.setText(material1.getMId());
@@ -378,7 +375,7 @@ public class MaterialManageFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = SupplierRepo.getIds();
+            List<String> idList = materialBo.getSupplierIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -386,7 +383,7 @@ public class MaterialManageFormController {
 
             txtsupplierid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -43,8 +43,8 @@
             </TableColumn>
          </columns>
       </TableView>
-      <Label layoutX="60.0" layoutY="138.0" prefHeight="29.0" prefWidth="77.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Product Id" />
-      <Label layoutX="762.0" layoutY="132.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
+      <Label layoutX="60.0" layoutY="138.0" prefHeight="30.0" prefWidth="110.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Product Id" />
+      <Label layoutX="762.0" layoutY="132.0" prefHeight="30.0" prefWidth="124.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
       <TextField fx:id="txtid" layoutX="178.0" layoutY="132.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <TextField fx:id="txtdescription" layoutX="893.0" layoutY="135.0" onKeyReleased="#txtdescriptionOnKeyReleased" prefHeight="43.0" prefWidth="364.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
       <Label layoutX="50.0" layoutY="12.0" prefHeight="51.0" prefWidth="270.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Add Product Form" />
@@ -64,9 +64,9 @@
       <Label layoutX="763.0" layoutY="234.0" prefHeight="29.0" prefWidth="147.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Machine Id" />
       <Label layoutX="61.0" layoutY="228.0" prefHeight="29.0" prefWidth="77.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Design" />
       <JFXButton fx:id="btnaddmachine" layoutX="1275.0" layoutY="226.0" onAction="#btnaddmachineOnAction" prefHeight="38.0" prefWidth="67.0" style="-fx-background-color: #4E3283;" text="+ New" textFill="WHITE" />
-      <Label layoutX="61.0" layoutY="553.0" prefHeight="29.0" prefWidth="78.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Material Id" />
+      <Label layoutX="61.0" layoutY="553.0" prefHeight="30.0" prefWidth="110.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Material Id" />
       <Label layoutX="60.0" layoutY="792.0" prefHeight="29.0" prefWidth="91.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="QtyOnHand" />
-      <Label layoutX="61.0" layoutY="633.0" prefHeight="29.0" prefWidth="78.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
+      <Label layoutX="61.0" layoutY="633.0" prefHeight="30.0" prefWidth="99.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Description" />
       <Label layoutX="60.0" layoutY="713.0" prefHeight="29.0" prefWidth="78.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Unit Cost" />
       <Label layoutX="63.0" layoutY="875.0" prefHeight="29.0" prefWidth="91.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Qty" />
       <ImageView fx:id="imageView" fitHeight="147.0" fitWidth="168.0" layoutX="178.0" layoutY="190.0" onMouseClicked="#imageonclick" pickOnBounds="true" smooth="false">

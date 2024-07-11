@@ -4,15 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.Naturab.Model.ClientModel;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.ClientBo;
+import lk.ijse.Naturab.Bo.custom.WarehouseBo;
 import lk.ijse.Naturab.Model.WarehouseModel;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.WarehouseRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
@@ -33,6 +31,7 @@ public class WarehouseManageFormController {
 
     @FXML
     private TextField txtlocation;
+    WarehouseBo warehouseBo = (WarehouseBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.WAREHOUSE);
 
     @FXML
     void OnMouseClick(MouseEvent event) {
@@ -58,12 +57,12 @@ public class WarehouseManageFormController {
         WarehouseModel warehouseModel = new WarehouseModel(WId,Location,Capacity);
         try {
 
-            x = WarehouseRepo.saveWarehouse(warehouseModel);
+            x = warehouseBo.saveWarehouse(warehouseModel);
             if (x) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Client saved").show();
 
             }
-        } catch(SQLException e){
+        } catch(SQLException | ClassNotFoundException e){
             new Alert(Alert.AlertType.CONFIRMATION, "Duplicate ID ! Please Enter Another ID.").show();
         }
 

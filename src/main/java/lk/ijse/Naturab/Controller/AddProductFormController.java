@@ -20,9 +20,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.AddProductBo;
+import lk.ijse.Naturab.Bo.custom.ClientBo;
 import lk.ijse.Naturab.Model.*;
 import lk.ijse.Naturab.Model.Tm.ProductDetailTm;
-import lk.ijse.Naturab.Repositry.*;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.io.File;
@@ -102,7 +104,7 @@ public class AddProductFormController {
 
     String url;
     String imagePath = null;
-
+    AddProductBo addProductBo = (AddProductBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.ADDPRODUCT);
     private ObservableList<ProductDetailTm> obList = FXCollections.observableArrayList();
 
 
@@ -136,7 +138,7 @@ public class AddProductFormController {
 
         AddProductModel ad = new AddProductModel(product, odList);
         try {
-            boolean isAdd = AddProductRepo.addproduct(ad);
+            boolean isAdd = addProductBo.addproduct(ad);
             if(isAdd) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Product Save!").show();
             } else {
@@ -207,8 +209,8 @@ public class AddProductFormController {
             imageView.setImage(image);
         }
     }
-    public void initialize() {
-        getCurrentProductId();
+    public void initialize() throws SQLException, ClassNotFoundException {
+        addProductBo.generateNewID();
         getMachineIds();
         getMaterialIds();
         getWarehouseIds();
@@ -220,7 +222,7 @@ public class AddProductFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = MaterialRepo.getIds();
+            List<String> idList = addProductBo.getMaterialIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -228,7 +230,7 @@ public class AddProductFormController {
 
             txtMaterialid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -236,7 +238,7 @@ public class AddProductFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = MachineRepo.getIds();
+            List<String> idList = addProductBo.getMachineIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -244,7 +246,7 @@ public class AddProductFormController {
 
             txtmachineid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -252,7 +254,7 @@ public class AddProductFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = WarehouseRepo.getIds();
+            List<String> idList = addProductBo.getWarehouseIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -260,34 +262,13 @@ public class AddProductFormController {
 
             txtwarehouseid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
 
-    private void getCurrentProductId() {
-        try {
-            String currentId = ProductRepo.getCurrentId();
 
-            String nextOrderId = generateNextProductId(currentId);
-            txtid.setText(nextOrderId);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private String generateNextProductId(String currentId) {
-        if(currentId != null) {
-            String[] split = currentId.split("P00");
-            if (split.length > 1) {
-                int idNum = Integer.parseInt(split[1]);
-                return "P00" + ++idNum;
-            }
-        }
-        return "P001";
-    }
 
     @FXML
     void tblOnMouseClick(MouseEvent event) {
@@ -299,7 +280,7 @@ public class AddProductFormController {
         String id = txtMaterialid.getValue();
 
         try {
-            MaterialModel materialModel = MaterialRepo.searchById(id);
+            MaterialModel materialModel = addProductBo.MaterialsearchById(id);
             if(materialModel != null) {
                 lbldescription.setText(materialModel.getDescription());
                 lblunitcost.setText(String.valueOf(materialModel.getUnitCost()));
@@ -308,7 +289,7 @@ public class AddProductFormController {
 
             txtqty.requestFocus();
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 

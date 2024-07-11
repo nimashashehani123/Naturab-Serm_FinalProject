@@ -12,17 +12,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.ClientBo;
 import lk.ijse.Naturab.Model.ClientModel;
 import lk.ijse.Naturab.Model.Tm.ClientTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-
-import static javafx.scene.input.KeyCode.T;
 
 public class ClientManageFormController {
     @FXML
@@ -78,9 +77,9 @@ public class ClientManageFormController {
     @FXML
     private TextField txtsearchid;
 
-
+    ClientBo clientBo = (ClientBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.CLIENT);
     @FXML
-    void btnsaveOnAction(ActionEvent event){
+    void btnsaveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
 
         if (!isValied()){
             new Alert(Alert.AlertType.ERROR,"Pleace Check TextFilds !").show();
@@ -91,22 +90,23 @@ public class ClientManageFormController {
         String Address = txtaddress.getText();
         String Tel = txttel.getText();
         String Email = txtemail.getText();
+        System.out.println(CId);
 
             boolean x = false;
             ClientModel clientModel = new ClientModel(CId,Name,Address,Tel,Email);
         try {
-
-                x = ClientRepo.saveClient(clientModel);
+                x = clientBo.saveClient(clientModel);
                 if (x) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Client saved").show();
                     Clear();
                 }
-            } catch(SQLException e){
+            } catch(SQLException | ClassNotFoundException e ){
                 new Alert(Alert.AlertType.CONFIRMATION, "Duplicate ID ! Please Enter Another ID.").show();
-            }
+        }
 
         Clear();
         loadAllClients();
+        txtid.setText(clientBo.generateNewClientID ());
 
     }
 
@@ -124,9 +124,9 @@ public class ClientManageFormController {
         ClientModel clientModel ;
 
             try {
-                clientModel = ClientRepo.searchById(id);
+                clientModel = clientBo.ClientsearchById(id);
 
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             if (clientModel != null) {
@@ -154,8 +154,8 @@ public class ClientManageFormController {
                         String id1 = txtid.getText();
                         boolean x = false;
                         try {
-                            x = ClientRepo.deleteClient(id1);
-                        } catch (SQLException e1) {
+                            x = clientBo.deleteClient(id1);
+                        } catch (SQLException | ClassNotFoundException e1) {
                             throw new RuntimeException(e1);
                         }
                         if (x) {
@@ -164,6 +164,13 @@ public class ClientManageFormController {
                         }
                         Clear();
                         loadAllClients();
+                        try {
+                            txtid.setText(clientBo.generateNewClientID ());
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 });
 
@@ -186,17 +193,24 @@ public class ClientManageFormController {
                         ClientModel clientModel1 = new ClientModel(id2, name, address, tel, email);
 
                         try {
-                            boolean isUpdated = ClientRepo.updateClient(clientModel1);
+                            boolean isUpdated = clientBo.updateClient(clientModel1);
                             if (isUpdated) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "client updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
 
                     Clear();
                     loadAllClients();
+                    try {
+                        txtid.setText(clientBo.generateNewClientID ());
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (ClassNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 });
 
                 ClientTm tm = new ClientTm(
@@ -228,9 +242,10 @@ public class ClientManageFormController {
         txtemail.clear();
 
     }
-    public void initialize() {
+    public void initialize() throws SQLException, ClassNotFoundException {
         setCellValueFactory();
         loadAllClients();
+        txtid.setText(clientBo.generateNewClientID());
     }
 
     private void setCellValueFactory() {
@@ -247,7 +262,7 @@ public class ClientManageFormController {
 
 
         try {
-            List<ClientModel> clientList = ClientRepo.getAll();
+            List<ClientModel> clientList = clientBo.getAllClient();
             for (ClientModel clientModel : clientList) {
                 if(clientModel != null){
 
@@ -275,8 +290,8 @@ public class ClientManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = ClientRepo.deleteClient(id);
-                            } catch (SQLException e1) {
+                                x = clientBo.deleteClient(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -285,6 +300,13 @@ public class ClientManageFormController {
                             }
                             Clear();
                             loadAllClients();
+                            try {
+                                txtid.setText(clientBo.generateNewClientID ());
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (ClassNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            }
                         }
                     });
 
@@ -305,17 +327,24 @@ public class ClientManageFormController {
                             ClientModel clientModel1 = new ClientModel(id, name, address, tel, email);
 
                             try {
-                                boolean isUpdated = ClientRepo.updateClient(clientModel1);
+                                boolean isUpdated = clientBo.updateClient(clientModel1);
                                 if (isUpdated) {
                                     new Alert(Alert.AlertType.CONFIRMATION, "client updated!").show();
                                     Clear();
                                 }
-                            } catch (SQLException e1) {
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                             }
 
                             Clear();
                             loadAllClients();
+                        try {
+                            txtid.setText(clientBo.generateNewClientID ());
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (ClassNotFoundException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     });
 
                 ClientTm tm = new ClientTm(
@@ -334,6 +363,8 @@ public class ClientManageFormController {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
     @FXML
@@ -348,8 +379,8 @@ public class ClientManageFormController {
             ClientTm client = tblclient.getSelectionModel().getSelectedItem();
             ClientModel client1;
             try {
-                client1 = ClientRepo.searchById(client.getCId());
-            } catch (SQLException e) {
+                client1 = clientBo.ClientsearchById(client.getCId());
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             txtid.setText(client1.getCId());

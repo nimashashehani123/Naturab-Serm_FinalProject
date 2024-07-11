@@ -10,18 +10,16 @@ import javafx.scene.chart.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Label;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.DashboardBo;
 import lk.ijse.Naturab.Db.DbConnection;
-import lk.ijse.Naturab.Repositry.MachineRepo;
-import lk.ijse.Naturab.Repositry.OrderDetailRepo;
-import lk.ijse.Naturab.Repositry.OrderRepo;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.scene.Node;
+
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.BarChart;
 import net.sf.jasperreports.engine.*;
@@ -72,6 +70,7 @@ public class DashboardFormController implements Initializable {
     @FXML
     private JFXButton btnemplyeerepo;
 
+    DashboardBo dashboardBo = (DashboardBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.DASHBOARD);
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -79,13 +78,13 @@ public class DashboardFormController implements Initializable {
             getNotCompleteOrderCount();
             getActiveMachineCount();
             getBrokenMachineCount();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         try {
             LoadData2();
             LoadData();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -136,21 +135,26 @@ public class DashboardFormController implements Initializable {
 
     }
 
-    private void LoadData2() throws SQLException {
+    private void LoadData2() throws SQLException, ClassNotFoundException {
         if (payment == null) {
             System.err.println("Payment chart is not initialized.");
             return;
         }
-        List<Double> payment1 = OrderRepo.getPayment();
+        //List<Double> payment1 = dashboardBo.getOrderPayment();
 
 
-        List<String> oid = OrderRepo.getOId();
+       // List<String> oid = dashboardBo.getOId();
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>(oid.get(0), payment1.get(0)));
-        series.getData().add(new XYChart.Data<>(oid.get(1), payment1.get(1)));
-        series.getData().add(new XYChart.Data<>(oid.get(2), payment1.get(2)));
-        series.getData().add(new XYChart.Data<>(oid.get(3), payment1.get(3)));
+
+            //series.getData().add(new XYChart.Data<>(oid.get(0), payment1.get(0)));
+        series.getData().add(new XYChart.Data<>("O001", 20000));
+            //series.getData().add(new XYChart.Data<>(oid.get(1), payment1.get(1)));
+        series.getData().add(new XYChart.Data<>("O003", 3000));
+           // series.getData().add(new XYChart.Data<>(oid.get(2), payment1.get(2)));
+        series.getData().add(new XYChart.Data<>("O004", 60000));
+           // series.getData().add(new XYChart.Data<>(oid.get(3), payment1.get(3)));
+        series.getData().add(new XYChart.Data<>("O002", 36000));
 
         payment.getData().add(series);
         for (XYChart.Data<String, Number> data : series.getData()) {
@@ -180,21 +184,21 @@ public class DashboardFormController implements Initializable {
 
     }
 
-    public void getCompleteOrderCount() throws SQLException {
-      String completed  = String.valueOf(OrderRepo.getOrderCount());
+    public void getCompleteOrderCount() throws SQLException, ClassNotFoundException {
+      String completed  = String.valueOf(dashboardBo.getOrdercount());
         complete.setText(completed);
     }
-    public void getNotCompleteOrderCount() throws SQLException {
-        String completed  = String.valueOf(OrderRepo.getOrderCount1());
+    public void getNotCompleteOrderCount() throws SQLException, ClassNotFoundException {
+        String completed  = String.valueOf(dashboardBo.getOrdercount1());
         notcomplete.setText(completed);
     }
-    public void getActiveMachineCount() throws SQLException {
-        String completed  = String.valueOf(MachineRepo.getMachinecount());
+    public void getActiveMachineCount() throws SQLException, ClassNotFoundException {
+        String completed  = String.valueOf(dashboardBo.getMachinecount());
         active.setText(completed);
     }
 
-    public void getBrokenMachineCount() throws SQLException {
-        String completed  = String.valueOf(MachineRepo.getMachinecount1());
+    public void getBrokenMachineCount() throws SQLException, ClassNotFoundException {
+        String completed  = String.valueOf(dashboardBo.getMachinecount1());
         broken.setText(completed);
     }
 

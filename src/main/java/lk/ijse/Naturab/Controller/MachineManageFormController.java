@@ -12,10 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.MachineBo;
 import lk.ijse.Naturab.Model.MachineModel;
 import lk.ijse.Naturab.Model.Tm.MachineTm;
-import lk.ijse.Naturab.Repositry.MachineRepo;
-import lk.ijse.Naturab.Repositry.OperatorRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import javax.mail.MessagingException;
@@ -76,6 +76,7 @@ public class MachineManageFormController {
     @FXML
     private TextField txttype;
 
+    MachineBo machineBo = (MachineBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.MACHINE);
 
     @FXML
     void btnbackOnAction(ActionEvent event) {
@@ -106,11 +107,11 @@ public class MachineManageFormController {
 
         boolean x = false;
         try {
-            x = MachineRepo.saveMachine(machineModel);
+            x = machineBo.saveMachine(machineModel);
             if(x){
                 new Alert(Alert.AlertType.CONFIRMATION,"Machine saved").show();
                 Clear();}
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -130,9 +131,9 @@ public class MachineManageFormController {
         MachineModel machineModel ;
 
         try {
-            machineModel  = MachineRepo.searchById(id);
+            machineModel  = machineBo.MachinesearchById(id);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (machineModel != null) {
@@ -159,8 +160,8 @@ public class MachineManageFormController {
                     String id1 = txtid.getText();
                     boolean x = false;
                     try {
-                        x = MachineRepo.deleteMachine(id1);
-                    } catch (SQLException e1) {
+                        x = machineBo.deleteMachine(id1);
+                    } catch (SQLException | ClassNotFoundException e1) {
                         throw new RuntimeException(e1);
                     }
                     if(x){
@@ -190,12 +191,12 @@ public class MachineManageFormController {
 
 
                 try {
-                    boolean isUpdated = MachineRepo.updateMachine(machineModel1);
+                    boolean isUpdated = machineBo.updateMachine(machineModel1);
                     if(isUpdated) {
                         new Alert(Alert.AlertType.CONFIRMATION, "machine updated!").show();
                         Clear();
                     }
-                } catch (SQLException e1) {
+                } catch (SQLException | ClassNotFoundException e1) {
                     new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                 }
                 Clear();
@@ -249,7 +250,7 @@ public class MachineManageFormController {
 
 
         try {
-            List<MachineModel> machineList = MachineRepo.getAll();
+            List<MachineModel> machineList = machineBo.getAllMachine();
             for (MachineModel machineModel : machineList) {
                 if(machineList != null){
 
@@ -277,8 +278,8 @@ public class MachineManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = MachineRepo.deleteMachine(id);
-                            } catch (SQLException e1) {
+                                x = machineBo.deleteMachine(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -308,12 +309,12 @@ public class MachineManageFormController {
 
 
                         try {
-                            boolean isUpdated = MachineRepo.updateMachine(machineModel1);
+                            boolean isUpdated = machineBo.updateMachine(machineModel1);
                             if(isUpdated) {
                                 if (Status=="Broken"){
 
                                     try {
-                                        Mail.sendMail(OperatorRepo.getEmail(MaId),MaId);
+                                        Mail.sendMail(machineBo.getOperatorEmail(MaId),MaId);
                                     } catch (MessagingException ex) {
                                         throw new RuntimeException(ex);
                                     }
@@ -321,7 +322,7 @@ public class MachineManageFormController {
                                 new Alert(Alert.AlertType.CONFIRMATION, "machine updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
                         Clear();
@@ -343,7 +344,7 @@ public class MachineManageFormController {
 
             tblmachine.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -354,8 +355,10 @@ public class MachineManageFormController {
             MachineTm machine = tblmachine.getSelectionModel().getSelectedItem();
             MachineModel machine1;
             try {
-                machine1 = MachineRepo.searchById(machine.getMaId());
-            } catch (SQLException e) {
+                System.out.println(machine.getMaId());
+                machine1 = machineBo.MachinesearchById(machine.getMaId());
+            } catch (SQLException | ClassNotFoundException e) {
+                System.out.println(e);
                 throw new RuntimeException(e);
             }
             txtid.setText(machine1.getMaId());

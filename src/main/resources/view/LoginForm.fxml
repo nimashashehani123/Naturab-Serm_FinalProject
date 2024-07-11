@@ -52,12 +52,12 @@
                         <Image url="@../image/photo.png" />
                      </image>
                   </ImageView>
-                  <Hyperlink fx:id="linkRejistration" layoutX="357.0" layoutY="644.0" onAction="#linkRejistrationOnAction" text="Rejister On Here">
+                  <Hyperlink fx:id="linkRejistration" layoutX="367.0" layoutY="605.0" onAction="#linkRejistrationOnAction" text="Rejister On Here">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Hyperlink>
-                  <Label layoutX="166.0" layoutY="639.0" prefHeight="37.0" prefWidth="211.0" text="Don't have an account?" textFill="#4e3283">
+                  <Label layoutX="173.0" layoutY="601.0" prefHeight="37.0" prefWidth="211.0" text="Don't have an account?" textFill="#4e3283">
                      <font>
                         <Font name="Dyuthi Regular" size="20.0" />
                      </font>
@@ -88,6 +88,21 @@
                   <ImageView fx:id="closedeye" fitHeight="30.0" fitWidth="43.0" layoutX="521.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/closedeye.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="402.0" layoutY="432.0" prefHeight="33.0" prefWidth="153.0" styleClass="lbl2" stylesheets="@../CSS/style.css" text="Forgot password ?">
+                     <font>
+                        <Font name="Dyuthi Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="214.0" layoutY="432.0" prefHeight="26.0" prefWidth="127.0" styleClass="lbl2" stylesheets="@../CSS/style.css" text="Remember me" textFill="#4e3283">
+                     <font>
+                        <Font name="Dyuthi Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="28.0" fitWidth="18.0" layoutX="193.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/tickbox.png" />
                      </image>
                   </ImageView>
                </children>

@@ -14,17 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.Naturab.Db.DbConnection;
-import lk.ijse.Naturab.Model.UserModel;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.EmployeeRepo;
-import lk.ijse.Naturab.Repositry.OperatorRepo;
-import lk.ijse.Naturab.Repositry.UserRepo;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.LoginBo;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginFormController {
@@ -32,16 +25,12 @@ public class LoginFormController {
     @FXML
     private JFXButton btnLogin;
 
-    @FXML
     public ImageView closedeye;
 
-    @FXML
     public Hyperlink linkRejistration;
 
-    @FXML
     public TextField txtPassword;
 
-    @FXML
     public TextField txtUserId;
     @FXML
     private AnchorPane root;
@@ -51,6 +40,7 @@ public class LoginFormController {
     boolean passwordVisible;
      Image openEyeImage;
      Image closedEyeImage;
+     LoginBo loginBo = (LoginBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.LOGIN);
     public void initialize() {
 
        /*   openEyeImage = new Image(getClass().getResourceAsStream("/image/delete.png"));
@@ -75,7 +65,8 @@ public class LoginFormController {
 
         String Password = null;
         try {
-            Password = UserRepo.searchById(userId);
+            navigateToTheDashboard();
+            Password = loginBo.UsersearchById(userId);
             if (Password != null) {
                 if(pw.equals(Password)){
                     navigateToTheDashboard();
@@ -85,12 +76,11 @@ public class LoginFormController {
             }else {
                 new Alert(Alert.AlertType.INFORMATION, "sorry! user id can't be find!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
-    @FXML
     void closedeyeOnMouseClick(MouseEvent event) {
         if (passwordVisible) {
             txtPassword.setManaged(true);

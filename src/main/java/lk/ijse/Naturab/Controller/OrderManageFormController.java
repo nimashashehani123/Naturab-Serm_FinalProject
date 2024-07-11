@@ -14,12 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import lk.ijse.Naturab.Model.ClientModel;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.OrderBo;
 import lk.ijse.Naturab.Model.OrderModel;
-import lk.ijse.Naturab.Model.Tm.ClientTm;
 import lk.ijse.Naturab.Model.Tm.OrderTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.OrderRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.io.IOException;
@@ -80,6 +78,8 @@ public class OrderManageFormController {
     @FXML
     private TextField txtid;
 
+    OrderBo orderBo = (OrderBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.ORDER);
+
     @FXML
     void btnaddorderOnAction(ActionEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/PlacedOrderForm.fxml"));
@@ -113,9 +113,9 @@ public class OrderManageFormController {
         OrderModel orderModel;
 
         try {
-            orderModel  = OrderRepo.searchById(id);
+            orderModel  = orderBo.OrdersearchById(id);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (orderModel != null) {
@@ -143,8 +143,8 @@ public class OrderManageFormController {
                     String id1 = txtid.getText();
                     boolean x = false;
                     try {
-                        x = OrderRepo.deleteOrder(id1);
-                    } catch (SQLException e1) {
+                        x = orderBo.deleteOrder(id1);
+                    } catch (SQLException | ClassNotFoundException e1) {
                         throw new RuntimeException(e1);
                     }
                     if(x){
@@ -169,8 +169,8 @@ public class OrderManageFormController {
                 String id2 = txtid.getText();
                 OrderModel order;
                 try {
-                    order = OrderRepo.searchById(id);
-                } catch (SQLException ex) {
+                    order = orderBo.OrdersearchById(id);
+                } catch (SQLException | ClassNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
                 Date placedDate = order.getPlacedDate();
@@ -182,12 +182,12 @@ public class OrderManageFormController {
                 OrderModel orderModel1 = new OrderModel(id2, placedDate,paymentAmount,status, cId);
 
                 try {
-                    boolean isUpdated = OrderRepo.updateOrder(orderModel1);
+                    boolean isUpdated = orderBo.updateOrder(orderModel1);
                     if(isUpdated) {
                         new Alert(Alert.AlertType.CONFIRMATION, "order updated!").show();
                         Clear();
                     }
-                } catch (SQLException e1) {
+                } catch (SQLException | ClassNotFoundException e1) {
                     new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                 }
                 Clear();
@@ -223,7 +223,7 @@ public class OrderManageFormController {
     }
 
     public void initialize() {
-        txtstatus.getItems().addAll("Completed","Not Completed", "On Prepare");
+        txtstatus.getItems().addAll("Completed","InCompleted", "On Prepare");
         setCellValueFactory();
         loadAllOrders();
     }
@@ -244,7 +244,7 @@ public class OrderManageFormController {
 
 
         try {
-            List<OrderModel> orderList = OrderRepo.getAll();
+            List<OrderModel> orderList = orderBo.getAllOrders();
             for (  OrderModel orderModel: orderList) {
                 if(orderList != null){
 
@@ -272,8 +272,8 @@ public class OrderManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = OrderRepo.deleteOrder(id);
-                            } catch (SQLException e1) {
+                                x = orderBo.deleteOrder(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -295,8 +295,8 @@ public class OrderManageFormController {
                         String id = txtid.getText();
                         OrderModel order;
                         try {
-                            order = OrderRepo.searchById(id);
-                        } catch (SQLException ex) {
+                            order = orderBo.OrdersearchById(id);
+                        } catch (SQLException | ClassNotFoundException ex) {
                             throw new RuntimeException(ex);
                         }
                         Date placedDate = order.getPlacedDate();
@@ -308,12 +308,12 @@ public class OrderManageFormController {
                         OrderModel orderModel1 = new OrderModel(id, placedDate,paymentAmount,status, cId);
 
                         try {
-                            boolean isUpdated = OrderRepo.updateOrder(orderModel1);
+                            boolean isUpdated = orderBo.updateOrder(orderModel1);
                             if(isUpdated) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "order updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
                         Clear();
@@ -337,7 +337,7 @@ public class OrderManageFormController {
 
             tblorder.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -353,8 +353,8 @@ public class OrderManageFormController {
             OrderTm order = tblorder.getSelectionModel().getSelectedItem();
             OrderModel order1;
             try {
-                order1 = OrderRepo.searchById(order.getOId());
-            } catch (SQLException e) {
+                order1 = orderBo.OrdersearchById(order.getOId());
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             txtid.setText(order1.getOId());

@@ -13,21 +13,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import lk.ijse.Naturab.Model.ClientModel;
-import lk.ijse.Naturab.Model.EmployeeModel;
+import lk.ijse.Naturab.Bo.BoFactory;
+import lk.ijse.Naturab.Bo.custom.OperatorBo;
 import lk.ijse.Naturab.Model.OperatorModel;
-import lk.ijse.Naturab.Model.Tm.ClientTm;
-import lk.ijse.Naturab.Model.Tm.EmployeeTm;
 import lk.ijse.Naturab.Model.Tm.OperatorTm;
-import lk.ijse.Naturab.Repositry.ClientRepo;
-import lk.ijse.Naturab.Repositry.EmployeeRepo;
-import lk.ijse.Naturab.Repositry.MachineRepo;
-import lk.ijse.Naturab.Repositry.OperatorRepo;
 import lk.ijse.Naturab.Util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
 
 public class OperatorManageFormController {
 
@@ -91,6 +86,8 @@ public class OperatorManageFormController {
     @FXML
     private TextField txttel;
 
+    OperatorBo operatorBo = (OperatorBo) BoFactory.getBoFactory().getBO(BoFactory.BOTypes.OPERATOR);
+
     @FXML
     void btnbackOnAction(ActionEvent event) {
 
@@ -122,11 +119,11 @@ public class OperatorManageFormController {
 
         boolean x = false;
         try {
-            x = OperatorRepo.saveOperator(operatorModel);
+            x = operatorBo.saveOperator(operatorModel);
             if(x){
                 new Alert(Alert.AlertType.CONFIRMATION,"Operator saved").show();
                 Clear();}
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -147,9 +144,9 @@ public class OperatorManageFormController {
         OperatorModel operatorModel;
 
         try {
-            operatorModel  = OperatorRepo.searchById(id);
+            operatorModel  = operatorBo.OperatorsearchById(id);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         if (operatorModel != null) {
@@ -176,8 +173,8 @@ public class OperatorManageFormController {
                     String id1 = txtid.getText();
                     boolean x = false;
                     try {
-                        x = OperatorRepo.deleteOperator(id1);
-                    } catch (SQLException e1) {
+                        x = operatorBo.deleteOperator(id1);
+                    } catch (SQLException | ClassNotFoundException e1) {
                         throw new RuntimeException(e1);
                     }
                     if(x){
@@ -208,12 +205,12 @@ public class OperatorManageFormController {
                 OperatorModel operatorModel1 = new OperatorModel(OpId,Name,Address,Tel,salary,yrex,"",maid);
 
                 try {
-                    boolean isUpdated = OperatorRepo.updateOperator(operatorModel1);
+                    boolean isUpdated = operatorBo.updateOperator(operatorModel1);
                     if(isUpdated) {
                         new Alert(Alert.AlertType.CONFIRMATION, "operator updated!").show();
                         Clear();
                     }
-                } catch (SQLException e1) {
+                } catch (SQLException | ClassNotFoundException e1) {
                     new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                 }
                 Clear();
@@ -273,7 +270,7 @@ public class OperatorManageFormController {
 
 
         try {
-            List<OperatorModel> opList = OperatorRepo.getAll();
+            List<OperatorModel> opList = operatorBo.getAllOperators();
             for (OperatorModel operatorModel : opList) {
                 if(opList != null){
 
@@ -301,8 +298,8 @@ public class OperatorManageFormController {
                             String id = txtid.getText();
                             boolean x = false;
                             try {
-                                x = OperatorRepo.deleteOperator(id);
-                            } catch (SQLException e1) {
+                                x = operatorBo.deleteOperator(id);
+                            } catch (SQLException | ClassNotFoundException e1) {
                                 throw new RuntimeException(e1);
                             }
                             if(x){
@@ -333,12 +330,12 @@ public class OperatorManageFormController {
                         OperatorModel operatorModel1 = new OperatorModel(OpId,Name,Address,Tel,salary,yrex,"",maid);
 
                         try {
-                            boolean isUpdated = OperatorRepo.updateOperator(operatorModel1);
+                            boolean isUpdated = operatorBo.updateOperator(operatorModel1);
                             if(isUpdated) {
                                 new Alert(Alert.AlertType.CONFIRMATION, "operator updated!").show();
                                 Clear();
                             }
-                        } catch (SQLException e1) {
+                        } catch (SQLException | ClassNotFoundException e1) {
                             new Alert(Alert.AlertType.ERROR, e1.getMessage()).show();
                         }
                         Clear();
@@ -360,7 +357,7 @@ public class OperatorManageFormController {
 
             tbloperator.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -372,8 +369,8 @@ public class OperatorManageFormController {
             OperatorTm operator = tbloperator.getSelectionModel().getSelectedItem();
             OperatorModel operator1;
             try {
-                operator1 = OperatorRepo.searchById(operator.getOpId());
-            } catch (SQLException e) {
+                operator1 = operatorBo.OperatorsearchById(operator.getOpId());
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
             txtid.setText(operator1.getOpId());
@@ -401,7 +398,7 @@ public class OperatorManageFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
 
         try {
-            List<String> idList = MachineRepo.getIds();
+            List<String> idList = operatorBo.getMachineIds();
 
             for(String id : idList) {
                 obList.add(id);
@@ -409,7 +406,7 @@ public class OperatorManageFormController {
 
             txtmachineid.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

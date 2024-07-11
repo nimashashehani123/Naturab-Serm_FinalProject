@@ -13,7 +13,7 @@ public class Regex {
 
         switch (textField){
             case ID:
-                filed = "^([A-Z][0-9]{3})$";
+                filed = "[A-Z]\\d{2}-\\d{3}";
                 break;
             case TEL:
                 filed = "^(?:\\+94\\s?)?(\\d{3})(?:-|\\s)?(\\d{7})$";

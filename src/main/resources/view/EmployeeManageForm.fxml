@@ -11,52 +11,52 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.EmployeeManageFormController">
+<AnchorPane prefHeight="846.0" prefWidth="1274.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.EmployeeManageFormController">
    <children>
-      <ImageView fitHeight="235.0" fitWidth="330.0" layoutX="1268.0" layoutY="78.0" pickOnBounds="true" smooth="false">
+      <ImageView fitHeight="235.0" fitWidth="286.0" layoutX="1067.0" layoutY="77.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../image/clientm.png" />
          </image>
       </ImageView>
       <Label layoutX="96.0" layoutY="253.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address :" />
-      <Label layoutX="98.0" layoutY="115.0" prefHeight="24.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id :" />
+      <Label layoutX="98.0" layoutY="115.0" prefHeight="26.0" prefWidth="42.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id :" />
       <Line endX="243.0" endY="68.5" layoutX="55.0" layoutY="-12.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
       <Label layoutX="96.0" layoutY="182.0" prefHeight="29.0" prefWidth="84.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name :" />
-      <Label layoutX="743.0" layoutY="110.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel :" />
-      <Label layoutX="744.0" layoutY="181.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Salary :" />
-      <TextField fx:id="txtid" layoutX="221.0" layoutY="105.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtname" layoutX="221.0" layoutY="178.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtaddress" layoutX="226.0" layoutY="258.0" onKeyReleased="#txtaddressOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" translateY="-10.0" />
-      <TextField fx:id="txtexperience" layoutX="881.0" layoutY="244.0" onKeyReleased="#txtexperienceOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TableView fx:id="tblemployee" layoutX="81.0" layoutY="382.0" onMouseClicked="#tblOnMouseClick" prefHeight="532.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+      <Label layoutX="612.0" layoutY="110.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel :" />
+      <Label layoutX="617.0" layoutY="181.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Salary :" />
+      <TextField fx:id="txtid" layoutX="221.0" layoutY="105.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="26.0" prefWidth="236.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="221.0" layoutY="178.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="20.0" prefWidth="236.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="226.0" layoutY="258.0" onKeyReleased="#txtaddressOnKeyReleased" prefHeight="26.0" prefWidth="236.0" styleClass="V_Box" stylesheets="@../CSS/style.css" translateY="-10.0" />
+      <TextField fx:id="txtexperience" layoutX="739.0" layoutY="243.0" onKeyReleased="#txtexperienceOnKeyReleased" prefHeight="34.0" prefWidth="236.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TableView fx:id="tblemployee" layoutX="81.0" layoutY="382.0" onMouseClicked="#tblOnMouseClick" prefHeight="535.0" prefWidth="1216.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
          <columns>
-            <TableColumn fx:id="colid" prefWidth="187.0">
+            <TableColumn fx:id="colid" prefWidth="135.20001983642578">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="351.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Id" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="colname" prefWidth="401.0">
+            <TableColumn fx:id="colname" prefWidth="279.2000274658203">
                <graphic>
                   <Label prefHeight="39.0" prefWidth="559.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Name" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coladdress" prefWidth="357.0">
+            <TableColumn fx:id="coladdress" prefWidth="355.199951171875">
                <graphic>
                   <Label prefHeight="39.0" prefWidth="409.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Address" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coltel" prefWidth="288.0">
+            <TableColumn fx:id="coltel" prefWidth="300.79998779296875">
                <graphic>
-                  <Label prefHeight="40.0" prefWidth="313.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Tel" textFill="WHITE" />
+                  <Label prefHeight="40.0" prefWidth="404.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Tel" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coledit" prefWidth="93.0" />
-            <TableColumn fx:id="coldelete" prefWidth="86.0" />
+            <TableColumn fx:id="coledit" prefWidth="73.5999755859375" />
+            <TableColumn fx:id="coldelete" prefWidth="65.60009765625" />
          </columns>
       </TableView>
-      <Label layoutX="74.0" layoutY="13.0" prefHeight="51.0" prefWidth="225.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Employee Manage" />
-      <Label layoutX="1317.0" layoutY="382.0" prefHeight="40.0" prefWidth="177.0" styleClass="btn" stylesheets="@../CSS/style.css" text="                 Action" textFill="WHITE" />
-      <JFXButton fx:id="btnsave" layoutX="1166.0" layoutY="305.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="1166.0" AnchorPane.rightAnchor="375.0" AnchorPane.topAnchor="305.0">
+      <Label layoutX="74.0" layoutY="13.0" prefHeight="51.0" prefWidth="253.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Employee Manage" />
+      <Label layoutX="1154.0" layoutY="382.0" prefHeight="40.0" prefWidth="140.0" styleClass="btn" stylesheets="@../CSS/style.css" text="          Action" textFill="WHITE" />
+      <JFXButton fx:id="btnsave" layoutX="975.0" layoutY="296.0" onAction="#btnsaveOnAction" prefHeight="34.0" prefWidth="98.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="659.0" AnchorPane.leftAnchor="975.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="296.0">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -65,15 +65,15 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txttel" layoutX="878.0" layoutY="109.0" onKeyReleased="#txttelOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <Label layoutX="744.0" layoutY="249.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="YrExperience : " />
-      <TextField fx:id="txtsalary" layoutX="881.0" layoutY="176.0" onKeyReleased="#txtsalaryOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtsearchid" layoutX="1222.0" layoutY="37.0" onKeyReleased="#txtsearchidOnKeyReleased" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txttel" layoutX="739.0" layoutY="109.0" onKeyReleased="#txttelOnKeyReleased" prefHeight="2.0" prefWidth="236.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <Label layoutX="618.0" layoutY="249.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="YrExperience : " />
+      <TextField fx:id="txtsalary" layoutX="739.0" layoutY="171.0" onKeyReleased="#txtsalaryOnKeyReleased" prefHeight="34.0" prefWidth="236.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtsearchid" layoutX="1027.0" layoutY="38.0" onKeyReleased="#txtsearchidOnKeyReleased" prefHeight="2.0" prefWidth="211.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font size="74.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="btnsearch" layoutX="1496.0" layoutY="38.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
+      <JFXButton fx:id="btnsearch" layoutX="1256.0" layoutY="35.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="97.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="56.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,7 +91,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnclose" layoutX="1443.0" layoutY="42.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
+      <JFXButton fx:id="btnclose" layoutX="1190.0" layoutY="40.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
          <graphic>
             <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" smooth="false">
                <image>
