@@ -2,9 +2,7 @@ package lk.ijse.Naturab.Dao.custom.Impl;
 
 import lk.ijse.Naturab.Dao.SQLUtill;
 import lk.ijse.Naturab.Dao.custom.UserDAO;
-import lk.ijse.Naturab.Model.MaterialModel;
 import lk.ijse.Naturab.Model.UserModel;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;

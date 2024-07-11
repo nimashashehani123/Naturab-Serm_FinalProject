@@ -16,7 +16,7 @@ public class ProductDAOImpl implements ProductDAO {
         List<ProductModel> poList = new ArrayList<>();
         ResultSet rst = SQLUtill.execute("SELECT * FROM Product");
         while (rst.next()) {
-            poList.add(new ProductModel(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4),  rst.getInt(5),rst.getString(3),rst.getString(3)));
+            poList.add(new ProductModel(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4),  rst.getInt(5),rst.getString(6),rst.getString(7)));
         }
         return poList;
     }

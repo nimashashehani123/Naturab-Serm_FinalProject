@@ -13,7 +13,7 @@
 <AnchorPane fx:id="LodinForm" prefHeight="623.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.LodinFormController">
    <children>
       <AnchorPane fx:id="loding" prefHeight="640.0" prefWidth="836.0" styleClass="colorBackground" stylesheets="@../CSS/style.css" />
-      <AnchorPane layoutX="-14.0" prefHeight="640.0" prefWidth="821.0" styleClass="shadowed" stylesheets="@../CSS/style.css">
+      <AnchorPane layoutX="-14.0" prefHeight="640.0" prefWidth="742.0" styleClass="shadowed" stylesheets="@../CSS/style.css">
          <children>
             <Polygon fill="#e0b0ff" layoutX="117.0" layoutY="50.0" points="-306.0, 7.0, -63.0, 241.0, 123.0, -144.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                <effect>
@@ -35,7 +35,7 @@
                   <Reflection />
                </effect>
             </Polygon>
-            <Label accessibleRole="DATE_PICKER" graphicTextGap="10.0" layoutX="176.0" layoutY="185.0" prefHeight="244.0" prefWidth="546.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="LOADING" textFill="WHITE">
+            <Label accessibleRole="DATE_PICKER" graphicTextGap="10.0" layoutX="142.0" layoutY="185.0" prefHeight="114.0" prefWidth="576.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="LOADING" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="120.0" />
                </font>

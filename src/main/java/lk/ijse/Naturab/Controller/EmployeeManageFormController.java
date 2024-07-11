@@ -224,6 +224,7 @@ public class EmployeeManageFormController {
 
     }
     public void initialize() {
+
         setCellValueFactory();
         loadAllEmp();
     }

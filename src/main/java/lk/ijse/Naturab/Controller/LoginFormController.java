@@ -77,7 +77,6 @@ public class LoginFormController {
                 new Alert(Alert.AlertType.INFORMATION, "sorry! user id can't be find!").show();
             }
         } catch (SQLException | ClassNotFoundException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 

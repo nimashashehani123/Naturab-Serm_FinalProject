@@ -14,12 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OperatorDAOImpl implements OperatorDAO {
-    static String userid;
+    static String userid = "U00-001";
 
-    public static void getcurrentuser(String userId) {
-        userid = userId;
-
-    }
     @Override
     public List<OperatorModel> getAll() throws SQLException, ClassNotFoundException {
         List<OperatorModel> opList = new ArrayList<>();
@@ -44,12 +40,12 @@ public class OperatorDAOImpl implements OperatorDAO {
     public OperatorModel searchById(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtill.execute("SELECT * FROM Operator WHERE OpId = ?",id + "");
         rst.next();
-        return new OperatorModel(rst.getString(1),rst.getString(2),rst.getString(4),rst.getString(5),rst.getDouble(6),rst.getInt(7),rst.getString(8),rst.getString(9));
+        return new OperatorModel(rst.getString(1),rst.getString(2),rst.getString(3),rst.getString(4),rst.getDouble(5),rst.getInt(6),rst.getString(7),rst.getString(8));
     }
 
     @Override
     public boolean update(OperatorModel operatorModel) throws SQLException, ClassNotFoundException {
-        return SQLUtill.execute("UPDATE Operator SET Name = ?, Email = ?, Tel = ? , Salary = ? , YrOfExperience = ? , UserId = ? , MaId = ? WHERE OpId = ?",operatorModel.getName(),operatorModel.getAddress(),operatorModel.getTel(),operatorModel.getSalary(),operatorModel.getYrOfExperience(),operatorModel.getUserid(),operatorModel.getMaId(),operatorModel.getOpId());
+        return SQLUtill.execute("UPDATE Operator SET Name = ?, Email = ?, Tel = ? , Salary = ? , YrOfExperience = ? , UserId = ? , MaId = ? WHERE OpId = ?",operatorModel.getName(),operatorModel.getAddress(),operatorModel.getTel(),operatorModel.getSalary(),operatorModel.getYrOfExperience(),userid,operatorModel.getMaId(),operatorModel.getOpId());
     }
 
     @Override

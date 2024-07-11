@@ -11,45 +11,45 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="supplier" prefHeight="993.0" prefWidth="1625.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.SupplierManageFormController">
+<AnchorPane fx:id="supplier" prefHeight="782.0" prefWidth="1284.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.SupplierManageFormController">
    <children>
-      <Label layoutX="664.0" layoutY="225.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address" />
+      <Label layoutX="599.0" layoutY="225.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Address" />
       <Label layoutX="110.0" layoutY="137.0" prefHeight="29.0" prefWidth="21.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Id" />
       <Line endX="228.0" endY="68.5" layoutX="43.0" layoutY="-21.0" startX="19.0" startY="68.5" stroke="#4e3283" strokeWidth="2.0" />
       <Label layoutX="106.0" layoutY="222.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Name" />
-      <Label layoutX="667.0" layoutY="134.0" prefHeight="29.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" />
-      <TextField fx:id="txtid" layoutX="198.0" layoutY="134.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtname" layoutX="199.0" layoutY="221.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txtaddress" layoutX="755.0" layoutY="222.0" onKeyReleased="#txtaddressOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TextField fx:id="txttel" layoutX="754.0" layoutY="130.0" onKeyReleased="#txttelOnKeyReleased" prefHeight="46.0" prefWidth="345.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-      <TableView fx:id="tblsupplier" layoutX="111.0" layoutY="384.0" onMouseClicked="#tblOnMouseClick" prefHeight="525.0" prefWidth="1416.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
+      <Label layoutX="597.0" layoutY="134.0" prefHeight="29.0" prefWidth="49.0" styleClass="lbl1" stylesheets="@../CSS/style.css" text="Tel" />
+      <TextField fx:id="txtid" layoutX="198.0" layoutY="134.0" onKeyReleased="#txtidOnKeyReleased" prefHeight="34.0" prefWidth="246.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtname" layoutX="199.0" layoutY="221.0" onKeyReleased="#txtnameOnKeyReleased" prefHeight="17.0" prefWidth="246.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txtaddress" layoutX="703.0" layoutY="220.0" onKeyReleased="#txtaddressOnKeyReleased" prefHeight="40.0" prefWidth="246.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TextField fx:id="txttel" layoutX="705.0" layoutY="130.0" onKeyReleased="#txttelOnKeyReleased" prefHeight="17.0" prefWidth="246.0" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+      <TableView fx:id="tblsupplier" layoutX="111.0" layoutY="384.0" onMouseClicked="#tblOnMouseClick" prefHeight="338.0" prefWidth="1138.0" styleClass="VBox1" stylesheets="@../CSS/style.css">
          <columns>
-            <TableColumn fx:id="colid" prefWidth="196.0">
+            <TableColumn fx:id="colid" prefWidth="141.5999755859375">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="190.0" styleClass="btn" stylesheets="@../CSS/style.css" text="SId" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="colname" prefWidth="384.0">
+            <TableColumn fx:id="colname" prefWidth="293.59999084472656">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="378.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Name" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coltel" prefWidth="324.0">
+            <TableColumn fx:id="coltel" prefWidth="268.800048828125">
                <graphic>
                   <Label prefHeight="42.0" prefWidth="407.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Tel" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coladdress" prefWidth="371.0">
+            <TableColumn fx:id="coladdress" prefWidth="288.800048828125">
                <graphic>
                   <Label prefHeight="40.0" prefWidth="576.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Address" textFill="WHITE" />
                </graphic>
             </TableColumn>
-            <TableColumn fx:id="coledit" prefWidth="74.0" />
-            <TableColumn fx:id="coldelete" prefWidth="65.0" />
+            <TableColumn fx:id="coledit" prefWidth="61.60009765625" />
+            <TableColumn fx:id="coldelete" prefWidth="71.2000732421875" />
          </columns>
       </TableView>
-      <Label layoutX="62.0" layoutY="3.0" prefHeight="51.0" prefWidth="210.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Supplier Manage" />
-      <JFXButton fx:id="btnsave" layoutX="1023.0" layoutY="299.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
+      <Label layoutX="62.0" layoutY="3.0" prefHeight="51.0" prefWidth="238.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="Supplier Manage" />
+      <JFXButton fx:id="btnsave" layoutX="894.0" layoutY="300.0" onAction="#btnsaveOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Save" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -58,12 +58,12 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ImageView fitHeight="334.0" fitWidth="425.0" layoutX="1163.0" layoutY="43.0" pickOnBounds="true" smooth="false">
+      <ImageView fitHeight="311.0" fitWidth="387.0" layoutX="965.0" layoutY="83.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../image/clientm.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="btnsearch" layoutX="1485.0" layoutY="29.0" onAction="#btnsearchOnAction" prefHeight="38.0" prefWidth="84.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
+      <JFXButton fx:id="btnsearch" layoutX="1240.0" layoutY="29.0" onAction="#btnsearchOnAction" prefHeight="30.0" prefWidth="91.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Search" textFill="WHITE">
          <graphic>
             <ImageView fitHeight="56.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -72,12 +72,12 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtsearchid" layoutX="1211.0" layoutY="28.0" onKeyReleased="#txtsearchidOnKeyReleased" prefHeight="32.0" prefWidth="260.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
+      <TextField fx:id="txtsearchid" layoutX="997.0" layoutY="31.0" onKeyReleased="#txtsearchidOnKeyReleased" prefHeight="26.0" prefWidth="225.0" promptText="Enter Id" styleClass="V_Box" stylesheets="@../CSS/style.css">
          <font>
             <Font size="74.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="btnclose" layoutX="1435.0" layoutY="34.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
+      <JFXButton fx:id="btnclose" layoutX="1174.0" layoutY="34.0" onAction="#btncloseOnAction" prefHeight="29.0" prefWidth="41.0" text=" ">
          <graphic>
             <ImageView fitHeight="12.0" fitWidth="15.0" pickOnBounds="true" smooth="false">
                <image>
@@ -95,6 +95,6 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="1387.0" layoutY="388.0" prefHeight="40.0" prefWidth="138.0" styleClass="btn" stylesheets="@../CSS/style.css" text="             Action" textFill="WHITE" />
+      <Label layoutX="1105.0" layoutY="388.0" prefHeight="40.0" prefWidth="138.0" styleClass="btn" stylesheets="@../CSS/style.css" text="             Action" textFill="WHITE" />
    </children>
 </AnchorPane>

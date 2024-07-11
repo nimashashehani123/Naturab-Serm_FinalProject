@@ -13,51 +13,53 @@
 <?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" cacheShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1014.0" prefWidth="1920.0" styleClass="colorBackground" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.LoginFormController">
+<AnchorPane fx:id="root" cacheShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="923.0" prefWidth="1535.0" styleClass="colorBackground" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Naturab.Controller.LoginFormController">
    <children>
-      <Polygon fill="#b19cd9" layoutX="1851.0" layoutY="-97.0" points="-814.0, -94.25, -331.0, 409.75, 119.0, -29.25" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon fill="#b19cd9" layoutX="1675.0" layoutY="-97.0" points="-814.0, -94.25, -331.0, 409.75, 119.0, -29.25" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <effect>
             <Reflection />
          </effect>
       </Polygon>
-      <Polygon fill="#e0b0ff" layoutX="1671.0" layoutY="949.0" opacity="0.81" points="-120.0, -288.0, 118.0, -670.0, 177.0, -468.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon fill="#e0b0ff" layoutX="1388.0" layoutY="949.0" opacity="0.81" points="-120.0, -288.0, 118.0, -670.0, 177.0, -468.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <effect>
             <Reflection />
          </effect>
       </Polygon>
-      <AnchorPane layoutY="21.0" prefHeight="951.0" prefWidth="897.0" styleClass="shadowed" stylesheets="@/CSS/style.css">
+      <AnchorPane layoutX="86.0" layoutY="21.0" prefHeight="1214.0" prefWidth="791.0" styleClass="shadowed" stylesheets="@/CSS/style.css">
          <children>
-            <Polygon fill="#b19cd9" layoutX="41.0" layoutY="-8.0" points="836.0, 478.0, -41.0, 1215.0, -41.0, -257.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Polygon fill="#3e274d" layoutX="-90.0" layoutY="-1.0" points="865.0, 472.0, -41.0, 1215.0, -41.0, -257.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Label layoutX="86.0" layoutY="231.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="Naturab ">
+            <Polygon fill="#b19cd9" layoutX="-109.0" layoutY="-44.0" points="836.0, 478.0, -41.0, 1215.0, -41.0, -257.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Polygon fill="#3e274d" layoutX="-223.0" layoutY="-40.0" points="865.0, 472.0, -41.0, 1215.0, -41.0, -257.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Label layoutX="-43.0" layoutY="258.0" prefHeight="146.0" prefWidth="391.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="Naturab ">
                <font>
                   <Font name="Dhurjati" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="15.0" layoutY="391.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="Accessories" />
+            <Label layoutX="-48.0" layoutY="397.0" prefHeight="146.0" prefWidth="530.0" styleClass="lbls" stylesheets="@../CSS/style.css" text="Accessories" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="roots" layoutX="875.0" layoutY="74.0" prefHeight="764.0" prefWidth="851.0">
+      <AnchorPane fx:id="roots" layoutX="834.0" layoutY="74.0" prefHeight="764.0" prefWidth="663.0">
          <children>
-            <AnchorPane layoutX="27.0" layoutY="25.0" prefHeight="743.0" prefWidth="876.0">
+            <AnchorPane layoutX="-50.0" layoutY="25.0" prefHeight="671.0" prefWidth="688.0">
                <children>
-                  <VBox layoutX="72.0" layoutY="9.0" prefHeight="734.0" prefWidth="547.0" style="-fx-background-color: #ffffff;" stylesheets="@../CSS/style.css">
+                  <VBox layoutX="101.0" layoutY="13.0" prefHeight="677.0" prefWidth="476.0" style="-fx-background-color: #ffffff;" stylesheets="@../CSS/style.css">
                      <styleClass>
                         <String fx:value="VBox" />
                         <String fx:value="shadowed" />
                      </styleClass>
+                     <children>
+                        <ImageView cache="true" fitHeight="675.0" fitWidth="481.0" focusTraversable="true" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../image/photo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
                   </VBox>
-                  <ImageView cache="true" fitHeight="734.0" fitWidth="504.0" focusTraversable="true" layoutX="92.0" layoutY="9.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../image/photo.png" />
-                     </image>
-                  </ImageView>
-                  <Hyperlink fx:id="linkRejistration" layoutX="367.0" layoutY="605.0" onAction="#linkRejistrationOnAction" text="Rejister On Here">
+                  <Hyperlink fx:id="linkRejistration" layoutX="357.0" layoutY="588.0" onAction="#linkRejistrationOnAction" text="Rejister On Here">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Hyperlink>
-                  <Label layoutX="173.0" layoutY="601.0" prefHeight="37.0" prefWidth="211.0" text="Don't have an account?" textFill="#4e3283">
+                  <Label layoutX="136.0" layoutY="586.0" prefHeight="37.0" prefWidth="211.0" text="Don't have an account?" textFill="#4e3283">
                      <font>
                         <Font name="Dyuthi Regular" size="20.0" />
                      </font>
@@ -67,25 +69,25 @@
                         <Image url="@../image/login.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="51.0" fitWidth="37.0" layoutX="131.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="51.0" fitWidth="37.0" layoutX="131.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/user.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="136.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="51.0" layoutX="136.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/password.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="btnLogin" layoutX="269.0" layoutY="510.0" onAction="#btnLoginOnAction" onMouseEntered="#onmouseentered" prefHeight="51.0" prefWidth="153.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Login" textFill="WHITE" />
+                  <JFXButton fx:id="btnLogin" layoutX="243.0" layoutY="482.0" onAction="#btnLoginOnAction" onMouseEntered="#onmouseentered" prefHeight="51.0" prefWidth="153.0" styleClass="btn" stylesheets="@../CSS/style.css" text="Login" textFill="WHITE" />
                   <Label layoutX="311.0" layoutY="83.0" prefHeight="51.0" prefWidth="101.0" styleClass="lbl" stylesheets="@../CSS/style.css" text="LOG IN" textFill="#f1ecf5">
                      <font>
                         <Font name="Dyuthi Regular" size="62.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtUserId" layoutX="191.0" layoutY="246.0" onAction="#onaction" onMouseReleased="#idmousereleased" prefHeight="51.0" prefWidth="370.0" promptText="UserId" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-                  <TextField fx:id="txtPassword" layoutX="193.0" layoutY="366.0" onAction="#pwonaction" onMouseReleased="#passwordmousereleased" prefHeight="51.0" prefWidth="370.0" promptText="Password" styleClass="V_Box" stylesheets="@../CSS/style.css" />
-                  <ImageView fx:id="closedeye" fitHeight="30.0" fitWidth="43.0" layoutX="521.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+                  <TextField fx:id="txtUserId" layoutX="191.0" layoutY="246.0" onAction="#onaction" onMouseReleased="#idmousereleased" prefHeight="30.0" prefWidth="297.0" promptText="UserId" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+                  <TextField fx:id="txtPassword" layoutX="193.0" layoutY="337.0" onAction="#pwonaction" onMouseReleased="#passwordmousereleased" prefHeight="30.0" prefWidth="298.0" promptText="Password" styleClass="V_Box" stylesheets="@../CSS/style.css" />
+                  <ImageView fx:id="closedeye" fitHeight="26.0" fitWidth="24.0" layoutX="455.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/closedeye.png" />
                      </image>
@@ -105,14 +107,14 @@
                         <Image url="@../image/tickbox.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="123.0" fitWidth="140.0" layoutX="600.0" layoutY="686.0" opacity="0.79" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/naturablogo.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="127.0" fitWidth="177.0" layoutX="1710.0" layoutY="860.0" opacity="0.79" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/naturablogo.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

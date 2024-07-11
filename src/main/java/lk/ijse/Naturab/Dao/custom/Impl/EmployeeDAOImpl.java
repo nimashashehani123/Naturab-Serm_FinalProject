@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
-    static String userid ;
-    public static void getcurrentuser(String userId){
-        userid = userId;
-    }
+    static String userid =  "U00-001" ;
     @Override
     public List<EmployeeModel> getAll() throws SQLException, ClassNotFoundException {
         List<EmployeeModel> emList = new ArrayList<>();
@@ -46,7 +43,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public boolean update(EmployeeModel employeeModel) throws SQLException, ClassNotFoundException {
-        return SQLUtill.execute("UPDATE OtherEmp SET Name = ?, Address = ?, Tel = ? , Salary = ? , YrOfExperience = ? , UserId = ? WHERE EmId = ?",employeeModel.getName(),employeeModel.getAddress(),employeeModel.getTel(),employeeModel.getSalary(),employeeModel.getYrOfExperience(),employeeModel.getUserid(),employeeModel.getEId());
+        return SQLUtill.execute("UPDATE OtherEmp SET Name = ?, Address = ?, Tel = ? , Salary = ? , YrOfExperience = ? , UserId = ? WHERE EmId = ?",employeeModel.getName(),employeeModel.getAddress(),employeeModel.getTel(),employeeModel.getSalary(),employeeModel.getYrOfExperience(),userid,employeeModel.getEId());
     }
 
     @Override
